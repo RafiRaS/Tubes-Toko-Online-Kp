@@ -1,1 +1,2 @@
 handphone|25.000|5
+airpods|10.000|2

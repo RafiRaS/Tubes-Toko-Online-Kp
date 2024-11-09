@@ -14,6 +14,19 @@ char obat[1000][3][50];
 char fashion[1000][3][50];
 char others[1000][3][50];
 
+//fungsi untuk menghitung banyak data dalam array
+int menghitungBanyakData(char arr[1000][3][50]) {
+    int count = 0;
+    for (int i = 0; i < 1000; i++) {
+        if (strlen(arr[i][0]) > 0) {
+            count++;
+        } else {
+            break;
+        }
+    }
+    return count;
+}
+
 
 int main(){
     //tampilan menu awal
@@ -142,6 +155,12 @@ int main(){
         index++;
     }
 
+    //menginisialisasi fungsi untuk menentukan banyaknya data dalam array
+    int jumlahBuku = menghitungBanyakData(buku);
+    int jumlahObat = menghitungBanyakData(obat);
+    int jumlahFashion = menghitungBanyakData(fashion);
+    int jumlahOthers = menghitungBanyakData(others);
+
 
     //login user
     if(input == 1){
@@ -182,13 +201,14 @@ int main(){
             }
 
             else if(input == 2){
+                menuBuku:
                 do{
                     system("cls");
                     printf("1.buku\n");
                     printf("2.fashion\n");
-                    printf("4.obat\n");
-                    printf("5.others\n");
-                    printf("6.back\n");
+                    printf("3.obat\n");
+                    printf("4.others\n");
+                    printf("5.back\n");
                     scanf("%d",&input);
                 }while (input>6 || input<0);
 
@@ -199,21 +219,92 @@ int main(){
 
                 //menampilkan kategori buku
                 else if(input == 1){
-
+                    system("cls");
+                    for(int i = 0;i<jumlahBuku;i++){
+                        printf("%d.%s\n",i+1,buku[i][0]);
+                        printf("  harga = %s\n",buku[i][1]);
+                        printf("  stok = %s\n",buku[i][2]);
+                        printf("==============================================\n");
+                    }
+                    printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
+                    printf("==============================================\n");
+                    printf("0.kembali\n");
+                    for(int i = 0;i<jumlahBuku;i++){
+                        printf("%d.%s\n",i+1,buku[i][0]);
+                    }
+                    printf("==============================================\n");
+                    scanf("%d",&input);
+                    if(input == 0){
+                        goto menuBuku;
+                    }
                 }
 
                 //menampilkan kategori fashion
                 else if(input == 2){
-
+                    system("cls");
+                    for(int i = 0;i<jumlahFashion;i++){
+                        printf("%d.%s\n",i+1,fashion[i][0]);
+                        printf("  harga = %s\n",fashion[i][1]);
+                        printf("  stok = %s\n",fashion[i][2]);
+                        printf("==============================================\n");
+                    }
+                    printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
+                    printf("==============================================\n");
+                    printf("0.kembali\n");
+                    
+                    for(int i = 0;i<jumlahFashion;i++){
+                        printf("%d.%s\n",i+1,fashion[i][0]);
+                    }
+                    printf("==============================================\n");
+                    scanf("%d",&input);
+                    if(input == 0){
+                        goto menuBuku;
+                    }
                 
                 }
                 //menampilkan kategori obat
                 else if(input == 3){
-
+                    system("cls");
+                    for(int i = 0;i<jumlahObat;i++){
+                        printf("%d.%s\n",i+1,obat[i][0]);
+                        printf("  harga = %s\n",obat[i][1]);
+                        printf("  stok = %s\n",obat[i][2]);
+                        printf("==============================================\n");
+                    }
+                    printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
+                    printf("==============================================\n");
+                    printf("0.kembali\n");
+                    
+                    for(int i = 0;i<jumlahObat;i++){
+                        printf("%d.%s\n",i+1,obat[i][0]);
+                    }
+                    printf("==============================================\n");
+                    scanf("%d",&input);
+                    if(input == 0){
+                        goto menuBuku;
+                    }
                 }
                 //menampilkan kategori others
                 else if(input == 4){
-
+                    system("cls");
+                    for(int i = 0;i<jumlahOthers;i++){
+                        printf("%d.%s\n",i+1,others[i][0]);
+                        printf("  harga = %s\n",others[i][1]);
+                        printf("  stok = %s\n",others[i][2]);
+                        printf("==============================================\n");
+                    }
+                    printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
+                    printf("==============================================\n");
+                    printf("0.kembali\n");
+                    
+                    for(int i = 0;i<jumlahOthers;i++){
+                        printf("%d.%s\n",i+1,others[i][0]);
+                    }
+                    printf("==============================================\n");
+                    scanf("%d",&input);
+                    if(input == 0){
+                        goto menuBuku;
+                    }
                 }
             }
             

@@ -8,6 +8,7 @@ intmain(){
     char buku[1000][3][50];
     FILE *file;
     int index = 0;
+    char line[50];
 
     file = fopen("buku.txt","r");
 
