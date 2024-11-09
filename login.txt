@@ -9,3 +9,14 @@ d|"f:\TUGAS
 mmk|enak
 1|2
 3|2
+peju|gagal
+cd|"f:\TUGAS
+SEMESTER|1\KP\TUBES
+PAK|FAJAR\"
+;|if
+($?)|{
+gcc|main.c
+o|main
+}|;
+if|($?)
+{|.\main

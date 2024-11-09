@@ -1,5 +1,38 @@
 MEMBUAT LOGIN PAGE
 BIKIN FITUR UNTUK LOGIN TERLEBIH DAHULU JIKA INGIN MENGAKSES TOKO
 JIKA BELUM LOGIN MAKA REGISTER TERLEBIH DAHULU
-MEMBUAT FILE TXT UNTUK DATA USERNAME DAN PASSWORD ORANG
+MEMBUAT FILE TXT UNTUK DATA USERNAME DAN PASSWORD user
 JIKA REGISTER, MAKA AKAN MENGIRIM DAta KE FILE LOGIN.TXT
+
+BEGITU JUGA SEBALIKNYA UNTUK LOGIN DAN REGISTER DALAM FITUR SELLER
+
+
+
+
+F1
+Online shop menjual beberapa barang yang dibagi menjadi beberapa kategori seperti obat herbal, fashion, buku, dll
+F2
+Pembeli dapat melihat daftar semua barang dalam satu kategori tertentu
+F3
+Pembeli dapat mencari barang yang diinginkan dengan memasukkan keyword pada kolom pencarian yang tersedia pada online shop untuk mencari barang
+F4
+Pembeli dapat menambahkan barang yang ingin dibeli ke shopping cart
+F5
+Pembeli dapat melakukan checkout shopping cart yang telah berisi barang dengan ditampilkan daftar barang yang telah dipilih, harga masing masing barang, dan total harga semua barang. 
+F6
+Pada langkah checkout, pembeli memilih jasa pengiriman yang dipakai.  Kemudian dihitung total ongkos kirim yang ditanggung oleh pembeli berdasarkan total berat barang yang dibeli dan alamat tujuan.
+F7
+Setelah yakin dengan pembeliannya, pembeli segera membayar pembeliannya dan akan mendapatkan informasi kapan barang tersebut diterimanya. 
+F8
+Pembeli juga dapat melakukan return barang dengan batas maksimal 7 hari setelah barang diterima. Kemudian penjual akan mengembalikan saldo ke rekening pembeli
+F9
+Pembeli harus registrasi terlebih dahulu agar bisa menggunakan layanan online shop
+F10
+Pembeli harus login terlebih dahulu sebelum menggunakan layanan online shop
+F11
+Penjual dapat melakukan input barang dan update stok barang
+F12
+Pembeli dapat melakukan sorting barang berdasarkan harga barang
+F13
+Pembeli dapat menampilkan produk paling banyak dibeli
+

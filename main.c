@@ -9,8 +9,14 @@ char loginPW[25];
 char login[1000][2][25];
 char seller[1000][2][25];
 
+char buku[1000][3][50];
+char obat[1000][3][50];
+char fashion[1000][3][50];
+char others[1000][3][50];
+
 
 int main(){
+    //tampilan menu awal
     menu:
     do{
         system("cls");
@@ -90,14 +96,66 @@ int main(){
             printf("login berhasil\n");
             printf("tekan tombol apa saja untuk lanjut\n");
             getch();
-            system("cls");
-            printf("Selamat datang %s",loginID);
+            sessionuser:
+            do{
+                system("cls");
+                printf("Selamat datang %s\n",loginID);
+                printf("1.cari barang\n");
+                printf("2.lihat kategori\n");
+                printf("3.logout\n");
+                scanf("%d",&input);
+            }while (input>3 || input<0);
+            
+            if(input == 1){
+                printf("ketik barang yang ingin dicari:");
+            }
+
+            else if(input == 2){
+                do{
+                    system("cls");
+                    printf("1.buku\n");
+                    printf("2.fashion\n");
+                    printf("4.obat\n");
+                    printf("5.others\n");
+                    printf("6.back\n");
+                    scanf("%d",&input);
+                }while (input>6 || input<0);
+
+                //kembali ke menu
+                if(input == 5){
+                    goto sessionuser;
+                }
+
+                //menampilkan kategori buku
+                else if(input == 1){
+
+                }
+
+                //menampilkan kategori fashion
+                else if(input == 2){
+
+                
+                }
+                //menampilkan kategori obat
+                else if(input == 3){
+
+                }
+                //menampilkan kategori others
+                else if(input == 4){
+
+                }
+            }
+            
+            else if(input == 3){
+                goto menu;
+            }
+
         }
 
-
+        //salah memasukan password login
         else{
             system("cls");
-            printf("password salah\ntekan tombol apa saja untuk kembali\n");
+            printf("password atau id salah\ntekan tombol apa saja untuk kembali\n");
             getch();
             goto menu;
             
@@ -131,9 +189,10 @@ int main(){
             system("cls");
             printf("Selamat datang %s",loginID);
         }
+        //salah memasukan password seller
         else{
             system("cls");
-            printf("password salah\ntekan tombol apa saja untuk kembali\n");
+            printf("password atau id salah\ntekan tombol apa saja untuk kembali\n");
             getch();
             goto menu;
             
@@ -164,9 +223,8 @@ int main(){
         }
 
         
-
+        //cek id ga boleh sama
         if (cekID == 0){
-            FILE * file;
 
             file = fopen("login.txt","a");
 
@@ -190,7 +248,7 @@ int main(){
         
     }
 
-    //register seller
+    //register seller sama seperti cara bikin akun user
     if(input == 4){
       
         char registerID[25];
@@ -213,9 +271,8 @@ int main(){
         }
 
         
-
+        //cek id seller juga tidak boleh sama dengan id seller lain
         if (cekID == 0){
-            FILE * file;
 
             file = fopen("seller.txt","a");
 
