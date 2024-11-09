@@ -70,6 +70,77 @@ int main(){
     
     fclose(file);
 
+    //baca file buku.txt, masukin ke array buku
+    index = 0;
+
+    file = fopen("buku.txt","r");
+
+    while(fgets(line, sizeof(line), file) != NULL){
+        line[strcspn(line,"\n")] = 0;
+
+        char *nama = strtok(line,"|");
+        char *harga = strtok(NULL,"|");
+        char *stok = strtok(NULL,"|");
+
+        strncpy(buku[index][0], nama, 50);
+        strncpy(buku[index][1], harga, 50);
+        strncpy(buku[index][2], stok, 50);
+        index++;
+    }
+
+    //baca file fashion.txt, masukin ke array fashion
+    index = 0;
+
+    file = fopen("fashion.txt","r");
+
+    while(fgets(line, sizeof(line), file) != NULL){
+        line[strcspn(line,"\n")] = 0;
+
+        char *nama = strtok(line,"|");
+        char *harga = strtok(NULL,"|");
+        char *stok = strtok(NULL,"|");
+
+        strncpy(fashion[index][0], nama, 50);
+        strncpy(fashion[index][1], harga, 50);
+        strncpy(fashion[index][2], stok, 50);
+        index++;
+    }
+
+    //baca file obat.txt, masukin ke array obat
+    index = 0;
+
+    file = fopen("obat.txt","r");
+
+    while(fgets(line, sizeof(line), file) != NULL){
+        line[strcspn(line,"\n")] = 0;
+
+        char *nama = strtok(line,"|");
+        char *harga = strtok(NULL,"|");
+        char *stok = strtok(NULL,"|");
+
+        strncpy(obat[index][0], nama, 50);
+        strncpy(obat[index][1], harga, 50);
+        strncpy(obat[index][2], stok, 50);
+        index++;
+    }
+
+    //baca file others.txt, masukin ke array others
+    index = 0;
+
+    file = fopen("others.txt","r");
+
+    while(fgets(line, sizeof(line), file) != NULL){
+        line[strcspn(line,"\n")] = 0;
+
+        char *nama = strtok(line,"|");
+        char *harga = strtok(NULL,"|");
+        char *stok = strtok(NULL,"|");
+
+        strncpy(others[index][0], nama, 50);
+        strncpy(others[index][1], harga, 50);
+        strncpy(others[index][2], stok, 50);
+        index++;
+    }
 
 
     //login user
