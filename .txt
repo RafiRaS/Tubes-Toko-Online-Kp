@@ -1,0 +1,4 @@
+
+buku|buku ipa|13|0.3|0
+buku ipa|500000|13|0.3|0
+cd "f:\TUGAS SEMESTER 1\KP\TUBES PAK FAJAR\" ; if| ($?) { gcc test.c -o test } ; if ($?) { .\test }||cd "f:\TUGAS SEMESTER 1\KP\TUBES PAK FAJAR\" ; if|0

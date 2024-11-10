@@ -1,2 +1,3 @@
-Gelang|25.000|5
-Jam Tangan|75.000|3
+Gelang|25000|5|0.1|0
+Jam Tangan|75000|3|0.2|0
+tas ijo eiger|200000|6|1.6|0

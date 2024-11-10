@@ -1,16 +1,15 @@
-index = 0;
-
-    file = fopen("buku.txt","r");
-
-    while(fgets(line, sizeof(line), file) != NULL){
-        line[strcspn(line,"\n")] = 0;
-
-        char *nama = strtok(line,"|");
-        char *harga = strtok(NULL,"|");
-        char *stok = strtok(NULL,"|");
-
-        strncpy(buku[index][0], nama, 50);
-        strncpy(buku[index][1], harga, 50);
-        strncpy(buku[index][2], stok, 50);
-        index++;
-    }
+char namaBarang,hargaBarang,stokBarang,beratBarang,kategoriBarang;
+                // char pembelianBarang = 0;
+                // printf("Masukan kategori barang:\n");
+                // printf("buku|fashion|obat|others\n");
+                // scanf("%s",&kategoriBarang);
+                // printf("Masukin nama barang");
+                // scanf("%s",&namaBarang);
+                // printf("Masukin harga barang");
+                // scanf("%s",&hargaBarang);
+                // printf("Masukin stok barang");
+                // scanf("%s",&stokBarang);
+                // printf("Masukin berat barang");
+                // scanf("%s",&beratBarang);
+                // system("cls");
+                // printf("Produk berhasil di Tambahkan")

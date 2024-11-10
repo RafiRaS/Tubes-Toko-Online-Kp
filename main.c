@@ -8,11 +8,12 @@ char loginPW[25];
 
 char login[1000][2][25];
 char seller[1000][2][25];
+char user[1][2][1000];
 
-char buku[1000][3][50];
-char obat[1000][3][50];
-char fashion[1000][3][50];
-char others[1000][3][50];
+char buku[1000][5][50];
+char obat[1000][5][50];
+char fashion[1000][5][50];
+char others[1000][5][50];
 
 //fungsi untuk menghitung banyak data dalam array
 int menghitungBanyakData(char arr[1000][3][50]) {
@@ -32,15 +33,15 @@ int main(){
     //tampilan menu awal
     menu:
     do{
+        input = 0;
         system("cls");
         printf("Selamat datang di toko kami\n");
         printf("1.login user\n");
         printf("2.login seller\n");
         printf("3.register user\n");
-        printf("4.register seller\n");
-        printf("5.keluar program\n");
+        printf("4.keluar program\n");
         scanf("%d",&input);
-    }while (input>5 || input<0);
+    }while (input>4 || input<0);
 
 
     //baca file login.txt terus masukin ke array
@@ -348,8 +349,77 @@ int main(){
             printf("login berhasil\n");
             printf("tekan tombol apa saja untuk lanjut\n");
             getch();
-            system("cls");
-            printf("Selamat datang %s",loginID);
+            
+            menuSeller:
+            do{
+                system("cls");
+                printf("Selamat datang min %s\n",loginID);
+                printf("0.logout\n");
+                printf("1.Masukin Barang\n");
+                printf("2.Update Stok\n");
+                scanf("%d",&input);
+            }while (input>2 || input<0);
+
+            if(input == 0){
+                goto menu;
+            }
+
+            //masukin barang
+            if(input == 1){
+                system("cls");
+                char namaBarang[50],hargaBarang[50],stokBarang[50],beratBarang[50],kategoriBarang[50];
+                printf("Masukan kategori barang:\n");
+                printf("buku|fashion|obat|others\n");
+
+                fflush(stdin);//untuk membersihkan input karna sebelumnya menggunakan scanf
+                
+                fgets(kategoriBarang, sizeof(kategoriBarang), stdin);
+                kategoriBarang[strcspn(kategoriBarang, "\n")] = '\0';
+
+                printf("========================\n");
+                printf("Masukin nama barang                   : ");
+                fgets(namaBarang, sizeof(namaBarang), stdin);
+                namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+
+                printf("Masukin harga barang                  : ");
+                fgets(hargaBarang, sizeof(hargaBarang), stdin);
+                hargaBarang[strcspn(hargaBarang, "\n")] = '\0'; 
+
+                printf("Masukin stok barang                   : ");
+                fgets(stokBarang, sizeof(stokBarang), stdin);
+                stokBarang[strcspn(stokBarang, "\n")] = '\0'; 
+
+                printf("Masukin berat barang(dalam satuan kg) : ");
+                fgets(beratBarang, sizeof(beratBarang), stdin);
+                beratBarang[strcspn(beratBarang, "\n")] = '\0'; 
+
+
+                char namaFile[50];
+                sprintf(namaFile,"%s.txt",kategoriBarang);
+
+                file = fopen(namaFile,"a");
+
+                fprintf(file, "\n%s|",namaBarang);
+                fprintf(file, "%s|",hargaBarang);
+                fprintf(file, "%s|",stokBarang);
+                fprintf(file, "%s|",beratBarang);
+                fprintf(file, "0");
+
+                fclose(file);
+                
+
+                system("cls");
+                printf("barang berhasil dimasukan\n");
+                printf("tekan tombol apa saja untuk kembali");
+                getch();
+                goto menuSeller;
+            }
+
+            //update stok barang
+            if(input == 2){
+
+            }
+            
         }
         //salah memasukan password seller
         else{
@@ -410,55 +480,9 @@ int main(){
         
     }
 
-    //register seller sama seperti cara bikin akun user
+
+    //untuk keluar dari program
     if(input == 4){
-      
-        char registerID[25];
-        char registerPW[25];
-        int cekID = 0;
-        system("cls");
-        printf("Register Page Seller\n");
-        printf("masukan id       :");
-        scanf("%s",&registerID);
-        printf("masukan password :");
-        scanf("%s",&registerPW);
-
-        for(int i = 0;i<1000;i++){
-            int cekstr = strcmp(registerID,login[i][0]);
-                
-            if (strcmp(registerID,login[i][0]) == 0){
-                cekID = 1;
-                break;
-            }
-        }
-
-        
-        //cek id seller juga tidak boleh sama dengan id seller lain
-        if (cekID == 0){
-
-            file = fopen("seller.txt","a");
-
-            fprintf(file, "\n%s|",registerID);
-            fprintf(file, "%s",registerPW);
-
-            fclose(file);
-
-            printf("\nanda telah berhasil registrasi\n");
-            printf("tekan tombol apa saja untuk kembali\n");
-            getch();
-            goto menu;
-        }else{
-            printf("\nRegistrasi Gagal, ID telah terpakai\n");
-            printf("tekan tombol apa saja untuk kembali\n");
-            getch();
-            goto menu;
-        }
-        
-        
-        
-    }
-
-    if(input == 5){
         system("cls");
         printf("Terimakasih");
     }

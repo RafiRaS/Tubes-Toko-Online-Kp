@@ -1,2 +1,3 @@
-paracetamol|25.000|5
-decolgen|2.000|19
+paracetamol|25000|5|0.1|0
+decolgen|2000|19|0.1|0
+neoralgyn|5000|19|0.1|0
