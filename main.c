@@ -16,7 +16,7 @@ char fashion[1000][5][50];
 char others[1000][5][50];
 
 //fungsi untuk menghitung banyak data dalam array
-int menghitungBanyakData(char arr[1000][3][50]) {
+int menghitungBanyakData(char arr[1000][5][50]) {
     int count = 0;
     for (int i = 0; i < 1000; i++) {
         if (strlen(arr[i][0]) > 0) {
@@ -191,14 +191,72 @@ int main(){
             do{
                 system("cls");
                 printf("Selamat datang %s\n",loginID);
+                printf("0.logout\n");
                 printf("1.cari barang\n");
                 printf("2.lihat kategori\n");
-                printf("3.logout\n");
+                printf("3.Produk terlaris\n");
                 scanf("%d",&input);
+                getchar();
             }while (input>3 || input<0);
             
             if(input == 1){
+                int searchSession = 0;
+                char namaBarang[50];
+                system("cls");
                 printf("ketik barang yang ingin dicari:");
+                fgets(namaBarang, sizeof(namaBarang), stdin);
+                namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                
+                //buat nyamain sama barang buku
+                for(int i = 0;i<jumlahBuku;i++){
+                    if(strcmp(namaBarang,buku[i][0]) == 0){
+                        searchSession = 1;
+                        system("cls");
+                        printf("%s ditemukan, terletak di kategori buku, nomor %d\n",buku[i][0],i+1);
+                        getch();
+                        goto sessionBuku;
+                    }
+                }
+
+                //buat nyamain sama barang fashion
+                for(int i = 0;i<jumlahFashion;i++){
+                    if(strcmp(namaBarang,fashion[i][0]) == 0){
+                        searchSession = 1;
+                        system("cls");
+                        printf("%s ditemukan, terletak di kategori fashion, nomor %d\n",fashion[i][0],i+1);
+                        getch();
+                        goto sessionFashion;
+                    }
+                }
+
+                //buat nyamain sama barang obat
+                for(int i = 0;i<jumlahObat;i++){
+                    if(strcmp(namaBarang,obat[i][0]) == 0){
+                        searchSession = 1;
+                        system("cls");
+                        printf("%s ditemukan, terletak di kategori obat, nomor %d\n",obat[i][0],i+1);
+                        getch();
+                        goto sessionObat;
+                    }
+                }
+
+                //buat nyamain sama barang others
+                for(int i = 0;i<jumlahOthers;i++){
+                    if(strcmp(namaBarang,others[i][0]) == 0){
+                        searchSession = 1;
+                        system("cls");
+                        printf("%s ditemukan, terletak di kategori others, nomor %d\n",others[i][0],i+1);
+                        getch();
+                        goto sessionOthers;
+                    }
+                }
+
+                if(searchSession == 0){
+                    system("cls");
+                    printf("%s tidak ditemukan\n",namaBarang);
+                    getch();
+                    goto sessionuser;
+                }
             }
 
             else if(input == 2){
@@ -220,6 +278,7 @@ int main(){
 
                 //menampilkan kategori buku
                 else if(input == 1){
+                    sessionBuku:
                     system("cls");
                     for(int i = 0;i<jumlahBuku;i++){
                         printf("%d.%s\n",i+1,buku[i][0]);
@@ -242,6 +301,7 @@ int main(){
 
                 //menampilkan kategori fashion
                 else if(input == 2){
+                    sessionFashion:
                     system("cls");
                     for(int i = 0;i<jumlahFashion;i++){
                         printf("%d.%s\n",i+1,fashion[i][0]);
@@ -261,10 +321,10 @@ int main(){
                     if(input == 0){
                         goto menuBuku;
                     }
-                
                 }
                 //menampilkan kategori obat
                 else if(input == 3){
+                    sessionObat:
                     system("cls");
                     for(int i = 0;i<jumlahObat;i++){
                         printf("%d.%s\n",i+1,obat[i][0]);
@@ -287,6 +347,7 @@ int main(){
                 }
                 //menampilkan kategori others
                 else if(input == 4){
+                    sessionOthers:
                     system("cls");
                     for(int i = 0;i<jumlahOthers;i++){
                         printf("%d.%s\n",i+1,others[i][0]);
@@ -309,7 +370,7 @@ int main(){
                 }
             }
             
-            else if(input == 3){
+            else if(input == 0){
                 goto menu;
             }
 

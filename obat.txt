@@ -1,3 +1,4 @@
 paracetamol|25000|5|0.1|0
 decolgen|2000|19|0.1|0
 neoralgyn|5000|19|0.1|0
+neoremacyl|2000|6|0.1|0
