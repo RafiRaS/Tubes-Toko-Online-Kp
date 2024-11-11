@@ -15,6 +15,9 @@ char obat[1000][5][100];
 char fashion[1000][5][100];
 char others[1000][5][100];
 
+char namaStok[100];
+char updateStok[11];
+
 //fungsi untuk menghitung banyak data dalam array
 int menghitungBanyakData(char arr[1000][5][100]) {
     int count = 0;
@@ -529,8 +532,7 @@ char *nama = strtok(line,"|");
                     }
                     printf("==============================================\n");
 
-                    char namaStok[100];
-                    int updateStok;
+                    
                     int sessionBuku = 0;
                     fgets(namaStok, sizeof(namaStok), stdin);
                     namaStok[strcspn(namaStok, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
@@ -541,7 +543,18 @@ char *nama = strtok(line,"|");
                             sessionBuku = 1;
                             system("cls");
                             printf("Ingin mengubah stok %s menjadi berapa? :",buku[i][0]);
-                            scanf("%d",&updateStok);
+                            scanf("%s",&updateStok);
+                            strcpy(buku[i][2],updateStok);
+                            FILE *file = fopen("buku.txt","w");
+                            for(int j = 0;j<jumlahBuku;j++){
+                                if(j == jumlahBuku-1){
+                                    fprintf(file,"%s|%s|%s|%s|%s",buku[j][0],buku[j][1],buku[j][2],buku[j][3],buku[j][4]);
+                                }
+                                else{
+                                    fprintf(file,"%s|%s|%s|%s|%s\n",buku[j][0],buku[j][1],buku[j][2],buku[j][3],buku[j][4]);
+                                }
+                            }
+                            fclose(file);
                             system("cls");
                             printf("stok %s berhasil diperbarui\n",buku[i][0]);
                             getch();
@@ -556,9 +569,6 @@ char *nama = strtok(line,"|");
                     }
 
                     
-                    if(input == 0){
-                        goto menuStok;
-                    }
                 }
 
                 //menampilkan kategori fashion
@@ -579,9 +589,41 @@ char *nama = strtok(line,"|");
                     }
                     printf("==============================================\n");
                     
-                    if(input == 0){
+                    int sessionfashion = 0;
+                    fgets(namaStok, sizeof(namaStok), stdin);
+                    namaStok[strcspn(namaStok, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                    
+                    //buat nyamain sama barang fashion
+                    for(int i = 0;i<jumlahFashion;i++){
+                        if(strcmp(namaStok,fashion[i][0]) == 0){
+                            sessionfashion = 1;
+                            system("cls");
+                            printf("Ingin mengubah stok %s menjadi berapa? :",fashion[i][0]);
+                            scanf("%s",&updateStok);
+                            strcpy(fashion[i][2],updateStok);
+                            FILE *file = fopen("fashion.txt","w");
+                            for(int j = 0;j<jumlahFashion;j++){
+                                if(j == jumlahFashion-1){
+                                    fprintf(file,"%s|%s|%s|%s|%s",fashion[j][0],fashion[j][1],fashion[j][2],fashion[j][3],fashion[j][4]);
+                                }
+                                else{
+                                    fprintf(file,"%s|%s|%s|%s|%s\n",fashion[j][0],fashion[j][1],fashion[j][2],fashion[j][3],fashion[j][4]);
+                                }
+                            }
+                            fclose(file);
+                            system("cls");
+                            printf("stok %s berhasil diperbarui\n",fashion[i][0]);
+                            getch();
+                            goto menuSeller;
+                        }
+                    }
+                    if(sessionfashion == 0){
+                        system("cls");
+                        printf("barang %s tidak ditemukan",namaStok);
+                        getch();
                         goto menuStok;
                     }
+
                 }
                 //menampilkan kategori obat
                 else if(input == 3){
@@ -600,10 +642,42 @@ char *nama = strtok(line,"|");
                         printf("%s\n",obat[i][0]);
                     }
                     printf("==============================================\n");
+
+                    int sessionobat = 0;
+                    fgets(namaStok, sizeof(namaStok), stdin);
+                    namaStok[strcspn(namaStok, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
                     
-                    if(input == 0){
+                    //buat nyamain sama barang obat
+                    for(int i = 0;i<jumlahObat;i++){
+                        if(strcmp(namaStok,obat[i][0]) == 0){
+                            sessionobat = 1;
+                            system("cls");
+                            printf("Ingin mengubah stok %s menjadi berapa? :",obat[i][0]);
+                            scanf("%s",&updateStok);
+                            strcpy(obat[i][2],updateStok);
+                            FILE *file = fopen("obat.txt","w");
+                            for(int j = 0;j<jumlahObat;j++){
+                                if(j == jumlahObat-1){
+                                    fprintf(file,"%s|%s|%s|%s|%s",obat[j][0],obat[j][1],obat[j][2],obat[j][3],obat[j][4]);
+                                }
+                                else{
+                                    fprintf(file,"%s|%s|%s|%s|%s\n",obat[j][0],obat[j][1],obat[j][2],obat[j][3],obat[j][4]);
+                                }
+                            }
+                            fclose(file);
+                            system("cls");
+                            printf("stok %s berhasil diperbarui\n",obat[i][0]);
+                            getch();
+                            goto menuSeller;
+                        }
+                    }
+                    if(sessionobat == 0){
+                        system("cls");
+                        printf("barang %s tidak ditemukan",namaStok);
+                        getch();
                         goto menuStok;
                     }
+                    
                 }
                 //menampilkan kategori others
                 else if(input == 4){
@@ -623,7 +697,38 @@ char *nama = strtok(line,"|");
                     }
                     printf("==============================================\n");
                     
-                    if(input == 0){
+                    int sessionothers = 0;
+                    fgets(namaStok, sizeof(namaStok), stdin);
+                    namaStok[strcspn(namaStok, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                    
+                    //buat nyamain sama barang others
+                    for(int i = 0;i<jumlahOthers;i++){
+                        if(strcmp(namaStok,others[i][0]) == 0){
+                            sessionothers = 1;
+                            system("cls");
+                            printf("Ingin mengubah stok %s menjadi berapa? :",others[i][0]);
+                            scanf("%s",&updateStok);
+                            strcpy(others[i][2],updateStok);
+                            FILE *file = fopen("others.txt","w");
+                            for(int j = 0;j<jumlahOthers;j++){
+                                if(j == jumlahOthers-1){
+                                    fprintf(file,"%s|%s|%s|%s|%s",others[j][0],others[j][1],others[j][2],others[j][3],others[j][4]);
+                                }
+                                else{
+                                    fprintf(file,"%s|%s|%s|%s|%s\n",others[j][0],others[j][1],others[j][2],others[j][3],others[j][4]);
+                                }
+                            }
+                            fclose(file);
+                            system("cls");
+                            printf("stok %s berhasil diperbarui\n",others[i][0]);
+                            getch();
+                            goto menuSeller;
+                        }
+                    }
+                    if(sessionothers == 0){
+                        system("cls");
+                        printf("barang %s tidak ditemukan",namaStok);
+                        getch();
                         goto menuStok;
                     }
                 }
