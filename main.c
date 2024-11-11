@@ -10,13 +10,13 @@ char login[1000][2][25];
 char seller[1000][2][25];
 char user[1][2][1000];
 
-char buku[1000][5][50];
-char obat[1000][5][50];
-char fashion[1000][5][50];
-char others[1000][5][50];
+char buku[1000][5][100];
+char obat[1000][5][100];
+char fashion[1000][5][100];
+char others[1000][5][100];
 
 //fungsi untuk menghitung banyak data dalam array
-int menghitungBanyakData(char arr[1000][5][50]) {
+int menghitungBanyakData(char arr[1000][5][100]) {
     int count = 0;
     for (int i = 0; i < 1000; i++) {
         if (strlen(arr[i][0]) > 0) {
@@ -95,10 +95,14 @@ int main(){
         char *nama = strtok(line,"|");
         char *harga = strtok(NULL,"|");
         char *stok = strtok(NULL,"|");
+        char *berat = strtok(NULL,"|");
+        char *sold = strtok(NULL,"|");
 
         strncpy(buku[index][0], nama, 50);
         strncpy(buku[index][1], harga, 50);
         strncpy(buku[index][2], stok, 50);
+        strncpy(buku[index][3], berat, 50);
+        strncpy(buku[index][4], sold, 100);
         index++;
     }
 
@@ -113,10 +117,14 @@ int main(){
         char *nama = strtok(line,"|");
         char *harga = strtok(NULL,"|");
         char *stok = strtok(NULL,"|");
+        char *berat = strtok(NULL,"|");
+        char *sold = strtok(NULL,"|");
 
         strncpy(fashion[index][0], nama, 50);
         strncpy(fashion[index][1], harga, 50);
         strncpy(fashion[index][2], stok, 50);
+        strncpy(fashion[index][3], berat, 50);
+        strncpy(fashion[index][4], sold, 100);
         index++;
     }
 
@@ -131,10 +139,14 @@ int main(){
         char *nama = strtok(line,"|");
         char *harga = strtok(NULL,"|");
         char *stok = strtok(NULL,"|");
+        char *berat = strtok(NULL,"|");
+        char *sold = strtok(NULL,"|");
 
         strncpy(obat[index][0], nama, 50);
         strncpy(obat[index][1], harga, 50);
         strncpy(obat[index][2], stok, 50);
+        strncpy(obat[index][3], berat, 50);
+        strncpy(obat[index][4], sold, 100);
         index++;
     }
 
@@ -146,13 +158,17 @@ int main(){
     while(fgets(line, sizeof(line), file) != NULL){
         line[strcspn(line,"\n")] = 0;
 
-        char *nama = strtok(line,"|");
+char *nama = strtok(line,"|");
         char *harga = strtok(NULL,"|");
         char *stok = strtok(NULL,"|");
+        char *berat = strtok(NULL,"|");
+        char *sold = strtok(NULL,"|");
 
         strncpy(others[index][0], nama, 50);
         strncpy(others[index][1], harga, 50);
         strncpy(others[index][2], stok, 50);
+        strncpy(others[index][3], berat, 50);
+        strncpy(others[index][4], sold, 100);
         index++;
     }
 
@@ -426,7 +442,7 @@ int main(){
             }
 
             //masukin barang
-            if(input == 1){
+            else if(input == 1){
                 system("cls");
                 char namaBarang[50],hargaBarang[50],stokBarang[50],beratBarang[50],kategoriBarang[50];
                 printf("Masukan kategori barang:\n");
@@ -477,8 +493,140 @@ int main(){
             }
 
             //update stok barang
-            if(input == 2){
+            else if(input == 2){
+                menuStok:
+                do{
+                    system("cls");
+                    printf("update stok dari kategori apa?\n");
+                    printf("1.buku\n");
+                    printf("2.fashion\n");
+                    printf("3.obat\n");
+                    printf("4.others\n");
+                    printf("5.back\n");
+                    scanf("%d",&input);
+                    getchar();
+                }while (input>6 || input<0);
 
+                //kembali ke menu
+                if(input == 5){
+                    goto menuSeller;
+                }
+
+                //menampilkan kategori buku
+                else if(input == 1){
+                    system("cls");
+                    for(int i = 0;i<jumlahBuku;i++){
+                        printf("%d.%s\n",i+1,buku[i][0]);
+                        printf("  harga = %s\n",buku[i][1]);
+                        printf("  stok = %s\n",buku[i][2]);
+                        printf("==============================================\n");
+                    }
+                    printf("pilih barang yang stok nya ingin diperbarui\n");
+                    printf("==============================================\n");
+                    
+                    for(int i = 0;i<jumlahBuku;i++){
+                        printf("%s\n",buku[i][0]);
+                    }
+                    printf("==============================================\n");
+
+                    char namaStok[100];
+                    int updateStok;
+                    int sessionBuku = 0;
+                    fgets(namaStok, sizeof(namaStok), stdin);
+                    namaStok[strcspn(namaStok, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                    
+                    //buat nyamain sama barang buku
+                    for(int i = 0;i<jumlahBuku;i++){
+                        if(strcmp(namaStok,buku[i][0]) == 0){
+                            sessionBuku = 1;
+                            system("cls");
+                            printf("Ingin mengubah stok %s menjadi berapa? :",buku[i][0]);
+                            scanf("%d",&updateStok);
+                            system("cls");
+                            printf("stok %s berhasil diperbarui\n",buku[i][0]);
+                            getch();
+                            goto menuSeller;
+                        }
+                    }
+                    if(sessionBuku == 0){
+                        system("cls");
+                        printf("barang %s tidak ditemukan",namaStok);
+                        getch();
+                        goto menuStok;
+                    }
+
+                    
+                    if(input == 0){
+                        goto menuStok;
+                    }
+                }
+
+                //menampilkan kategori fashion
+                else if(input == 2){
+                    system("cls");
+                    for(int i = 0;i<jumlahFashion;i++){
+                        printf("%d.%s\n",i+1,fashion[i][0]);
+                        printf("  harga = %s\n",fashion[i][1]);
+                        printf("  stok = %s\n",fashion[i][2]);
+                        printf("==============================================\n");
+                    }
+                    printf("pilih barang yang stok nya ingin diperbarui\n");
+                    printf("==============================================\n");
+                    
+                    
+                    for(int i = 0;i<jumlahFashion;i++){
+                        printf("%s\n",fashion[i][0]);
+                    }
+                    printf("==============================================\n");
+                    
+                    if(input == 0){
+                        goto menuStok;
+                    }
+                }
+                //menampilkan kategori obat
+                else if(input == 3){
+                    system("cls");
+                    for(int i = 0;i<jumlahObat;i++){
+                        printf("%d.%s\n",i+1,obat[i][0]);
+                        printf("  harga = %s\n",obat[i][1]);
+                        printf("  stok = %s\n",obat[i][2]);
+                        printf("==============================================\n");
+                    }
+                    printf("pilih barang yang stok nya ingin diperbarui\n");
+                    printf("==============================================\n");
+                    
+                    
+                    for(int i = 0;i<jumlahObat;i++){
+                        printf("%s\n",obat[i][0]);
+                    }
+                    printf("==============================================\n");
+                    
+                    if(input == 0){
+                        goto menuStok;
+                    }
+                }
+                //menampilkan kategori others
+                else if(input == 4){
+                    system("cls");
+                    for(int i = 0;i<jumlahOthers;i++){
+                        printf("%d.%s\n",i+1,others[i][0]);
+                        printf("  harga = %s\n",others[i][1]);
+                        printf("  stok = %s\n",others[i][2]);
+                        printf("==============================================\n");
+                    }
+                    printf("pilih barang yang stok nya ingin diperbarui\n");
+                    printf("==============================================\n");
+                    
+                    
+                    for(int i = 0;i<jumlahOthers;i++){
+                        printf("%s\n",others[i][0]);
+                    }
+                    printf("==============================================\n");
+                    
+                    if(input == 0){
+                        goto menuStok;
+                    }
+                }
             }
             
         }
