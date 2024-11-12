@@ -307,6 +307,8 @@ char *nama = strtok(line,"|");
                     }
                     printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
                     printf("==============================================\n");
+                    printf("9999. sorting\n");
+                    printf("==============================================\n");
                     printf("0.kembali\n");
                     for(int i = 0;i<jumlahBuku;i++){
                         printf("%d.%s\n",i+1,buku[i][0]);
@@ -315,6 +317,41 @@ char *nama = strtok(line,"|");
                     scanf("%d",&input);
                     if(input == 0){
                         goto menuBuku;
+                    }
+                    if(input == 9999){
+                        for(int i = 0;i<jumlahBuku;i++){
+                            for(int j = 0;j<jumlahBuku-1;j++){
+                                int num = atoi(buku[j][1]);
+                                int num1 = atoi(buku[j+1][1]);
+                                if(num>num1){
+                                    char bantuan[1000][5][100];
+                                    for(int k = 0;k<jumlahBuku;k++){
+                                        strcpy(bantuan[j][k],buku[j][k]);
+                                        strcpy(buku[j][k],buku[j+1][k]);
+                                        strcpy(buku[j+1][k],bantuan[j][k]);
+                                    }
+
+                                }
+                            }
+                        }
+                        system("cls");
+                        for(int i = 0;i<jumlahBuku;i++){
+                            printf("%d.%s\n",i+1,buku[i][0]);
+                            printf("  harga = %s\n",buku[i][1]);
+                            printf("  stok = %s\n",buku[i][2]);
+                            printf("==============================================\n");
+                        }
+                        printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
+                        printf("==============================================\n");
+                        printf("0.kembali\n");
+                        for(int i = 0;i<jumlahBuku;i++){
+                            printf("%d.%s\n",i+1,buku[i][0]);
+                        }
+                        printf("==============================================\n");
+                        scanf("%d",&input);
+                        if(input == 0){
+                            goto menuBuku;
+                        }
                     }
                 }
 
@@ -330,6 +367,8 @@ char *nama = strtok(line,"|");
                     }
                     printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
                     printf("==============================================\n");
+                    printf("9999. sorting\n");
+                    printf("==============================================\n");
                     printf("0.kembali\n");
                     
                     for(int i = 0;i<jumlahFashion;i++){
@@ -339,6 +378,42 @@ char *nama = strtok(line,"|");
                     scanf("%d",&input);
                     if(input == 0){
                         goto menuBuku;
+                    }
+
+                    if(input == 9999){
+                        for(int i = 0;i<jumlahFashion;i++){
+                            for(int j = 0;j<jumlahFashion-1;j++){
+                                int num = atoi(fashion[j][1]);
+                                int num1 = atoi(fashion[j+1][1]);
+                                if(num>num1){
+                                    char bantuan[1000][5][100];
+                                    for(int k = 0;k<jumlahFashion;k++){
+                                        strcpy(bantuan[j][k],fashion[j][k]);
+                                        strcpy(fashion[j][k],fashion[j+1][k]);
+                                        strcpy(fashion[j+1][k],bantuan[j][k]);
+                                    }
+
+                                }
+                            }
+                        }
+                        system("cls");
+                        for(int i = 0;i<jumlahFashion;i++){
+                            printf("%d.%s\n",i+1,fashion[i][0]);
+                            printf("  harga = %s\n",fashion[i][1]);
+                            printf("  stok = %s\n",fashion[i][2]);
+                            printf("==============================================\n");
+                        }
+                        printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
+                        printf("==============================================\n");
+                        printf("0.kembali\n");
+                        for(int i = 0;i<jumlahFashion;i++){
+                            printf("%d.%s\n",i+1,fashion[i][0]);
+                        }
+                        printf("==============================================\n");
+                        scanf("%d",&input);
+                        if(input == 0){
+                            goto menuBuku;
+                        }
                     }
                 }
                 //menampilkan kategori obat
@@ -353,6 +428,8 @@ char *nama = strtok(line,"|");
                     }
                     printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
                     printf("==============================================\n");
+                    printf("9999. sorting\n");
+                    printf("==============================================\n");
                     printf("0.kembali\n");
                     
                     for(int i = 0;i<jumlahObat;i++){
@@ -362,6 +439,42 @@ char *nama = strtok(line,"|");
                     scanf("%d",&input);
                     if(input == 0){
                         goto menuBuku;
+                    }
+
+                    if(input == 9999){
+                        for(int i = 0;i<jumlahObat;i++){
+                            for(int j = 0;j<jumlahObat-1;j++){
+                                int num = atoi(obat[j][1]);
+                                int num1 = atoi(obat[j+1][1]);
+                                if(num>num1){
+                                    char bantuan[1000][5][100];
+                                    for(int k = 0;k<jumlahObat;k++){
+                                        strcpy(bantuan[j][k],obat[j][k]);
+                                        strcpy(obat[j][k],obat[j+1][k]);
+                                        strcpy(obat[j+1][k],bantuan[j][k]);
+                                    }
+
+                                }
+                            }
+                        }
+                        system("cls");
+                        for(int i = 0;i<jumlahObat;i++){
+                            printf("%d.%s\n",i+1,obat[i][0]);
+                            printf("  harga = %s\n",obat[i][1]);
+                            printf("  stok = %s\n",obat[i][2]);
+                            printf("==============================================\n");
+                        }
+                        printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
+                        printf("==============================================\n");
+                        printf("0.kembali\n");
+                        for(int i = 0;i<jumlahObat;i++){
+                            printf("%d.%s\n",i+1,obat[i][0]);
+                        }
+                        printf("==============================================\n");
+                        scanf("%d",&input);
+                        if(input == 0){
+                            goto menuBuku;
+                        }
                     }
                 }
                 //menampilkan kategori others
@@ -376,6 +489,8 @@ char *nama = strtok(line,"|");
                     }
                     printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
                     printf("==============================================\n");
+                    printf("9999. sorting\n");
+                    printf("==============================================\n");
                     printf("0.kembali\n");
                     
                     for(int i = 0;i<jumlahOthers;i++){
@@ -385,6 +500,42 @@ char *nama = strtok(line,"|");
                     scanf("%d",&input);
                     if(input == 0){
                         goto menuBuku;
+                    }
+
+                    if(input == 9999){
+                        for(int i = 0;i<jumlahOthers;i++){
+                            for(int j = 0;j<jumlahOthers-1;j++){
+                                int num = atoi(others[j][1]);
+                                int num1 = atoi(others[j+1][1]);
+                                if(num>num1){
+                                    char bantuan[1000][5][100];
+                                    for(int k = 0;k<jumlahOthers;k++){
+                                        strcpy(bantuan[j][k],others[j][k]);
+                                        strcpy(others[j][k],others[j+1][k]);
+                                        strcpy(others[j+1][k],bantuan[j][k]);
+                                    }
+
+                                }
+                            }
+                        }
+                        system("cls");
+                        for(int i = 0;i<jumlahOthers;i++){
+                            printf("%d.%s\n",i+1,others[i][0]);
+                            printf("  harga = %s\n",others[i][1]);
+                            printf("  stok = %s\n",others[i][2]);
+                            printf("==============================================\n");
+                        }
+                        printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
+                        printf("==============================================\n");
+                        printf("0.kembali\n");
+                        for(int i = 0;i<jumlahOthers;i++){
+                            printf("%d.%s\n",i+1,others[i][0]);
+                        }
+                        printf("==============================================\n");
+                        scanf("%d",&input);
+                        if(input == 0){
+                            goto menuBuku;
+                        }
                     }
                 }
             }
