@@ -39,10 +39,10 @@ int main(){
         input = 0;
         system("cls");
         printf("Selamat datang di toko kami\n");
+        printf("0.keluar program\n");
         printf("1.login user\n");
         printf("2.login seller\n");
         printf("3.register user\n");
-        printf("4.keluar program\n");
         scanf("%d",&input);
     }while (input>4 || input<0);
 
@@ -214,9 +214,11 @@ char *nama = strtok(line,"|");
                 printf("1.cari barang\n");
                 printf("2.lihat kategori\n");
                 printf("3.Produk terlaris\n");
+                printf("4.Cek Keranjang\n");
+                printf("5.Check Out\n");
                 scanf("%d",&input);
                 getchar();
-            }while (input>3 || input<0);
+            }while (input>6 || input<-1);
             
             if(input == 1){
                 int searchSession = 0;
@@ -305,20 +307,15 @@ char *nama = strtok(line,"|");
                         printf("  stok = %s\n",buku[i][2]);
                         printf("==============================================\n");
                     }
-                    printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
-                    printf("==============================================\n");
-                    printf("9999. sorting\n");
-                    printf("==============================================\n");
                     printf("0.kembali\n");
-                    for(int i = 0;i<jumlahBuku;i++){
-                        printf("%d.%s\n",i+1,buku[i][0]);
-                    }
-                    printf("==============================================\n");
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    printf("2.sorting\n");
                     scanf("%d",&input);
+                    getchar();
                     if(input == 0){
                         goto menuBuku;
                     }
-                    if(input == 9999){
+                    else if(input == 2){
                         for(int i = 0;i<jumlahBuku;i++){
                             for(int j = 0;j<jumlahBuku-1;j++){
                                 int num = atoi(buku[j][1]);
@@ -330,7 +327,6 @@ char *nama = strtok(line,"|");
                                         strcpy(buku[j][k],buku[j+1][k]);
                                         strcpy(buku[j+1][k],bantuan[j][k]);
                                     }
-
                                 }
                             }
                         }
@@ -341,16 +337,88 @@ char *nama = strtok(line,"|");
                             printf("  stok = %s\n",buku[i][2]);
                             printf("==============================================\n");
                         }
-                        printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
-                        printf("==============================================\n");
                         printf("0.kembali\n");
-                        for(int i = 0;i<jumlahBuku;i++){
-                            printf("%d.%s\n",i+1,buku[i][0]);
-                        }
-                        printf("==============================================\n");
+                        printf("1.masukan barang ke dalam keranjang\n");
                         scanf("%d",&input);
+                        getchar();
                         if(input == 0){
                             goto menuBuku;
+                        }
+
+                        //untuk masukin buku ke dalam keranjang dalam mode sorting
+                        else if(input == 1){
+                            int searchSession = 0;
+                        char namaBarang[50];
+                        system("cls");
+                        printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                        fgets(namaBarang, sizeof(namaBarang), stdin);
+                        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                        
+                        //buat nyamain sama barang buku
+                        for(int i = 0;i<jumlahBuku;i++){
+                            if(strcmp(namaBarang,buku[i][0]) == 0){
+                                searchSession = 1;
+
+                                char namaFile[50];
+                                sprintf(namaFile, "%s.txt", loginID);
+
+                                file = fopen(namaFile, "a");
+
+                                fprintf(file, "%s|%s|%s|%s|%s\n", buku[i][0],buku[i][1],buku[i][2],buku[i][3],buku[i][4]);
+
+                                fclose(file);
+
+                                system("cls");
+                                printf("%s telah dimasukan ke dalam keranjang\n",buku[i][0]);
+                                getch();
+                                goto sessionBuku;
+                            }
+                        }
+                        
+                        if(searchSession == 0){
+                        system("cls");
+                        printf("%s tidak ditemukan\n",namaBarang);
+                        getch();
+                        goto sessionuser;
+                        }
+                        }
+                    }
+
+                    //untuk masukin buku keranjang dalam mode biasa
+                    else if(input == 1){
+                        int searchSession = 0;
+                        char namaBarang[50];
+                        system("cls");
+                        printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                        fgets(namaBarang, sizeof(namaBarang), stdin);
+                        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                        
+                        //buat nyamain sama barang buku
+                        for(int i = 0;i<jumlahBuku;i++){
+                            if(strcmp(namaBarang,buku[i][0]) == 0){
+                                searchSession = 1;
+
+                                char namaFile[50];
+                                sprintf(namaFile, "%s.txt", loginID);
+
+                                file = fopen(namaFile, "a");
+
+                                fprintf(file, "%s|%s|%s|%s|%s\n", buku[i][0],buku[i][1],buku[i][2],buku[i][3],buku[i][4]);
+
+                                fclose(file);
+
+                                system("cls");
+                                printf("%s telah dimasukan ke dalam keranjang\n",buku[i][0]);
+                                getch();
+                                goto sessionBuku;
+                            }
+                        }
+                        
+                        if(searchSession == 0){
+                        system("cls");
+                        printf("%s tidak ditemukan\n",namaBarang);
+                        getch();
+                        goto sessionuser;
                         }
                     }
                 }
@@ -365,22 +433,17 @@ char *nama = strtok(line,"|");
                         printf("  stok = %s\n",fashion[i][2]);
                         printf("==============================================\n");
                     }
-                    printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
-                    printf("==============================================\n");
-                    printf("9999. sorting\n");
-                    printf("==============================================\n");
                     printf("0.kembali\n");
-                    
-                    for(int i = 0;i<jumlahFashion;i++){
-                        printf("%d.%s\n",i+1,fashion[i][0]);
-                    }
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    printf("2.sorting\n");
                     printf("==============================================\n");
                     scanf("%d",&input);
+                    getchar();
                     if(input == 0){
                         goto menuBuku;
                     }
 
-                    if(input == 9999){
+                    else if(input == 2){
                         for(int i = 0;i<jumlahFashion;i++){
                             for(int j = 0;j<jumlahFashion-1;j++){
                                 int num = atoi(fashion[j][1]);
@@ -403,18 +466,90 @@ char *nama = strtok(line,"|");
                             printf("  stok = %s\n",fashion[i][2]);
                             printf("==============================================\n");
                         }
-                        printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
-                        printf("==============================================\n");
                         printf("0.kembali\n");
-                        for(int i = 0;i<jumlahFashion;i++){
-                            printf("%d.%s\n",i+1,fashion[i][0]);
-                        }
+                        printf("1.masukan barang ke dalam keranjang\n");
                         printf("==============================================\n");
                         scanf("%d",&input);
+                        getchar();
                         if(input == 0){
                             goto menuBuku;
                         }
+
+                        //masukin barang fashion ke dalam keranjang dalam mode sorting
+                        else if(input == 1){
+                            int searchSession = 0;
+                        char namaBarang[50];
+                        system("cls");
+                        printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                        fgets(namaBarang, sizeof(namaBarang), stdin);
+                        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                        
+                        for(int i = 0;i<jumlahFashion;i++){
+                            if(strcmp(namaBarang,fashion[i][0]) == 0){
+                                searchSession = 1;
+
+                                char namaFile[50];
+                                sprintf(namaFile, "%s.txt", loginID);
+
+                                file = fopen(namaFile, "a");
+
+                                fprintf(file, "%s|%s|%s|%s|%s\n", fashion[i][0],fashion[i][1],fashion[i][2],fashion[i][3],fashion[i][4]);
+
+                                fclose(file);
+
+                                system("cls");
+                                printf("%s telah dimasukan ke dalam keranjang\n",fashion[i][0]);
+                                getch();
+                                goto sessionFashion;
+                            }
+                        }
+                        
+                        if(searchSession == 0){
+                        system("cls");
+                        printf("%s tidak ditemukan\n",namaBarang);
+                        getch();
+                        goto sessionuser;
+                        }
+                        }
                     }
+
+                    //masukin barang fashion ke dalam keranjang dalam mode biasa
+                    else if(input == 1){
+                        int searchSession = 0;
+                        char namaBarang[50];
+                        system("cls");
+                        printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                        fgets(namaBarang, sizeof(namaBarang), stdin);
+                        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                        
+                        for(int i = 0;i<jumlahFashion;i++){
+                            if(strcmp(namaBarang,fashion[i][0]) == 0){
+                                searchSession = 1;
+
+                                char namaFile[50];
+                                sprintf(namaFile, "%s.txt", loginID);
+
+                                file = fopen(namaFile, "a");
+
+                                fprintf(file, "%s|%s|%s|%s|%s\n", fashion[i][0],fashion[i][1],fashion[i][2],fashion[i][3],fashion[i][4]);
+
+                                fclose(file);
+
+                                system("cls");
+                                printf("%s telah dimasukan ke dalam keranjang\n",fashion[i][0]);
+                                getch();
+                                goto sessionFashion;
+                            }
+                        }
+                        
+                        if(searchSession == 0){
+                        system("cls");
+                        printf("%s tidak ditemukan\n",namaBarang);
+                        getch();
+                        goto sessionuser;
+                        }
+                    }
+
                 }
                 //menampilkan kategori obat
                 else if(input == 3){
@@ -426,22 +561,17 @@ char *nama = strtok(line,"|");
                         printf("  stok = %s\n",obat[i][2]);
                         printf("==============================================\n");
                     }
-                    printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
-                    printf("==============================================\n");
-                    printf("9999. sorting\n");
-                    printf("==============================================\n");
                     printf("0.kembali\n");
-                    
-                    for(int i = 0;i<jumlahObat;i++){
-                        printf("%d.%s\n",i+1,obat[i][0]);
-                    }
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    printf("2.sorting\n");
                     printf("==============================================\n");
                     scanf("%d",&input);
+                    getchar();
                     if(input == 0){
                         goto menuBuku;
                     }
 
-                    if(input == 9999){
+                    else if(input == 2){
                         for(int i = 0;i<jumlahObat;i++){
                             for(int j = 0;j<jumlahObat-1;j++){
                                 int num = atoi(obat[j][1]);
@@ -464,16 +594,87 @@ char *nama = strtok(line,"|");
                             printf("  stok = %s\n",obat[i][2]);
                             printf("==============================================\n");
                         }
-                        printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
-                        printf("==============================================\n");
                         printf("0.kembali\n");
-                        for(int i = 0;i<jumlahObat;i++){
-                            printf("%d.%s\n",i+1,obat[i][0]);
-                        }
+                        printf("1.masukan barang ke dalam keranjang\n");
                         printf("==============================================\n");
                         scanf("%d",&input);
+                        getchar();
                         if(input == 0){
                             goto menuBuku;
+                        }
+
+                        //masukan barang obat ke dalam keranjang dalam mode sorting
+                        else if(input == 1){
+                            int searchSession = 0;
+                            char namaBarang[50];
+                            system("cls");
+                            printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                            fgets(namaBarang, sizeof(namaBarang), stdin);
+                            namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                            
+                            for(int i = 0;i<jumlahObat;i++){
+                                if(strcmp(namaBarang,obat[i][0]) == 0){
+                                    searchSession = 1;
+
+                                    char namaFile[50];
+                                    sprintf(namaFile, "%s.txt", loginID);
+
+                                    file = fopen(namaFile, "a");
+
+                                    fprintf(file, "%s|%s|%s|%s|%s\n", obat[i][0],obat[i][1],obat[i][2],obat[i][3],obat[i][4]);
+
+                                    fclose(file);
+
+                                    system("cls");
+                                    printf("%s telah dimasukan ke dalam keranjang\n",obat[i][0]);
+                                    getch();
+                                    goto sessionObat;
+                                }
+                            }
+                            
+                            if(searchSession == 0){
+                            system("cls");
+                            printf("%s tidak ditemukan\n",namaBarang);
+                            getch();
+                            goto sessionuser;
+                            }
+                        }
+                    }
+
+                    //masukan barang ke obat ke dalam keranjang dalam mode biasa
+                    else if(input == 1){
+                        int searchSession = 0;
+                        char namaBarang[50];
+                        system("cls");
+                        printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                        fgets(namaBarang, sizeof(namaBarang), stdin);
+                        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                        
+                        for(int i = 0;i<jumlahObat;i++){
+                            if(strcmp(namaBarang,obat[i][0]) == 0){
+                                searchSession = 1;
+
+                                char namaFile[50];
+                                sprintf(namaFile, "%s.txt", loginID);
+
+                                file = fopen(namaFile, "a");
+
+                                fprintf(file, "%s|%s|%s|%s|%s\n", obat[i][0],obat[i][1],obat[i][2],obat[i][3],obat[i][4]);
+
+                                fclose(file);
+
+                                system("cls");
+                                printf("%s telah dimasukan ke dalam keranjang\n",obat[i][0]);
+                                getch();
+                                goto sessionObat;
+                            }
+                        }
+                        
+                        if(searchSession == 0){
+                        system("cls");
+                        printf("%s tidak ditemukan\n",namaBarang);
+                        getch();
+                        goto sessionuser;
                         }
                     }
                 }
@@ -487,22 +688,17 @@ char *nama = strtok(line,"|");
                         printf("  stok = %s\n",others[i][2]);
                         printf("==============================================\n");
                     }
-                    printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
-                    printf("==============================================\n");
-                    printf("9999. sorting\n");
-                    printf("==============================================\n");
                     printf("0.kembali\n");
-                    
-                    for(int i = 0;i<jumlahOthers;i++){
-                        printf("%d.%s\n",i+1,others[i][0]);
-                    }
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    printf("2.sorting\n");
                     printf("==============================================\n");
                     scanf("%d",&input);
+                    getchar();
                     if(input == 0){
                         goto menuBuku;
                     }
 
-                    if(input == 9999){
+                    else if(input == 2){
                         for(int i = 0;i<jumlahOthers;i++){
                             for(int j = 0;j<jumlahOthers-1;j++){
                                 int num = atoi(others[j][1]);
@@ -525,16 +721,88 @@ char *nama = strtok(line,"|");
                             printf("  stok = %s\n",others[i][2]);
                             printf("==============================================\n");
                         }
-                        printf("ketik angka jika ingin memasukan barang ke dalam keranjang\n");
-                        printf("==============================================\n");
                         printf("0.kembali\n");
-                        for(int i = 0;i<jumlahOthers;i++){
-                            printf("%d.%s\n",i+1,others[i][0]);
-                        }
+                        printf("1.masukan barang ke dalam keranjang\n");
+                        printf("2.sorting\n");
                         printf("==============================================\n");
                         scanf("%d",&input);
+                        getchar();
                         if(input == 0){
                             goto menuBuku;
+                        }
+
+                        //masukan barang others ke dalam keranjang dalam mode sorting
+                        else if(input == 1){
+                            int searchSession = 0;
+                            char namaBarang[50];
+                            system("cls");
+                            printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                            fgets(namaBarang, sizeof(namaBarang), stdin);
+                            namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                            
+                            for(int i = 0;i<jumlahOthers;i++){
+                                if(strcmp(namaBarang,others[i][0]) == 0){
+                                    searchSession = 1;
+
+                                    char namaFile[50];
+                                    sprintf(namaFile, "%s.txt", loginID);
+
+                                    file = fopen(namaFile, "a");
+
+                                    fprintf(file, "%s|%s|%s|%s|%s\n", others[i][0],others[i][1],others[i][2],others[i][3],others[i][4]);
+
+                                    fclose(file);
+
+                                    system("cls");
+                                    printf("%s telah dimasukan ke dalam keranjang\n",others[i][0]);
+                                    getch();
+                                    goto sessionOthers;
+                                }
+                            }
+                            
+                            if(searchSession == 0){
+                            system("cls");
+                            printf("%s tidak ditemukan\n",namaBarang);
+                            getch();
+                            goto sessionuser;
+                            }
+                        }
+                    }
+
+                    //masukan barang others ke dalam keranjang dalam mode biasa
+                    else if(input == 1){
+                        int searchSession = 0;
+                        char namaBarang[50];
+                        system("cls");
+                        printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                        fgets(namaBarang, sizeof(namaBarang), stdin);
+                        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                        
+                        for(int i = 0;i<jumlahOthers;i++){
+                            if(strcmp(namaBarang,others[i][0]) == 0){
+                                searchSession = 1;
+
+                                char namaFile[50];
+                                sprintf(namaFile, "%s.txt", loginID);
+
+                                file = fopen(namaFile, "a");
+
+                                fprintf(file, "%s|%s|%s|%s|%s\n", others[i][0],others[i][1],others[i][2],others[i][3],others[i][4]);
+
+                                fclose(file);
+
+                                system("cls");
+                                printf("%s telah dimasukan ke dalam keranjang\n",others[i][0]);
+                                getch();
+                                goto sessionOthers;
+                            }
+                        }
+                        
+                        if(searchSession == 0){
+                        system("cls");
+                        printf("%s tidak ditemukan\n",namaBarang);
+                        getch();
+                        goto sessionuser;
                         }
                     }
                 }
@@ -947,7 +1215,7 @@ char *nama = strtok(line,"|");
 
 
     //untuk keluar dari program
-    if(input == 4){
+    if(input == 0){
         system("cls");
         printf("Terimakasih");
     }

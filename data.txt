@@ -1,0 +1,1 @@
+Halo, ini adalah contoh data yang ditulis ke file.
