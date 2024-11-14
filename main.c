@@ -14,6 +14,7 @@ char buku[1000][5][100];
 char obat[1000][5][100];
 char fashion[1000][5][100];
 char others[1000][5][100];
+char keranjang[1000][5][100];
 
 char namaStok[100];
 char updateStok[11];
@@ -180,6 +181,7 @@ char *nama = strtok(line,"|");
     int jumlahObat = menghitungBanyakData(obat);
     int jumlahFashion = menghitungBanyakData(fashion);
     int jumlahOthers = menghitungBanyakData(others);
+    
 
 
     //login user
@@ -808,11 +810,64 @@ char *nama = strtok(line,"|");
                 }
             }
             
+            //logout
             else if(input == 0){
                 goto menu;
             }
+            
+            //melihat produk terlaris
+            else if(input == 3){
+                
+            }
 
-        }
+            //cek keranjanng
+            else if(input == 4){
+                char namaFile[50];
+                sprintf(namaFile, "%s.txt", loginID);
+
+                file = fopen(namaFile, "r");
+
+                index = 0;
+
+                while(fgets(line, sizeof(line), file) != NULL){
+                    line[strcspn(line,"\n")] = 0;
+
+                    char *nama = strtok(line,"|");
+                    char *harga = strtok(NULL,"|");
+                    char *stok = strtok(NULL,"|");
+                    char *berat = strtok(NULL,"|");
+                    char *sold = strtok(NULL,"|");
+
+                    strncpy(keranjang[index][0], nama, 50);
+                    strncpy(keranjang[index][1], harga, 50);
+                    strncpy(keranjang[index][2], stok, 50);
+                    strncpy(keranjang[index][3], berat, 50);
+                    strncpy(keranjang[index][4], sold, 100);
+                    index++;
+                }
+
+                fclose(file);
+                int jumlahKeranjang = menghitungBanyakData(keranjang);
+                int total = 0;
+                system("cls");
+                printf("isi keranjang %s:\n",loginID);
+                for(int i = 0;i<jumlahKeranjang;i++){
+                    printf("%d.%s|harga:%s\n",i+1,keranjang[i][0],keranjang[i][1]);
+                    total = total + atoi(keranjang[i][1]);
+                }
+
+                printf("================================================\n");
+                printf("total harga dari keranjang anda = %d\n",total);
+                
+                printf("tekan tombol apa saja untuk kembali\n");
+                getch();
+                goto sessionuser;
+            }
+
+            //checkout keranjang
+            else if(input == 5){
+
+            }
 
         //salah memasukan password login
         else{
@@ -1225,4 +1280,5 @@ char *nama = strtok(line,"|");
 
 
     return 0;
+}
 }
