@@ -181,7 +181,6 @@ char *nama = strtok(line,"|");
     int jumlahObat = menghitungBanyakData(obat);
     int jumlahFashion = menghitungBanyakData(fashion);
     int jumlahOthers = menghitungBanyakData(others);
-    
 
 
     //login user
@@ -810,17 +809,12 @@ char *nama = strtok(line,"|");
                 }
             }
             
-            //logout
             else if(input == 0){
                 goto menu;
             }
-            
-            //melihat produk terlaris
-            else if(input == 3){
-                
-            }
 
-            //cek keranjanng
+
+            //fitur untuk mengecek keranjang user
             else if(input == 4){
                 char namaFile[50];
                 sprintf(namaFile, "%s.txt", loginID);
@@ -828,6 +822,12 @@ char *nama = strtok(line,"|");
                 file = fopen(namaFile, "r");
 
                 index = 0;
+                for (int i = 0; i < 5; i++) {
+                    for(int j = 0;j<1000;j++){
+                        keranjang[j][i][0] = '\0'; // Setiap elemen jadi string kosong
+                    }
+                    
+                }
 
                 while(fgets(line, sizeof(line), file) != NULL){
                     line[strcspn(line,"\n")] = 0;
@@ -864,10 +864,7 @@ char *nama = strtok(line,"|");
                 goto sessionuser;
             }
 
-            //checkout keranjang
-            else if(input == 5){
-
-            }
+        }
 
         //salah memasukan password login
         else{
@@ -1280,5 +1277,4 @@ char *nama = strtok(line,"|");
 
 
     return 0;
-}
 }
