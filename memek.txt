@@ -1,9 +1,2 @@
-buku mtk|15000|6|0.2|0
-buku ipa|20000|13|0.3|0
-OnePiece|25000|5|0.2|0
-baju mahal|450000|2|0.3|0
-gelang|25000|5|0.1|0
-decolgen|2000|19|0.1|0
-paracetamol|25000|7|0.1|0
-handphone|25000|4|1.1|0
-airpods|10000|2|1.1|0
+buku ipa|20000|13|0.3|4
+karina prima|100000000|1|100|0

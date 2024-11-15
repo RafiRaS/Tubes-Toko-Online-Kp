@@ -1,36 +1,30 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    FILE *file;
-    char namaFile[] = "data.txt"; // Nama file yang akan dicek dan ditulis
-    char data[] = "Halo, ini adalah contoh data yang ditulis ke file.";
-
-    // Mengecek apakah file sudah ada dengan membuka dalam mode "r"
-    file = fopen(namaFile, "r");
-
-    if (file == NULL) {
-        // Jika file tidak ada, buka dalam mode "w" (write)
-        file = fopen(namaFile, "w");
-        printf("File belum ada, membuat file baru dengan mode 'w'.\n");
-    } else {
-        // Jika file ada, buka dalam mode "a" (append)
-        fclose(file); // Menutup file yang dibuka dalam mode "r"
-        file = fopen(namaFile, "a");
-        printf("File sudah ada, menambah data dengan mode 'a'.\n");
-    }
-
-    if (file == NULL) {
-        printf("File tidak dapat dibuka.\n");
-        return 1;
-    }
-
-    // Menulis data ke file
-    fprintf(file, "%s\n", data);
+    // Deklarasi array
+    char obat[1000][5][100] = {{"Paracetamol", "10", "2", "0", "Ready"}};
+    char fashion[1000][5][100] = {{"T-Shirt", "150000", "1", "0", "Ready"}};
+    char others[1000][5][100] = {{"Book", "50000", "3", "10", "Out of Stock"}};
+    char keranjang[1000][5][100] = {{"Notebook", "25000", "5", "5", "Ready"}};
     
-    // Menutup file setelah selesai
-    fclose(file);
-
-    printf("Data telah ditulis ke dalam file %s\n", namaFile);
+    // Array pointer untuk mengakses setiap array
+    char (*arrays[4])[5][100] = {obat, fashion, others, keranjang};
+    const char *array_names[4] = {"Obat", "Fashion", "Others", "Keranjang"};
+    
+    // Satu loop untuk mencetak semua isi array
+    for (int i = 0; i < 4; i++) {
+        printf("Kategori: %s\n", array_names[i]);
+        for (int j = 0; j < 1000; j++) {
+            if (strlen(arrays[i][j][0]) == 0) break; // Berhenti jika data kosong
+            printf("  Item %d:\n", j + 1);
+            printf("    Nama   : %s\n", arrays[i][j][0]);
+            printf("    Harga  : %s\n", arrays[i][j][1]);
+            printf("    Jumlah : %s\n", arrays[i][j][2]);
+            printf("    Diskon : %s%%\n", arrays[i][j][3]);
+            printf("    Status : %s\n", arrays[i][j][4]);
+        }
+    }
 
     return 0;
 }
