@@ -982,6 +982,11 @@ char *nama = strtok(line,"|");
                 getch();
                 goto sessionuser;
             }
+            
+            //fitur untuk checkout bayar keranjang
+            else if(input == 5){
+                
+            }
 
         }
 
