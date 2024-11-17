@@ -1105,6 +1105,7 @@ char *nama = strtok(line,"|");
 
                                 if (uang >= totalAkhir){
                                     printf("anda telah berhasil checkout barang anda\n");
+                                    printf("kembalian = %d\n",uang-totalAkhir);
                                     printf("untuk lebih detail silahkan cek pada menu status belanja\n");
                                     getch();
                                     goto sessionuser;
@@ -1151,6 +1152,7 @@ char *nama = strtok(line,"|");
 
                                 if (uang >= totalAkhir){
                                     printf("anda telah berhasil checkout barang anda\n");
+                                    printf("kembalian = %d\n",uang-totalAkhir);
                                     printf("untuk lebih detail silahkan cek pada menu status belanja\n");
                                     getch();
                                     goto sessionuser;
