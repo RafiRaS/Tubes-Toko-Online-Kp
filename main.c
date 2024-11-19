@@ -1054,8 +1054,6 @@ char *nama = strtok(line,"|");
                     int tambahan =(totalBerat*1000) + totalHarga;
                     printf("total harga barang anda = %d\n",totalHarga);
                     printf("total berat barang anda = %.2f kg\n",totalBerat);
-                    printf("harga per 0.1 kg = 100 rupiah\n");
-                    printf("harga akhir = %d\n\n",tambahan);
                     printf("0.kembali\n");
                     printf("1.Next\n");
                     scanf("%d",&input);
@@ -1070,8 +1068,8 @@ char *nama = strtok(line,"|");
                         system("cls");
                         printf("pilih jasa pengiriman untuk barang anda\n\n");
                         printf("0.kembali\n");
-                        printf("1.Si Kilat(per 0.1 km = 100 rupiah)\n");
-                        printf("2.Dinamo(per 0.1 km = 50 rupiah)\n");
+                        printf("1.SiKilat\n");
+                        printf("2.Dinamo\n");
                         scanf("%d",&input);
 
                         if(input == 0){
@@ -1081,92 +1079,300 @@ char *nama = strtok(line,"|");
 
                         //menggunakan kurir si kilat
                         else if(input == 1){
-                            float jarak;
                             system("cls");
-                            printf("anda sedang menggunakan kurir si kilat\n");
-                            printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                            scanf("%f",&jarak);
-                            int totalAkhir = (1000 * jarak) + tambahan;
-                            system("cls");
-                            printf("total harga barang anda = %d\n",tambahan);
-                            printf("total harga ongkir anda = %.0f\n",1000 * jarak);
-                            printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
-                            printf("anda yakin ingin checkout?\n");
+                            printf("pilih service dari SiKilat\n\n");
                             printf("0.kembali\n");
-                            printf("1. iya\n");
-
+                            printf("1.Sameday(sampai dalam 1 hari,harganya 3000/km x berat)\n");
+                            printf("2.SiKilat Regular(sampai dalam 3-5 hari,harganya 1500/km x berat)\n");
+                            printf("3.Ekonomi(sampai dalam 4 - 7 hari,harganya 1000/km x berat)\n");
                             scanf("%d",&input);
-
-                            if (input == 0){
+                            
+                            if(input == 0){
                                 goto sessionuser;
                             }
 
+                            //si kilat sameday
                             else if(input == 1){
+                                float jarak;
                                 system("cls");
-                                int uang;
+                                printf("anda sedang menggunakan kurir si kilat, service sameday\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (3000 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",3000 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                printf("masukan uang anda\n");
-                                scanf("%d",&uang);
 
-                                if (uang >= totalAkhir){
-                                    printf("anda telah berhasil checkout barang anda\n");
-                                    printf("kembalian = %d\n",uang-totalAkhir);
-                                    printf("untuk lebih detail silahkan cek pada menu status belanja\n");
-                                    getch();
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
                                     goto sessionuser;
                                 }
-                                else{
-                                    printf("uang anda kurang, checkout barang gagal\n");
-                                    getch();
-                                    goto sessionuser;
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
                                 }
                             }
 
+                            //si kilat regular
+                            else if(input == 2){
+                                float jarak;
+                                system("cls");
+                                printf("anda sedang menggunakan kurir si kilat, service Regular\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
+                                printf("harga akhir + ongkir = %d\n\n",totalAkhir);
 
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
+                                    goto sessionuser;
+                                }
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                }
+                            }
+
+                            //si kilat ekonomis
+                            else if(input == 3){
+                                float jarak;
+                                system("cls");
+                                printf("anda sedang menggunakan kurir si kilat, service Ekonomis\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
+                                printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
+                                    goto sessionuser;
+                                }
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                }
+                            }
                         }
 
                         //menggunakan kurir dinamo
                         else if(input == 2){
-                            float jarak;
                             system("cls");
-                            printf("anda sedang menggunakan kurir si kilat\n");
-                            printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                            scanf("%f",&jarak);
-                            int totalAkhir = (500 * jarak) + tambahan;
-                            system("cls");
-                            printf("total harga barang anda = %d\n",tambahan);
-                            printf("total harga ongkir anda = %.0f\n",500 * jarak);
-                            printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
-                            printf("anda yakin ingin checkout?\n");
+                            printf("pilih service dari Dinamo\n\n");
                             printf("0.kembali\n");
-                            printf("1. iya\n");
-
+                            printf("1.Kebut Sehari(sampai dalam 3-18 jam,harganya 5000/km x berat)\n");
+                            printf("2.Dinamo Regular(sampai dalam 3-4 hari,harganya 2000/km x berat)\n");
+                            printf("3.Ekonomi(sampai dalam 3 - 7 hari,harganya 1500/km x berat)\n");
                             scanf("%d",&input);
-
-                            if (input == 0){
+                            
+                            if(input == 0){
                                 goto sessionuser;
                             }
 
+                            //dinamo kebut sehari
                             else if(input == 1){
+                                float jarak;
                                 system("cls");
-                                int uang;
+                                printf("anda sedang menggunakan kurir dinamo, service Kebut Sehari\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (5000 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",5000 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                printf("masukan uang anda\n");
-                                scanf("%d",&uang);
 
-                                if (uang >= totalAkhir){
-                                    printf("anda telah berhasil checkout barang anda\n");
-                                    printf("kembalian = %d\n",uang-totalAkhir);
-                                    printf("untuk lebih detail silahkan cek pada menu status belanja\n");
-                                    getch();
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
                                     goto sessionuser;
                                 }
-                                else{
-                                    printf("uang anda kurang, checkout barang gagal\n");
-                                    getch();
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                }
+                            }
+
+                            //dinamo regular
+                            else if(input == 2){
+                                float jarak;
+                                system("cls");
+                                printf("anda sedang menggunakan kurir dinamo, service Regular\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (2000 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",2000 * jarak * totalBerat);
+                                printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
                                     goto sessionuser;
+                                }
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                }
+                            }
+
+                            //dinamo ekonomis
+                            else if(input == 3){
+                                float jarak;
+                                system("cls");
+                                printf("anda sedang menggunakan kurir si kilat, service Ekonomis\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
+                                printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
+                                    goto sessionuser;
+                                }
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
                                 }
                             }
                         }
