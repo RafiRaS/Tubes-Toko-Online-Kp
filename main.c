@@ -1387,6 +1387,18 @@ char *nama = strtok(line,"|");
             //untuk cek wallet
             else if(input == 6){
                 
+                char filename[50];
+                sprintf(filename, "%swallet.txt", loginID);
+
+                file = fopen(filename, "r");
+                fclose(file);
+                if (file) {
+                    printf("File %s ditemukan.\n", filename);
+                } else {
+                    file = fopen(filename,"w");
+                    fprintf(file, "0");
+                    fclose(file);
+                }
             }   
 
         }
