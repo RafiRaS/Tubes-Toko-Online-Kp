@@ -47,7 +47,9 @@ int main(){
         printf("4.Search Barang\n");
         printf("5.lihat kategori\n");
         printf("6.barang terlaris\n");
+        printf("===========================\n");
         scanf("%d",&input);
+        getchar();
     }while (input>7 || input<0);
 
 
@@ -1582,7 +1584,63 @@ char *nama = strtok(line,"|");
 
     //untuk search barang sebelum user login
     else if(input == 4){
+        int searchSession = 0;
+        char namaBarang[50];
+        system("cls");
+        printf("ketik barang yang ingin dicari:");
+        fgets(namaBarang, sizeof(namaBarang), stdin);
+        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+        
+        //buat nyamain sama barang buku
+        for(int i = 0;i<jumlahBuku;i++){
+            if(strcmp(namaBarang,buku[i][0]) == 0){
+                searchSession = 1;
+                system("cls");
+                printf("%s ditemukan, terletak di kategori buku, nomor %d\n",buku[i][0],i+1);
+                getch();
+                goto sessionBukuLuar;
+            }
+        }
 
+        //buat nyamain sama barang fashion
+        for(int i = 0;i<jumlahFashion;i++){
+            if(strcmp(namaBarang,fashion[i][0]) == 0){
+                searchSession = 1;
+                system("cls");
+                printf("%s ditemukan, terletak di kategori fashion, nomor %d\n",fashion[i][0],i+1);
+                getch();
+                goto sessionFashionLuar;
+            }
+        }
+
+        //buat nyamain sama barang obat
+        for(int i = 0;i<jumlahObat;i++){
+            if(strcmp(namaBarang,obat[i][0]) == 0){
+                searchSession = 1;
+                system("cls");
+                printf("%s ditemukan, terletak di kategori obat, nomor %d\n",obat[i][0],i+1);
+                getch();
+                goto sessionObatLuar;
+            }
+        }
+
+        //buat nyamain sama barang others
+        for(int i = 0;i<jumlahOthers;i++){
+            if(strcmp(namaBarang,others[i][0]) == 0){
+                searchSession = 1;
+                system("cls");
+                printf("%s ditemukan, terletak di kategori others, nomor %d\n",others[i][0],i+1);
+                getch();
+                goto sessionOthersLuar;
+            }
+        }
+
+        if(searchSession == 0){
+            system("cls");
+            printf("%s tidak ditemukan\n",namaBarang);
+            getch();
+            goto menu;
+        }
     }
 
     //untuk lihat kategori barang sebelum user login (tidak bisa checkout)
