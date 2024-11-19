@@ -222,6 +222,8 @@ char *nama = strtok(line,"|");
                 printf("3.Produk terlaris\n");
                 printf("4.Cek Keranjang\n");
                 printf("5.Check Out\n");
+                printf("6.Wallet\n\n");
+                printf("Pilihan Anda:");
                 scanf("%d",&input);
                 getchar();
             }while (input>6 || input<-1);
@@ -1381,6 +1383,11 @@ char *nama = strtok(line,"|");
                 }
                 
             }
+
+            //untuk cek wallet
+            else if(input == 6){
+                
+            }   
 
         }
 
