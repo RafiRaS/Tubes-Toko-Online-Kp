@@ -226,6 +226,7 @@ char *nama = strtok(line,"|");
                 getchar();
             }while (input>6 || input<-1);
             
+            //fitur search barang
             if(input == 1){
                 int searchSession = 0;
                 char namaBarang[50];
@@ -286,6 +287,7 @@ char *nama = strtok(line,"|");
                 }
             }
 
+            //nampilin kategori
             else if(input == 2){
                 menuBuku:
                 do{
@@ -813,128 +815,128 @@ char *nama = strtok(line,"|");
                 }
             }
             
+            //untuk kembali ke menu(logout)
             else if(input == 0){
                 goto menu;
             }
 
             //fitur untuk menampilkan barang paling laris
             else if (input == 3){
-                    char terlaris[2000][5][100];
-                    system("cls");
+                char terlaris[2000][5][100];
+                system("cls");
 
-                    //masukin array buku ke dalam array terlaris
-                    for(int i = 0;i<jumlahBuku;i++){
-                        strcpy(terlaris[i][0],buku[i][0]);
-                        strcpy(terlaris[i][1],buku[i][1]);
-                        strcpy(terlaris[i][2],buku[i][2]);
-                        strcpy(terlaris[i][3],buku[i][3]);
-                        strcpy(terlaris[i][4],buku[i][4]);
-                    }
+                //masukin array buku ke dalam array terlaris
+                for(int i = 0;i<jumlahBuku;i++){
+                    strcpy(terlaris[i][0],buku[i][0]);
+                    strcpy(terlaris[i][1],buku[i][1]);
+                    strcpy(terlaris[i][2],buku[i][2]);
+                    strcpy(terlaris[i][3],buku[i][3]);
+                    strcpy(terlaris[i][4],buku[i][4]);
+                }
 
-                    //masukin array fashion ke dalam array terlaris
-                    index = 0;
-                    for(int i = jumlahBuku;i<jumlahFashion+jumlahBuku;i++){
-                        strcpy(terlaris[i][0],fashion[index][0]);
-                        strcpy(terlaris[i][1],fashion[index][1]);
-                        strcpy(terlaris[i][2],fashion[index][2]);
-                        strcpy(terlaris[i][3],fashion[index][3]);
-                        strcpy(terlaris[i][4],fashion[index][4]);
-                        index++;
-                    }
+                //masukin array fashion ke dalam array terlaris
+                index = 0;
+                for(int i = jumlahBuku;i<jumlahFashion+jumlahBuku;i++){
+                    strcpy(terlaris[i][0],fashion[index][0]);
+                    strcpy(terlaris[i][1],fashion[index][1]);
+                    strcpy(terlaris[i][2],fashion[index][2]);
+                    strcpy(terlaris[i][3],fashion[index][3]);
+                    strcpy(terlaris[i][4],fashion[index][4]);
+                    index++;
+                }
 
-                    //masukin array obat ke dalam array terlaris
-                    index= 0;
-                    for(int i = jumlahFashion+jumlahBuku;i<jumlahFashion+jumlahBuku+jumlahObat;i++){
-                        strcpy(terlaris[i][0],obat[index][0]);
-                        strcpy(terlaris[i][1],obat[index][1]);
-                        strcpy(terlaris[i][2],obat[index][2]);
-                        strcpy(terlaris[i][3],obat[index][3]);
-                        strcpy(terlaris[i][4],obat[index][4]);
-                        index++;
-                    }
+                //masukin array obat ke dalam array terlaris
+                index= 0;
+                for(int i = jumlahFashion+jumlahBuku;i<jumlahFashion+jumlahBuku+jumlahObat;i++){
+                    strcpy(terlaris[i][0],obat[index][0]);
+                    strcpy(terlaris[i][1],obat[index][1]);
+                    strcpy(terlaris[i][2],obat[index][2]);
+                    strcpy(terlaris[i][3],obat[index][3]);
+                    strcpy(terlaris[i][4],obat[index][4]);
+                    index++;
+                }
 
-                    //masukin array others ke dalam array terlaris
-                    index = 0;
-                    for(int i = jumlahFashion+jumlahBuku+jumlahObat;i<jumlahFashion+jumlahBuku+jumlahObat+jumlahOthers;i++){
-                        strcpy(terlaris[i][0],others[index][0]);
-                        strcpy(terlaris[i][1],others[index][1]);
-                        strcpy(terlaris[i][2],others[index][2]);
-                        strcpy(terlaris[i][3],others[index][3]);
-                        strcpy(terlaris[i][4],others[index][4]);
-                        index++;
-                    }
+                //masukin array others ke dalam array terlaris
+                index = 0;
+                for(int i = jumlahFashion+jumlahBuku+jumlahObat;i<jumlahFashion+jumlahBuku+jumlahObat+jumlahOthers;i++){
+                    strcpy(terlaris[i][0],others[index][0]);
+                    strcpy(terlaris[i][1],others[index][1]);
+                    strcpy(terlaris[i][2],others[index][2]);
+                    strcpy(terlaris[i][3],others[index][3]);
+                    strcpy(terlaris[i][4],others[index][4]);
+                    index++;
+                }
 
-                    int jumlahTerlaris = menghitungBanyakData(terlaris);
+                int jumlahTerlaris = menghitungBanyakData(terlaris);
 
-                    
-                    for(int i = 0;i<jumlahTerlaris;i++){
-                        for(int j = 0;j<jumlahTerlaris-1;j++){
-                            int num = atoi(terlaris[j][4]);
-                            int num1 = atoi(terlaris[j+1][4]);
-                            if(num<num1){
-                                char bantuan[1000][5][100];
-                                for(int k = 0;k<5;k++){
-                                    strcpy(bantuan[j][k],terlaris[j][k]);
-                                    strcpy(terlaris[j][k],terlaris[j+1][k]);
-                                    strcpy(terlaris[j+1][k],bantuan[j][k]);
-                                }
+                
+                for(int i = 0;i<jumlahTerlaris;i++){
+                    for(int j = 0;j<jumlahTerlaris-1;j++){
+                        int num = atoi(terlaris[j][4]);
+                        int num1 = atoi(terlaris[j+1][4]);
+                        if(num<num1){
+                            char bantuan[1000][5][100];
+                            for(int k = 0;k<5;k++){
+                                strcpy(bantuan[j][k],terlaris[j][k]);
+                                strcpy(terlaris[j][k],terlaris[j+1][k]);
+                                strcpy(terlaris[j+1][k],bantuan[j][k]);
                             }
                         }
                     }
-                    
-                    for(int i = 0;i<jumlahTerlaris;i++){
-                            printf("%d.%s\n",i+1,terlaris[i][0]);
-                            printf("  harga = %s\n",terlaris[i][1]);
-                            printf("  stok = %s\n",terlaris[i][2]);
-                            printf("  terjual = %s\n",terlaris[i][4]);
-                            printf("==============================================\n");
-                        }
-                        printf("0.kembali\n");
-                        printf("1.masukan barang ke dalam keranjang\n");
+                }
+                
+                for(int i = 0;i<jumlahTerlaris;i++){
+                        printf("%d.%s\n",i+1,terlaris[i][0]);
+                        printf("  harga = %s\n",terlaris[i][1]);
+                        printf("  stok = %s\n",terlaris[i][2]);
+                        printf("  terjual = %s\n",terlaris[i][4]);
                         printf("==============================================\n");
-                        scanf("%d",&input);
-                        getchar();
+                    }
+                    printf("0.kembali\n");
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    printf("==============================================\n");
+                    scanf("%d",&input);
+                    getchar();
 
-                        if(input == 0){
-                            goto sessionuser;
-                        }
+                    if(input == 0){
+                        goto sessionuser;
+                    }
 
-                        else if(input == 1){
-                            int searchSession = 0;
-                            char namaBarang[50];
-                            system("cls");
-                            printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
-                            fgets(namaBarang, sizeof(namaBarang), stdin);
-                            namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
-                            
-                            for(int i = 0;i<jumlahTerlaris;i++){
-                                if(strcmp(namaBarang,terlaris[i][0]) == 0){
-                                    searchSession = 1;
+                    else if(input == 1){
+                        int searchSession = 0;
+                        char namaBarang[50];
+                        system("cls");
+                        printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                        fgets(namaBarang, sizeof(namaBarang), stdin);
+                        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                        
+                        for(int i = 0;i<jumlahTerlaris;i++){
+                            if(strcmp(namaBarang,terlaris[i][0]) == 0){
+                                searchSession = 1;
 
-                                    char namaFile[50];
-                                    sprintf(namaFile, "%s.txt", loginID);
+                                char namaFile[50];
+                                sprintf(namaFile, "%s.txt", loginID);
 
-                                    file = fopen(namaFile, "a");
+                                file = fopen(namaFile, "a");
 
-                                    fprintf(file, "%s|%s|%s|%s|%s\n", terlaris[i][0],terlaris[i][1],terlaris[i][2],terlaris[i][3],terlaris[i][4]);
+                                fprintf(file, "%s|%s|%s|%s|%s\n", terlaris[i][0],terlaris[i][1],terlaris[i][2],terlaris[i][3],terlaris[i][4]);
 
-                                    fclose(file);
+                                fclose(file);
 
-                                    system("cls");
-                                    printf("%s telah dimasukan ke dalam keranjang\n",terlaris[i][0]);
-                                    getch();
-                                    goto sessionuser;
-                                }
-                            }
-
-                            if(searchSession == 0){
-                            system("cls");
-                            printf("%s tidak ditemukan\n",namaBarang);
-                            getch();
-                            goto sessionuser;
+                                system("cls");
+                                printf("%s telah dimasukan ke dalam keranjang\n",terlaris[i][0]);
+                                getch();
+                                goto sessionuser;
                             }
                         }
-                    
+
+                        if(searchSession == 0){
+                        system("cls");
+                        printf("%s tidak ditemukan\n",namaBarang);
+                        getch();
+                        goto sessionuser;
+                        }
+                    }   
             }
 
             //fitur untuk mengecek keranjang user
@@ -1940,7 +1942,92 @@ char *nama = strtok(line,"|");
 
     //untuk lihat barang terlaris sebelum user login
     else if(input == 6){
+        char terlaris[2000][5][100];
+        system("cls");
 
+        //masukin array buku ke dalam array terlaris
+        for(int i = 0;i<jumlahBuku;i++){
+            strcpy(terlaris[i][0],buku[i][0]);
+            strcpy(terlaris[i][1],buku[i][1]);
+            strcpy(terlaris[i][2],buku[i][2]);
+            strcpy(terlaris[i][3],buku[i][3]);
+            strcpy(terlaris[i][4],buku[i][4]);
+        }
+
+        //masukin array fashion ke dalam array terlaris
+        index = 0;
+        for(int i = jumlahBuku;i<jumlahFashion+jumlahBuku;i++){
+            strcpy(terlaris[i][0],fashion[index][0]);
+            strcpy(terlaris[i][1],fashion[index][1]);
+            strcpy(terlaris[i][2],fashion[index][2]);
+            strcpy(terlaris[i][3],fashion[index][3]);
+            strcpy(terlaris[i][4],fashion[index][4]);
+            index++;
+        }
+
+        //masukin array obat ke dalam array terlaris
+        index= 0;
+        for(int i = jumlahFashion+jumlahBuku;i<jumlahFashion+jumlahBuku+jumlahObat;i++){
+            strcpy(terlaris[i][0],obat[index][0]);
+            strcpy(terlaris[i][1],obat[index][1]);
+            strcpy(terlaris[i][2],obat[index][2]);
+            strcpy(terlaris[i][3],obat[index][3]);
+            strcpy(terlaris[i][4],obat[index][4]);
+            index++;
+        }
+
+        //masukin array others ke dalam array terlaris
+        index = 0;
+        for(int i = jumlahFashion+jumlahBuku+jumlahObat;i<jumlahFashion+jumlahBuku+jumlahObat+jumlahOthers;i++){
+            strcpy(terlaris[i][0],others[index][0]);
+            strcpy(terlaris[i][1],others[index][1]);
+            strcpy(terlaris[i][2],others[index][2]);
+            strcpy(terlaris[i][3],others[index][3]);
+            strcpy(terlaris[i][4],others[index][4]);
+            index++;
+        }
+
+        int jumlahTerlaris = menghitungBanyakData(terlaris);
+
+        
+        for(int i = 0;i<jumlahTerlaris;i++){
+            for(int j = 0;j<jumlahTerlaris-1;j++){
+                int num = atoi(terlaris[j][4]);
+                int num1 = atoi(terlaris[j+1][4]);
+                if(num<num1){
+                    char bantuan[1000][5][100];
+                    for(int k = 0;k<5;k++){
+                        strcpy(bantuan[j][k],terlaris[j][k]);
+                        strcpy(terlaris[j][k],terlaris[j+1][k]);
+                        strcpy(terlaris[j+1][k],bantuan[j][k]);
+                    }
+                }
+            }
+        }
+        
+        for(int i = 0;i<jumlahTerlaris;i++){
+                printf("%d.%s\n",i+1,terlaris[i][0]);
+                printf("  harga = %s\n",terlaris[i][1]);
+                printf("  stok = %s\n",terlaris[i][2]);
+                printf("  terjual = %s\n",terlaris[i][4]);
+                printf("==============================================\n");
+            }
+            printf("0.kembali\n");
+            printf("1.masukan barang ke dalam keranjang\n");
+            printf("==============================================\n");
+            scanf("%d",&input);
+            getchar();
+
+            if(input == 0){
+                goto menu;
+            }
+
+            else if(input == 1){
+                system("cls");
+                printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                getch();
+                goto menuBukuLuar;
+            }   
     }
 
 
