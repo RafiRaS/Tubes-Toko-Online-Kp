@@ -44,8 +44,13 @@ int main(){
         printf("1.login user\n");
         printf("2.login seller\n");
         printf("3.register user\n");
+        printf("4.Search Barang\n");
+        printf("5.lihat kategori\n");
+        printf("6.barang terlaris\n");
+        printf("===========================\n");
         scanf("%d",&input);
-    }while (input>4 || input<0);
+        getchar();
+    }while (input>7 || input<0);
 
 
     //baca file login.txt terus masukin ke array
@@ -217,10 +222,13 @@ char *nama = strtok(line,"|");
                 printf("3.Produk terlaris\n");
                 printf("4.Cek Keranjang\n");
                 printf("5.Check Out\n");
+                printf("6.Wallet\n\n");
+                printf("Pilihan Anda:");
                 scanf("%d",&input);
                 getchar();
             }while (input>6 || input<-1);
             
+            //fitur search barang
             if(input == 1){
                 int searchSession = 0;
                 char namaBarang[50];
@@ -281,6 +289,7 @@ char *nama = strtok(line,"|");
                 }
             }
 
+            //nampilin kategori
             else if(input == 2){
                 menuBuku:
                 do{
@@ -724,7 +733,6 @@ char *nama = strtok(line,"|");
                         }
                         printf("0.kembali\n");
                         printf("1.masukan barang ke dalam keranjang\n");
-                        printf("2.sorting\n");
                         printf("==============================================\n");
                         scanf("%d",&input);
                         getchar();
@@ -809,128 +817,128 @@ char *nama = strtok(line,"|");
                 }
             }
             
+            //untuk kembali ke menu(logout)
             else if(input == 0){
                 goto menu;
             }
 
             //fitur untuk menampilkan barang paling laris
             else if (input == 3){
-                    char terlaris[2000][5][100];
-                    system("cls");
+                char terlaris[2000][5][100];
+                system("cls");
 
-                    //masukin array buku ke dalam array terlaris
-                    for(int i = 0;i<jumlahBuku;i++){
-                        strcpy(terlaris[i][0],buku[i][0]);
-                        strcpy(terlaris[i][1],buku[i][1]);
-                        strcpy(terlaris[i][2],buku[i][2]);
-                        strcpy(terlaris[i][3],buku[i][3]);
-                        strcpy(terlaris[i][4],buku[i][4]);
-                    }
+                //masukin array buku ke dalam array terlaris
+                for(int i = 0;i<jumlahBuku;i++){
+                    strcpy(terlaris[i][0],buku[i][0]);
+                    strcpy(terlaris[i][1],buku[i][1]);
+                    strcpy(terlaris[i][2],buku[i][2]);
+                    strcpy(terlaris[i][3],buku[i][3]);
+                    strcpy(terlaris[i][4],buku[i][4]);
+                }
 
-                    //masukin array fashion ke dalam array terlaris
-                    index = 0;
-                    for(int i = jumlahBuku;i<jumlahFashion+jumlahBuku;i++){
-                        strcpy(terlaris[i][0],fashion[index][0]);
-                        strcpy(terlaris[i][1],fashion[index][1]);
-                        strcpy(terlaris[i][2],fashion[index][2]);
-                        strcpy(terlaris[i][3],fashion[index][3]);
-                        strcpy(terlaris[i][4],fashion[index][4]);
-                        index++;
-                    }
+                //masukin array fashion ke dalam array terlaris
+                index = 0;
+                for(int i = jumlahBuku;i<jumlahFashion+jumlahBuku;i++){
+                    strcpy(terlaris[i][0],fashion[index][0]);
+                    strcpy(terlaris[i][1],fashion[index][1]);
+                    strcpy(terlaris[i][2],fashion[index][2]);
+                    strcpy(terlaris[i][3],fashion[index][3]);
+                    strcpy(terlaris[i][4],fashion[index][4]);
+                    index++;
+                }
 
-                    //masukin array obat ke dalam array terlaris
-                    index= 0;
-                    for(int i = jumlahFashion+jumlahBuku;i<jumlahFashion+jumlahBuku+jumlahObat;i++){
-                        strcpy(terlaris[i][0],obat[index][0]);
-                        strcpy(terlaris[i][1],obat[index][1]);
-                        strcpy(terlaris[i][2],obat[index][2]);
-                        strcpy(terlaris[i][3],obat[index][3]);
-                        strcpy(terlaris[i][4],obat[index][4]);
-                        index++;
-                    }
+                //masukin array obat ke dalam array terlaris
+                index= 0;
+                for(int i = jumlahFashion+jumlahBuku;i<jumlahFashion+jumlahBuku+jumlahObat;i++){
+                    strcpy(terlaris[i][0],obat[index][0]);
+                    strcpy(terlaris[i][1],obat[index][1]);
+                    strcpy(terlaris[i][2],obat[index][2]);
+                    strcpy(terlaris[i][3],obat[index][3]);
+                    strcpy(terlaris[i][4],obat[index][4]);
+                    index++;
+                }
 
-                    //masukin array others ke dalam array terlaris
-                    index = 0;
-                    for(int i = jumlahFashion+jumlahBuku+jumlahObat;i<jumlahFashion+jumlahBuku+jumlahObat+jumlahOthers;i++){
-                        strcpy(terlaris[i][0],others[index][0]);
-                        strcpy(terlaris[i][1],others[index][1]);
-                        strcpy(terlaris[i][2],others[index][2]);
-                        strcpy(terlaris[i][3],others[index][3]);
-                        strcpy(terlaris[i][4],others[index][4]);
-                        index++;
-                    }
+                //masukin array others ke dalam array terlaris
+                index = 0;
+                for(int i = jumlahFashion+jumlahBuku+jumlahObat;i<jumlahFashion+jumlahBuku+jumlahObat+jumlahOthers;i++){
+                    strcpy(terlaris[i][0],others[index][0]);
+                    strcpy(terlaris[i][1],others[index][1]);
+                    strcpy(terlaris[i][2],others[index][2]);
+                    strcpy(terlaris[i][3],others[index][3]);
+                    strcpy(terlaris[i][4],others[index][4]);
+                    index++;
+                }
 
-                    int jumlahTerlaris = menghitungBanyakData(terlaris);
+                int jumlahTerlaris = menghitungBanyakData(terlaris);
 
-                    
-                    for(int i = 0;i<jumlahTerlaris;i++){
-                        for(int j = 0;j<jumlahTerlaris-1;j++){
-                            int num = atoi(terlaris[j][4]);
-                            int num1 = atoi(terlaris[j+1][4]);
-                            if(num<num1){
-                                char bantuan[1000][5][100];
-                                for(int k = 0;k<5;k++){
-                                    strcpy(bantuan[j][k],terlaris[j][k]);
-                                    strcpy(terlaris[j][k],terlaris[j+1][k]);
-                                    strcpy(terlaris[j+1][k],bantuan[j][k]);
-                                }
+                
+                for(int i = 0;i<jumlahTerlaris;i++){
+                    for(int j = 0;j<jumlahTerlaris-1;j++){
+                        int num = atoi(terlaris[j][4]);
+                        int num1 = atoi(terlaris[j+1][4]);
+                        if(num<num1){
+                            char bantuan[1000][5][100];
+                            for(int k = 0;k<5;k++){
+                                strcpy(bantuan[j][k],terlaris[j][k]);
+                                strcpy(terlaris[j][k],terlaris[j+1][k]);
+                                strcpy(terlaris[j+1][k],bantuan[j][k]);
                             }
                         }
                     }
-                    
-                    for(int i = 0;i<jumlahTerlaris;i++){
-                            printf("%d.%s\n",i+1,terlaris[i][0]);
-                            printf("  harga = %s\n",terlaris[i][1]);
-                            printf("  stok = %s\n",terlaris[i][2]);
-                            printf("  terjual = %s\n",terlaris[i][4]);
-                            printf("==============================================\n");
-                        }
-                        printf("0.kembali\n");
-                        printf("1.masukan barang ke dalam keranjang\n");
+                }
+                
+                for(int i = 0;i<jumlahTerlaris;i++){
+                        printf("%d.%s\n",i+1,terlaris[i][0]);
+                        printf("  harga = %s\n",terlaris[i][1]);
+                        printf("  stok = %s\n",terlaris[i][2]);
+                        printf("  terjual = %s\n",terlaris[i][4]);
                         printf("==============================================\n");
-                        scanf("%d",&input);
-                        getchar();
+                    }
+                    printf("0.kembali\n");
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    printf("==============================================\n");
+                    scanf("%d",&input);
+                    getchar();
 
-                        if(input == 0){
-                            goto sessionuser;
-                        }
+                    if(input == 0){
+                        goto sessionuser;
+                    }
 
-                        else if(input == 1){
-                            int searchSession = 0;
-                            char namaBarang[50];
-                            system("cls");
-                            printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
-                            fgets(namaBarang, sizeof(namaBarang), stdin);
-                            namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
-                            
-                            for(int i = 0;i<jumlahTerlaris;i++){
-                                if(strcmp(namaBarang,terlaris[i][0]) == 0){
-                                    searchSession = 1;
+                    else if(input == 1){
+                        int searchSession = 0;
+                        char namaBarang[50];
+                        system("cls");
+                        printf("ketik barang yang ingin dimasukan ke dalam keranjang:");
+                        fgets(namaBarang, sizeof(namaBarang), stdin);
+                        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+                        
+                        for(int i = 0;i<jumlahTerlaris;i++){
+                            if(strcmp(namaBarang,terlaris[i][0]) == 0){
+                                searchSession = 1;
 
-                                    char namaFile[50];
-                                    sprintf(namaFile, "%s.txt", loginID);
+                                char namaFile[50];
+                                sprintf(namaFile, "%s.txt", loginID);
 
-                                    file = fopen(namaFile, "a");
+                                file = fopen(namaFile, "a");
 
-                                    fprintf(file, "%s|%s|%s|%s|%s\n", terlaris[i][0],terlaris[i][1],terlaris[i][2],terlaris[i][3],terlaris[i][4]);
+                                fprintf(file, "%s|%s|%s|%s|%s\n", terlaris[i][0],terlaris[i][1],terlaris[i][2],terlaris[i][3],terlaris[i][4]);
 
-                                    fclose(file);
+                                fclose(file);
 
-                                    system("cls");
-                                    printf("%s telah dimasukan ke dalam keranjang\n",terlaris[i][0]);
-                                    getch();
-                                    goto sessionuser;
-                                }
-                            }
-
-                            if(searchSession == 0){
-                            system("cls");
-                            printf("%s tidak ditemukan\n",namaBarang);
-                            getch();
-                            goto sessionuser;
+                                system("cls");
+                                printf("%s telah dimasukan ke dalam keranjang\n",terlaris[i][0]);
+                                getch();
+                                goto sessionuser;
                             }
                         }
-                    
+
+                        if(searchSession == 0){
+                        system("cls");
+                        printf("%s tidak ditemukan\n",namaBarang);
+                        getch();
+                        goto sessionuser;
+                        }
+                    }   
             }
 
             //fitur untuk mengecek keranjang user
@@ -1048,8 +1056,6 @@ char *nama = strtok(line,"|");
                     int tambahan =(totalBerat*1000) + totalHarga;
                     printf("total harga barang anda = %d\n",totalHarga);
                     printf("total berat barang anda = %.2f kg\n",totalBerat);
-                    printf("harga per 0.1 kg = 100 rupiah\n");
-                    printf("harga akhir = %d\n\n",tambahan);
                     printf("0.kembali\n");
                     printf("1.Next\n");
                     scanf("%d",&input);
@@ -1064,8 +1070,8 @@ char *nama = strtok(line,"|");
                         system("cls");
                         printf("pilih jasa pengiriman untuk barang anda\n\n");
                         printf("0.kembali\n");
-                        printf("1.Si Kilat(per 0.1 km = 100 rupiah)\n");
-                        printf("2.Dinamo(per 0.1 km = 50 rupiah)\n");
+                        printf("1.SiKilat\n");
+                        printf("2.Dinamo\n");
                         scanf("%d",&input);
 
                         if(input == 0){
@@ -1075,92 +1081,300 @@ char *nama = strtok(line,"|");
 
                         //menggunakan kurir si kilat
                         else if(input == 1){
-                            float jarak;
                             system("cls");
-                            printf("anda sedang menggunakan kurir si kilat\n");
-                            printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                            scanf("%f",&jarak);
-                            int totalAkhir = (1000 * jarak) + tambahan;
-                            system("cls");
-                            printf("total harga barang anda = %d\n",tambahan);
-                            printf("total harga ongkir anda = %.0f\n",1000 * jarak);
-                            printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
-                            printf("anda yakin ingin checkout?\n");
+                            printf("pilih service dari SiKilat\n\n");
                             printf("0.kembali\n");
-                            printf("1. iya\n");
-
+                            printf("1.Sameday(sampai dalam 1 hari,harganya 3000/km x berat)\n");
+                            printf("2.SiKilat Regular(sampai dalam 3-5 hari,harganya 1500/km x berat)\n");
+                            printf("3.Ekonomi(sampai dalam 4 - 7 hari,harganya 1000/km x berat)\n");
                             scanf("%d",&input);
-
-                            if (input == 0){
+                            
+                            if(input == 0){
                                 goto sessionuser;
                             }
 
+                            //si kilat sameday
                             else if(input == 1){
+                                float jarak;
                                 system("cls");
-                                int uang;
+                                printf("anda sedang menggunakan kurir si kilat, service sameday\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (3000 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",3000 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                printf("masukan uang anda\n");
-                                scanf("%d",&uang);
 
-                                if (uang >= totalAkhir){
-                                    printf("anda telah berhasil checkout barang anda\n");
-                                    printf("kembalian = %d\n",uang-totalAkhir);
-                                    printf("untuk lebih detail silahkan cek pada menu status belanja\n");
-                                    getch();
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
                                     goto sessionuser;
                                 }
-                                else{
-                                    printf("uang anda kurang, checkout barang gagal\n");
-                                    getch();
-                                    goto sessionuser;
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
                                 }
                             }
 
+                            //si kilat regular
+                            else if(input == 2){
+                                float jarak;
+                                system("cls");
+                                printf("anda sedang menggunakan kurir si kilat, service Regular\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
+                                printf("harga akhir + ongkir = %d\n\n",totalAkhir);
 
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
+                                    goto sessionuser;
+                                }
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                }
+                            }
+
+                            //si kilat ekonomis
+                            else if(input == 3){
+                                float jarak;
+                                system("cls");
+                                printf("anda sedang menggunakan kurir si kilat, service Ekonomis\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
+                                printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
+                                    goto sessionuser;
+                                }
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                }
+                            }
                         }
 
                         //menggunakan kurir dinamo
                         else if(input == 2){
-                            float jarak;
                             system("cls");
-                            printf("anda sedang menggunakan kurir si kilat\n");
-                            printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                            scanf("%f",&jarak);
-                            int totalAkhir = (500 * jarak) + tambahan;
-                            system("cls");
-                            printf("total harga barang anda = %d\n",tambahan);
-                            printf("total harga ongkir anda = %.0f\n",500 * jarak);
-                            printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
-                            printf("anda yakin ingin checkout?\n");
+                            printf("pilih service dari Dinamo\n\n");
                             printf("0.kembali\n");
-                            printf("1. iya\n");
-
+                            printf("1.Kebut Sehari(sampai dalam 3-18 jam,harganya 5000/km x berat)\n");
+                            printf("2.Dinamo Regular(sampai dalam 3-4 hari,harganya 2000/km x berat)\n");
+                            printf("3.Ekonomi(sampai dalam 3 - 7 hari,harganya 1500/km x berat)\n");
                             scanf("%d",&input);
-
-                            if (input == 0){
+                            
+                            if(input == 0){
                                 goto sessionuser;
                             }
 
+                            //dinamo kebut sehari
                             else if(input == 1){
+                                float jarak;
                                 system("cls");
-                                int uang;
+                                printf("anda sedang menggunakan kurir dinamo, service Kebut Sehari\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (5000 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",5000 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                printf("masukan uang anda\n");
-                                scanf("%d",&uang);
 
-                                if (uang >= totalAkhir){
-                                    printf("anda telah berhasil checkout barang anda\n");
-                                    printf("kembalian = %d\n",uang-totalAkhir);
-                                    printf("untuk lebih detail silahkan cek pada menu status belanja\n");
-                                    getch();
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
                                     goto sessionuser;
                                 }
-                                else{
-                                    printf("uang anda kurang, checkout barang gagal\n");
-                                    getch();
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                }
+                            }
+
+                            //dinamo regular
+                            else if(input == 2){
+                                float jarak;
+                                system("cls");
+                                printf("anda sedang menggunakan kurir dinamo, service Regular\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (2000 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",2000 * jarak * totalBerat);
+                                printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
                                     goto sessionuser;
+                                }
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                }
+                            }
+
+                            //dinamo ekonomis
+                            else if(input == 3){
+                                float jarak;
+                                system("cls");
+                                printf("anda sedang menggunakan kurir si kilat, service Ekonomis\n");
+                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                scanf("%f",&jarak);
+                                int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
+                                system("cls");
+                                printf("total harga barang anda = %d\n",tambahan);
+                                printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
+                                printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+
+                                printf("anda yakin ingin checkout?\n");
+                                printf("0.kembali\n");
+                                printf("1. iya\n");
+
+                                scanf("%d",&input);
+
+                                if (input == 0){
+                                    goto sessionuser;
+                                }
+
+                                else if(input == 1){
+                                    system("cls");
+                                    int uang;
+                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
+                                    printf("masukan uang anda\n");
+                                    scanf("%d",&uang);
+
+                                    if (uang >= totalAkhir){
+                                        printf("anda telah berhasil checkout barang anda\n");
+                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
+                                    else{
+                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        getch();
+                                        goto sessionuser;
+                                    }
                                 }
                             }
                         }
@@ -1169,6 +1383,23 @@ char *nama = strtok(line,"|");
                 }
                 
             }
+
+            //untuk cek wallet
+            else if(input == 6){
+                
+                char filename[50];
+                sprintf(filename, "%swallet.txt", loginID);
+
+                file = fopen(filename, "r");
+                fclose(file);
+                if (file) {
+                    printf("File %s ditemukan.\n", filename);
+                } else {
+                    file = fopen(filename,"w");
+                    fprintf(file, "0");
+                    fclose(file);
+                }
+            }   
 
         }
 
@@ -1183,7 +1414,7 @@ char *nama = strtok(line,"|");
     }
 
     //login seller
-    if(input == 2){
+    else if(input == 2){
         system("cls");
         printf("login seller\n");
         printf("masukan id       :");
@@ -1524,7 +1755,7 @@ char *nama = strtok(line,"|");
     
 
     //register user
-    if(input == 3){
+    else if(input == 3){
       
         char registerID[25];
         char registerPW[25];
@@ -1573,9 +1804,455 @@ char *nama = strtok(line,"|");
 
 
     //untuk keluar dari program
-    if(input == 0){
+    else if(input == 0){
         system("cls");
         printf("Terimakasih");
+    }
+
+    //untuk search barang sebelum user login
+    else if(input == 4){
+        int searchSession = 0;
+        char namaBarang[50];
+        system("cls");
+        printf("ketik barang yang ingin dicari:");
+        fgets(namaBarang, sizeof(namaBarang), stdin);
+        namaBarang[strcspn(namaBarang, "\n")] = '\0';  //supaya bisa memasukan spasi dalam input
+        
+        //buat nyamain sama barang buku
+        for(int i = 0;i<jumlahBuku;i++){
+            if(strcmp(namaBarang,buku[i][0]) == 0){
+                searchSession = 1;
+                system("cls");
+                printf("%s ditemukan, terletak di kategori buku, nomor %d\n",buku[i][0],i+1);
+                getch();
+                goto sessionBukuLuar;
+            }
+        }
+
+        //buat nyamain sama barang fashion
+        for(int i = 0;i<jumlahFashion;i++){
+            if(strcmp(namaBarang,fashion[i][0]) == 0){
+                searchSession = 1;
+                system("cls");
+                printf("%s ditemukan, terletak di kategori fashion, nomor %d\n",fashion[i][0],i+1);
+                getch();
+                goto sessionFashionLuar;
+            }
+        }
+
+        //buat nyamain sama barang obat
+        for(int i = 0;i<jumlahObat;i++){
+            if(strcmp(namaBarang,obat[i][0]) == 0){
+                searchSession = 1;
+                system("cls");
+                printf("%s ditemukan, terletak di kategori obat, nomor %d\n",obat[i][0],i+1);
+                getch();
+                goto sessionObatLuar;
+            }
+        }
+
+        //buat nyamain sama barang others
+        for(int i = 0;i<jumlahOthers;i++){
+            if(strcmp(namaBarang,others[i][0]) == 0){
+                searchSession = 1;
+                system("cls");
+                printf("%s ditemukan, terletak di kategori others, nomor %d\n",others[i][0],i+1);
+                getch();
+                goto sessionOthersLuar;
+            }
+        }
+
+        if(searchSession == 0){
+            system("cls");
+            printf("%s tidak ditemukan\n",namaBarang);
+            getch();
+            goto menu;
+        }
+    }
+
+    //untuk lihat kategori barang sebelum user login (tidak bisa checkout)
+    else if(input == 5){
+        menuBukuLuar:
+        do{
+            system("cls");
+            printf("1.buku\n");
+            printf("2.fashion\n");
+            printf("3.obat\n");
+            printf("4.others\n");
+            printf("5.back\n");
+            scanf("%d",&input);
+        }while (input>6 || input<0);
+
+        //kembali ke menu
+        if(input == 5){
+            goto menu;
+        }
+
+        //menampilkan kategori buku
+        else if(input == 1){
+            sessionBukuLuar:
+            system("cls");
+            for(int i = 0;i<jumlahBuku;i++){
+                printf("%d.%s\n",i+1,buku[i][0]);
+                printf("  harga = %s\n",buku[i][1]);
+                printf("  stok = %s\n",buku[i][2]);
+                printf("==============================================\n");
+            }
+            printf("0.kembali\n");
+            printf("1.masukan barang ke dalam keranjang\n");
+            printf("2.sorting\n");
+            scanf("%d",&input);
+            getchar();
+            if(input == 0){
+                goto menuBukuLuar;
+            }
+            else if(input == 2){
+                for(int i = 0;i<jumlahBuku;i++){
+                    for(int j = 0;j<jumlahBuku-1;j++){
+                        int num = atoi(buku[j][1]);
+                        int num1 = atoi(buku[j+1][1]);
+                        if(num>num1){
+                            char bantuan[1000][5][100];
+                            for(int k = 0;k<5;k++){
+                                strcpy(bantuan[j][k],buku[j][k]);
+                                strcpy(buku[j][k],buku[j+1][k]);
+                                strcpy(buku[j+1][k],bantuan[j][k]);
+                            }
+                        }
+                    }
+                }
+                system("cls");
+                for(int i = 0;i<jumlahBuku;i++){
+                    printf("%d.%s\n",i+1,buku[i][0]);
+                    printf("  harga = %s\n",buku[i][1]);
+                    printf("  stok = %s\n",buku[i][2]);
+                    printf("==============================================\n");
+                }
+                printf("0.kembali\n");
+                printf("1.masukan barang ke dalam keranjang\n");
+                scanf("%d",&input);
+                getchar();
+                if(input == 0){
+                    goto menuBukuLuar;
+                }
+
+                else if(input == 1){
+                    system("cls");
+                    printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang");
+                    getch();
+                    goto menuBukuLuar;
+                }
+
+
+            }
+
+            //untuk masukin buku keranjang dalam mode biasa
+            else if(input == 1){
+                system("cls");
+                printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                getch();
+                goto menuBukuLuar;
+            }
+        }
+
+        //menampilkan kategori fashion
+        else if(input == 2){
+            sessionFashionLuar:
+            system("cls");
+            for(int i = 0;i<jumlahFashion;i++){
+                printf("%d.%s\n",i+1,fashion[i][0]);
+                printf("  harga = %s\n",fashion[i][1]);
+                printf("  stok = %s\n",fashion[i][2]);
+                printf("==============================================\n");
+            }
+            printf("0.kembali\n");
+            printf("1.masukan barang ke dalam keranjang\n");
+            printf("2.sorting\n");
+            printf("==============================================\n");
+            scanf("%d",&input);
+            getchar();
+            if(input == 0){
+                goto menuBukuLuar;
+            }
+
+            else if(input == 2){
+                for(int i = 0;i<jumlahFashion;i++){
+                    for(int j = 0;j<jumlahFashion-1;j++){
+                        int num = atoi(fashion[j][1]);
+                        int num1 = atoi(fashion[j+1][1]);
+                        if(num>num1){
+                            char bantuan[1000][5][100];
+                            for(int k = 0;k<5;k++){
+                                strcpy(bantuan[j][k],fashion[j][k]);
+                                strcpy(fashion[j][k],fashion[j+1][k]);
+                                strcpy(fashion[j+1][k],bantuan[j][k]);
+                            }
+
+                        }
+                    }
+                }
+                system("cls");
+                for(int i = 0;i<jumlahFashion;i++){
+                    printf("%d.%s\n",i+1,fashion[i][0]);
+                    printf("  harga = %s\n",fashion[i][1]);
+                    printf("  stok = %s\n",fashion[i][2]);
+                    printf("==============================================\n");
+                }
+                printf("0.kembali\n");
+                printf("1.masukan barang ke dalam keranjang\n");
+                printf("==============================================\n");
+                scanf("%d",&input);
+                getchar();
+                if(input == 0){
+                    goto menuBukuLuar;
+                }
+
+                //masukin barang fashion ke dalam keranjang dalam mode sorting
+                else if(input == 1){
+                    system("cls");
+                    printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                    getch();
+                    goto menuBukuLuar;
+                }
+            }
+
+            //masukin barang fashion ke dalam keranjang dalam mode biasa
+            else if(input == 1){
+                system("cls");
+                printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                getch();
+                goto menuBukuLuar;
+            }
+
+        }
+        //menampilkan kategori obat
+        else if(input == 3){
+            sessionObatLuar:
+            system("cls");
+            for(int i = 0;i<jumlahObat;i++){
+                printf("%d.%s\n",i+1,obat[i][0]);
+                printf("  harga = %s\n",obat[i][1]);
+                printf("  stok = %s\n",obat[i][2]);
+                printf("==============================================\n");
+            }
+            printf("0.kembali\n");
+            printf("1.masukan barang ke dalam keranjang\n");
+            printf("2.sorting\n");
+            printf("==============================================\n");
+            scanf("%d",&input);
+            getchar();
+            if(input == 0){
+                goto menuBukuLuar;
+            }
+
+            else if(input == 2){
+                for(int i = 0;i<jumlahObat;i++){
+                    for(int j = 0;j<jumlahObat-1;j++){
+                        int num = atoi(obat[j][1]);
+                        int num1 = atoi(obat[j+1][1]);
+                        if(num>num1){
+                            char bantuan[1000][5][100];
+                            for(int k = 0;k<5;k++){
+                                strcpy(bantuan[j][k],obat[j][k]);
+                                strcpy(obat[j][k],obat[j+1][k]);
+                                strcpy(obat[j+1][k],bantuan[j][k]);
+                            }
+
+                        }
+                    }
+                }
+                system("cls");
+                for(int i = 0;i<jumlahObat;i++){
+                    printf("%d.%s\n",i+1,obat[i][0]);
+                    printf("  harga = %s\n",obat[i][1]);
+                    printf("  stok = %s\n",obat[i][2]);
+                    printf("==============================================\n");
+                }
+                printf("0.kembali\n");
+                printf("1.masukan barang ke dalam keranjang\n");
+                printf("==============================================\n");
+                scanf("%d",&input);
+                getchar();
+                if(input == 0){
+                    goto menuBukuLuar;
+                }
+
+                //masukan barang obat ke dalam keranjang dalam mode sorting
+                else if(input == 1){
+                    system("cls");
+                    printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                    getch();
+                    goto menuBukuLuar;
+                }
+            }
+
+            //masukan barang ke obat ke dalam keranjang dalam mode biasa
+            else if(input == 1){
+                system("cls");
+                printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                getch();
+                goto menuBukuLuar;
+            }
+        }
+        //menampilkan kategori others
+        else if(input == 4){
+            sessionOthersLuar:
+            system("cls");
+            for(int i = 0;i<jumlahOthers;i++){
+                printf("%d.%s\n",i+1,others[i][0]);
+                printf("  harga = %s\n",others[i][1]);
+                printf("  stok = %s\n",others[i][2]);
+                printf("==============================================\n");
+            }
+            printf("0.kembali\n");
+            printf("1.masukan barang ke dalam keranjang\n");
+            printf("2.sorting\n");
+            printf("==============================================\n");
+            scanf("%d",&input);
+            getchar();
+            if(input == 0){
+                goto menuBukuLuar;
+            }
+
+            else if(input == 2){        
+                for(int i = 0;i<jumlahOthers;i++){
+                    for(int j = 0;j<jumlahOthers-1;j++){
+                        int num = atoi(others[j][1]);
+                        int num1 = atoi(others[j+1][1]);
+                        if(num>num1){
+                            char bantuan[1000][5][100];
+                            for(int k = 0;k<5;k++){
+                                strcpy(bantuan[j][k],others[j][k]);
+                                strcpy(others[j][k],others[j+1][k]);
+                                strcpy(others[j+1][k],bantuan[j][k]);
+                            }
+
+                        }
+                    }
+                }
+                system("cls");
+                for(int i = 0;i<jumlahOthers;i++){
+                    printf("%d.%s\n",i+1,others[i][0]);
+                    printf("  harga = %s\n",others[i][1]);
+                    printf("  stok = %s\n",others[i][2]);
+                    printf("==============================================\n");
+                }
+                printf("0.kembali\n");
+                printf("1.masukan barang ke dalam keranjang\n");
+                printf("==============================================\n");
+                scanf("%d",&input);
+                getchar();
+                if(input == 0){
+                    goto menuBukuLuar;
+                }
+
+                //masukan barang others ke dalam keranjang dalam mode sorting
+                else if(input == 1){
+                    system("cls");
+                    printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                    getch();
+                    goto menuBukuLuar;
+                }
+            }
+
+            //masukan barang others ke dalam keranjang dalam mode biasa
+            else if(input == 1){
+                system("cls");
+                printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                getch();
+                goto menuBukuLuar;
+            }
+        }
+    }
+
+    //untuk lihat barang terlaris sebelum user login
+    else if(input == 6){
+        char terlaris[2000][5][100];
+        system("cls");
+
+        //masukin array buku ke dalam array terlaris
+        for(int i = 0;i<jumlahBuku;i++){
+            strcpy(terlaris[i][0],buku[i][0]);
+            strcpy(terlaris[i][1],buku[i][1]);
+            strcpy(terlaris[i][2],buku[i][2]);
+            strcpy(terlaris[i][3],buku[i][3]);
+            strcpy(terlaris[i][4],buku[i][4]);
+        }
+
+        //masukin array fashion ke dalam array terlaris
+        index = 0;
+        for(int i = jumlahBuku;i<jumlahFashion+jumlahBuku;i++){
+            strcpy(terlaris[i][0],fashion[index][0]);
+            strcpy(terlaris[i][1],fashion[index][1]);
+            strcpy(terlaris[i][2],fashion[index][2]);
+            strcpy(terlaris[i][3],fashion[index][3]);
+            strcpy(terlaris[i][4],fashion[index][4]);
+            index++;
+        }
+
+        //masukin array obat ke dalam array terlaris
+        index= 0;
+        for(int i = jumlahFashion+jumlahBuku;i<jumlahFashion+jumlahBuku+jumlahObat;i++){
+            strcpy(terlaris[i][0],obat[index][0]);
+            strcpy(terlaris[i][1],obat[index][1]);
+            strcpy(terlaris[i][2],obat[index][2]);
+            strcpy(terlaris[i][3],obat[index][3]);
+            strcpy(terlaris[i][4],obat[index][4]);
+            index++;
+        }
+
+        //masukin array others ke dalam array terlaris
+        index = 0;
+        for(int i = jumlahFashion+jumlahBuku+jumlahObat;i<jumlahFashion+jumlahBuku+jumlahObat+jumlahOthers;i++){
+            strcpy(terlaris[i][0],others[index][0]);
+            strcpy(terlaris[i][1],others[index][1]);
+            strcpy(terlaris[i][2],others[index][2]);
+            strcpy(terlaris[i][3],others[index][3]);
+            strcpy(terlaris[i][4],others[index][4]);
+            index++;
+        }
+
+        int jumlahTerlaris = menghitungBanyakData(terlaris);
+
+        
+        for(int i = 0;i<jumlahTerlaris;i++){
+            for(int j = 0;j<jumlahTerlaris-1;j++){
+                int num = atoi(terlaris[j][4]);
+                int num1 = atoi(terlaris[j+1][4]);
+                if(num<num1){
+                    char bantuan[1000][5][100];
+                    for(int k = 0;k<5;k++){
+                        strcpy(bantuan[j][k],terlaris[j][k]);
+                        strcpy(terlaris[j][k],terlaris[j+1][k]);
+                        strcpy(terlaris[j+1][k],bantuan[j][k]);
+                    }
+                }
+            }
+        }
+        
+        for(int i = 0;i<jumlahTerlaris;i++){
+                printf("%d.%s\n",i+1,terlaris[i][0]);
+                printf("  harga = %s\n",terlaris[i][1]);
+                printf("  stok = %s\n",terlaris[i][2]);
+                printf("  terjual = %s\n",terlaris[i][4]);
+                printf("==============================================\n");
+            }
+            printf("0.kembali\n");
+            printf("1.masukan barang ke dalam keranjang\n");
+            printf("==============================================\n");
+            scanf("%d",&input);
+            getchar();
+
+            if(input == 0){
+                goto menu;
+            }
+
+            else if(input == 1){
+                system("cls");
+                printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
+                getch();
+                goto menuBukuLuar;
+            }   
     }
 
 
