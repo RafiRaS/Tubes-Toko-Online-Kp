@@ -1393,7 +1393,35 @@ char *nama = strtok(line,"|");
                 file = fopen(filename, "r");
                 fclose(file);
                 if (file) {
-                    printf("File %s ditemukan.\n", filename);
+                    int saldo;
+                    file = fopen(filename, "r");
+                    fscanf(file, "%d", &saldo);
+                    fclose(file);
+
+                    system("cls");
+                    printf("saldo anda : %d\n\n", saldo);
+                    printf("0.kembali\n");
+                    printf("1.isi saldo\n");
+
+                    scanf("%d",&input);
+
+                    if(input == 0){
+                        goto sessionuser;
+                    }
+                    else if(input == 1){
+                        system("cls");
+                        printf("ingin isi berapa saldo?\n");
+                        scanf("%d",&input);
+                        saldo = saldo + input;
+                        file = fopen(filename,"w");
+                        fprintf(file, "%d",saldo);
+                        fclose(file);
+                        printf("Deposit sebanyak %d berhasil\n",input);
+                        printf("Saldo anda sekarang adalah %d\n",saldo);
+                        getch();
+                        goto sessionuser;
+                    }
+
                 } else {
                     file = fopen(filename,"w");
                     fprintf(file, "0");
