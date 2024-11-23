@@ -1052,6 +1052,12 @@ char *nama = strtok(line,"|");
                 }
 
                 else if(input == 1){
+                    if(totalHarga == 0){
+                        system("cls");
+                        printf("anda tidak memiliki barang apa apa dalam keranjang\n");
+                        getch();
+                        goto sessionuser;
+                    }
                     system("cls");
                     int tambahan =(totalBerat*1000) + totalHarga;
                     printf("total harga barang anda = %d\n",totalHarga);
@@ -1096,6 +1102,14 @@ char *nama = strtok(line,"|");
                             //si kilat sameday
                             else if(input == 1){
                                 float jarak;
+                                int saldo;
+
+                                char filename[50];
+                                sprintf(filename, "%swallet.txt", loginID);
+
+                                file = fopen(filename, "r");
+                                fscanf(file, "%d", &saldo);
+                                fclose(file);
                                 system("cls");
                                 printf("anda sedang menggunakan kurir si kilat, service sameday\n");
                                 printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
@@ -1105,7 +1119,7 @@ char *nama = strtok(line,"|");
                                 printf("total harga barang anda = %d\n",tambahan);
                                 printf("total harga ongkir anda = %.0f\n",3000 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
+                                printf("saldo anda = %d\n",saldo);
                                 printf("anda yakin ingin checkout?\n");
                                 printf("0.kembali\n");
                                 printf("1. iya\n");
@@ -1118,20 +1132,26 @@ char *nama = strtok(line,"|");
 
                                 else if(input == 1){
                                     system("cls");
-                                    int uang;
-                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                    printf("masukan uang anda\n");
-                                    scanf("%d",&uang);
-
-                                    if (uang >= totalAkhir){
+                                    if (saldo >= totalAkhir){
+                                        file = fopen(filename,"w");
+                                        fprintf(file, "%d",saldo - totalAkhir);
+                                        fclose(file);
                                         printf("anda telah berhasil checkout barang anda\n");
-                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+
+                                        char kosongkanKeranjang[50];
+                                        sprintf(kosongkanKeranjang, "%s.txt", loginID);
+
+                                        file = fopen(kosongkanKeranjang,"w");
+                                        fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
                                         getch();
                                         goto sessionuser;
                                     }
                                     else{
-                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        printf("saldo anda kurang, checkout barang gagal\n");
                                         getch();
                                         goto sessionuser;
                                     }
@@ -1141,8 +1161,16 @@ char *nama = strtok(line,"|");
                             //si kilat regular
                             else if(input == 2){
                                 float jarak;
+                                int saldo;
+
+                                char filename[50];
+                                sprintf(filename, "%swallet.txt", loginID);
+
+                                file = fopen(filename, "r");
+                                fscanf(file, "%d", &saldo);
+                                fclose(file);
                                 system("cls");
-                                printf("anda sedang menggunakan kurir si kilat, service Regular\n");
+                                printf("anda sedang menggunakan kurir si kilat, service regular\n");
                                 printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
                                 scanf("%f",&jarak);
                                 int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
@@ -1150,7 +1178,7 @@ char *nama = strtok(line,"|");
                                 printf("total harga barang anda = %d\n",tambahan);
                                 printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
+                                printf("saldo anda = %d\n",saldo);
                                 printf("anda yakin ingin checkout?\n");
                                 printf("0.kembali\n");
                                 printf("1. iya\n");
@@ -1163,20 +1191,26 @@ char *nama = strtok(line,"|");
 
                                 else if(input == 1){
                                     system("cls");
-                                    int uang;
-                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                    printf("masukan uang anda\n");
-                                    scanf("%d",&uang);
-
-                                    if (uang >= totalAkhir){
+                                    if (saldo >= totalAkhir){
+                                        file = fopen(filename,"w");
+                                        fprintf(file, "%d",saldo - totalAkhir);
+                                        fclose(file);
                                         printf("anda telah berhasil checkout barang anda\n");
-                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+
+                                        char kosongkanKeranjang[50];
+                                        sprintf(kosongkanKeranjang, "%s.txt", loginID);
+
+                                        file = fopen(kosongkanKeranjang,"w");
+                                        fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
                                         getch();
                                         goto sessionuser;
                                     }
                                     else{
-                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        printf("saldo anda kurang, checkout barang gagal\n");
                                         getch();
                                         goto sessionuser;
                                     }
@@ -1186,16 +1220,24 @@ char *nama = strtok(line,"|");
                             //si kilat ekonomis
                             else if(input == 3){
                                 float jarak;
+                                int saldo;
+
+                                char filename[50];
+                                sprintf(filename, "%swallet.txt", loginID);
+
+                                file = fopen(filename, "r");
+                                fscanf(file, "%d", &saldo);
+                                fclose(file);
                                 system("cls");
-                                printf("anda sedang menggunakan kurir si kilat, service Ekonomis\n");
+                                printf("anda sedang menggunakan kurir si kilat, service si kilat ekonomis\n");
                                 printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
                                 scanf("%f",&jarak);
-                                int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
+                                int totalAkhir = (1000 * jarak * totalBerat) + tambahan;
                                 system("cls");
                                 printf("total harga barang anda = %d\n",tambahan);
-                                printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
+                                printf("total harga ongkir anda = %.0f\n",1000 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
+                                printf("saldo anda = %d\n",saldo);
                                 printf("anda yakin ingin checkout?\n");
                                 printf("0.kembali\n");
                                 printf("1. iya\n");
@@ -1208,20 +1250,26 @@ char *nama = strtok(line,"|");
 
                                 else if(input == 1){
                                     system("cls");
-                                    int uang;
-                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                    printf("masukan uang anda\n");
-                                    scanf("%d",&uang);
-
-                                    if (uang >= totalAkhir){
+                                    if (saldo >= totalAkhir){
+                                        file = fopen(filename,"w");
+                                        fprintf(file, "%d",saldo - totalAkhir);
+                                        fclose(file);
                                         printf("anda telah berhasil checkout barang anda\n");
-                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+
+                                        char kosongkanKeranjang[50];
+                                        sprintf(kosongkanKeranjang, "%s.txt", loginID);
+
+                                        file = fopen(kosongkanKeranjang,"w");
+                                        fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
                                         getch();
                                         goto sessionuser;
                                     }
                                     else{
-                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        printf("saldo anda kurang, checkout barang gagal\n");
                                         getch();
                                         goto sessionuser;
                                     }
@@ -1246,8 +1294,16 @@ char *nama = strtok(line,"|");
                             //dinamo kebut sehari
                             else if(input == 1){
                                 float jarak;
+                                int saldo;
+
+                                char filename[50];
+                                sprintf(filename, "%swallet.txt", loginID);
+
+                                file = fopen(filename, "r");
+                                fscanf(file, "%d", &saldo);
+                                fclose(file);
                                 system("cls");
-                                printf("anda sedang menggunakan kurir dinamo, service Kebut Sehari\n");
+                                printf("anda sedang menggunakan kurir dinamo, service kebut sehari\n");
                                 printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
                                 scanf("%f",&jarak);
                                 int totalAkhir = (5000 * jarak * totalBerat) + tambahan;
@@ -1255,7 +1311,7 @@ char *nama = strtok(line,"|");
                                 printf("total harga barang anda = %d\n",tambahan);
                                 printf("total harga ongkir anda = %.0f\n",5000 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
+                                printf("saldo anda = %d\n",saldo);
                                 printf("anda yakin ingin checkout?\n");
                                 printf("0.kembali\n");
                                 printf("1. iya\n");
@@ -1268,20 +1324,26 @@ char *nama = strtok(line,"|");
 
                                 else if(input == 1){
                                     system("cls");
-                                    int uang;
-                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                    printf("masukan uang anda\n");
-                                    scanf("%d",&uang);
-
-                                    if (uang >= totalAkhir){
+                                    if (saldo >= totalAkhir){
+                                        file = fopen(filename,"w");
+                                        fprintf(file, "%d",saldo - totalAkhir);
+                                        fclose(file);
                                         printf("anda telah berhasil checkout barang anda\n");
-                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+
+                                        char kosongkanKeranjang[50];
+                                        sprintf(kosongkanKeranjang, "%s.txt", loginID);
+
+                                        file = fopen(kosongkanKeranjang,"w");
+                                        fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
                                         getch();
                                         goto sessionuser;
                                     }
                                     else{
-                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        printf("saldo anda kurang, checkout barang gagal\n");
                                         getch();
                                         goto sessionuser;
                                     }
@@ -1291,8 +1353,16 @@ char *nama = strtok(line,"|");
                             //dinamo regular
                             else if(input == 2){
                                 float jarak;
+                                int saldo;
+
+                                char filename[50];
+                                sprintf(filename, "%swallet.txt", loginID);
+
+                                file = fopen(filename, "r");
+                                fscanf(file, "%d", &saldo);
+                                fclose(file);
                                 system("cls");
-                                printf("anda sedang menggunakan kurir dinamo, service Regular\n");
+                                printf("anda sedang menggunakan kurir dinamo, service regular\n");
                                 printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
                                 scanf("%f",&jarak);
                                 int totalAkhir = (2000 * jarak * totalBerat) + tambahan;
@@ -1300,7 +1370,7 @@ char *nama = strtok(line,"|");
                                 printf("total harga barang anda = %d\n",tambahan);
                                 printf("total harga ongkir anda = %.0f\n",2000 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
+                                printf("saldo anda = %d\n",saldo);
                                 printf("anda yakin ingin checkout?\n");
                                 printf("0.kembali\n");
                                 printf("1. iya\n");
@@ -1313,20 +1383,26 @@ char *nama = strtok(line,"|");
 
                                 else if(input == 1){
                                     system("cls");
-                                    int uang;
-                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                    printf("masukan uang anda\n");
-                                    scanf("%d",&uang);
-
-                                    if (uang >= totalAkhir){
+                                    if (saldo >= totalAkhir){
+                                        file = fopen(filename,"w");
+                                        fprintf(file, "%d",saldo - totalAkhir);
+                                        fclose(file);
                                         printf("anda telah berhasil checkout barang anda\n");
-                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+
+                                        char kosongkanKeranjang[50];
+                                        sprintf(kosongkanKeranjang, "%s.txt", loginID);
+
+                                        file = fopen(kosongkanKeranjang,"w");
+                                        fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
                                         getch();
                                         goto sessionuser;
                                     }
                                     else{
-                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        printf("saldo anda kurang, checkout barang gagal\n");
                                         getch();
                                         goto sessionuser;
                                     }
@@ -1336,8 +1412,16 @@ char *nama = strtok(line,"|");
                             //dinamo ekonomis
                             else if(input == 3){
                                 float jarak;
+                                int saldo;
+
+                                char filename[50];
+                                sprintf(filename, "%swallet.txt", loginID);
+
+                                file = fopen(filename, "r");
+                                fscanf(file, "%d", &saldo);
+                                fclose(file);
                                 system("cls");
-                                printf("anda sedang menggunakan kurir si kilat, service Ekonomis\n");
+                                printf("anda sedang menggunakan kurir dinamo, service ekonomis\n");
                                 printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
                                 scanf("%f",&jarak);
                                 int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
@@ -1345,7 +1429,7 @@ char *nama = strtok(line,"|");
                                 printf("total harga barang anda = %d\n",tambahan);
                                 printf("total harga ongkir anda = %.0f\n",1500 * jarak * totalBerat);
                                 printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-
+                                printf("saldo anda = %d\n",saldo);
                                 printf("anda yakin ingin checkout?\n");
                                 printf("0.kembali\n");
                                 printf("1. iya\n");
@@ -1358,20 +1442,26 @@ char *nama = strtok(line,"|");
 
                                 else if(input == 1){
                                     system("cls");
-                                    int uang;
-                                    printf("harga akhir + ongkir = %d\n\n",totalAkhir);
-                                    printf("masukan uang anda\n");
-                                    scanf("%d",&uang);
-
-                                    if (uang >= totalAkhir){
+                                    if (saldo >= totalAkhir){
+                                        file = fopen(filename,"w");
+                                        fprintf(file, "%d",saldo - totalAkhir);
+                                        fclose(file);
                                         printf("anda telah berhasil checkout barang anda\n");
-                                        printf("kembalian = %d\n",uang-totalAkhir);
+                                        printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
+
+                                        char kosongkanKeranjang[50];
+                                        sprintf(kosongkanKeranjang, "%s.txt", loginID);
+
+                                        file = fopen(kosongkanKeranjang,"w");
+                                        fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
                                         getch();
                                         goto sessionuser;
                                     }
                                     else{
-                                        printf("uang anda kurang, checkout barang gagal\n");
+                                        printf("saldo anda kurang, checkout barang gagal\n");
                                         getch();
                                         goto sessionuser;
                                     }
