@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <time.h>
 int input;
 char loginID[25];
 char loginPW[25];
@@ -222,11 +223,12 @@ char *nama = strtok(line,"|");
                 printf("3.Produk terlaris\n");
                 printf("4.Cek Keranjang\n");
                 printf("5.Check Out\n");
-                printf("6.Wallet\n\n");
+                printf("6.Wallet\n");
+                printf("7.status belanja\n\n");
                 printf("Pilihan Anda:");
                 scanf("%d",&input);
                 getchar();
-            }while (input>6 || input<-1);
+            }while (input>7 || input<-1);
             
             //fitur search barang
             if(input == 1){
@@ -1139,13 +1141,30 @@ char *nama = strtok(line,"|");
                                         printf("anda telah berhasil checkout barang anda\n");
                                         printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
-
+                                        
+                                        //ngurangin saldo user
                                         char kosongkanKeranjang[50];
                                         sprintf(kosongkanKeranjang, "%s.txt", loginID);
 
+                                        //mindahin keranjang ke status belanja
+                                        char pindahkanKeranjang[60];
+                                        sprintf(pindahkanKeranjang,"%s_status.txt",loginID);
+                                        file = fopen(pindahkanKeranjang, "a");
+
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            fprintf(file, "%s|%s|%s|%s|%s\n", keranjang[i][0],keranjang[i][1],keranjang[i][2],keranjang[i][3],keranjang[i][4]);
+                                        }
+                                        
+
+                                        fclose(file);
+
+
+                                        //ngosongin keranjang karna abis checkout
                                         file = fopen(kosongkanKeranjang,"w");
                                         fprintf(file, "",saldo - totalAkhir);
                                         fclose(file);
+
+
 
                                         getch();
                                         goto sessionuser;
@@ -1517,6 +1536,11 @@ char *nama = strtok(line,"|");
                     fprintf(file, "0");
                     fclose(file);
                 }
+            }
+
+            //fitur untuk cek status belanja
+            else if (input == 7){
+
             }   
 
         }
