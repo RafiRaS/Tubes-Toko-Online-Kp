@@ -16,6 +16,7 @@ char obat[1000][5][100];
 char fashion[1000][5][100];
 char others[1000][5][100];
 char keranjang[1000][5][100];
+char statusbelanja[1000][5][100];
 
 char namaStok[100];
 char updateStok[11];
@@ -1557,9 +1558,9 @@ char *nama = strtok(line,"|");
                                         file = fopen(waktu,"w");
 
                                         // Mendapatkan jumlah detik sejak 1 Januari 1970
-                                        time_t epoch_time = time(NULL);
+                                        time_t detikSekarang = time(NULL);
 
-                                        fprintf(file,"%ld\n",epoch_time);
+                                        fprintf(file,"%ld\n",detikSekarang);
 
                                         fclose(file);
 
@@ -1718,7 +1719,125 @@ char *nama = strtok(line,"|");
 
             //fitur untuk cek status belanja
             else if (input == 7){
+                char namaFile[50];
+                sprintf(namaFile, "%s_status.txt", loginID);
 
+                file = fopen(namaFile, "r");
+
+                index = 0;
+                for (int i = 0; i < 5; i++) {
+                    for(int j = 0;j<1000;j++){
+                        statusbelanja[j][i][0] = '\0'; // Setiap elemen jadi string kosong
+                    }
+                    
+                }
+
+                while(fgets(line, sizeof(line), file) != NULL){
+                    line[strcspn(line,"\n")] = 0;
+
+                    char *nama = strtok(line,"|");
+                    char *harga = strtok(NULL,"|");
+                    char *stok = strtok(NULL,"|");
+                    char *berat = strtok(NULL,"|");
+                    char *sold = strtok(NULL,"|");
+
+                    strncpy(statusbelanja[index][0], nama, 50);
+                    strncpy(statusbelanja[index][1], harga, 50);
+                    strncpy(statusbelanja[index][2], stok, 50);
+                    strncpy(statusbelanja[index][3], berat, 50);
+                    strncpy(statusbelanja[index][4], sold, 100);
+                    index++;
+                }
+
+                fclose(file);
+                int jumlahstatusbelanja = menghitungBanyakData(statusbelanja);
+                int totalHarga = 0;
+                system("cls");
+                printf("barang belanja %s:\n",loginID);
+                for(int i = 0;i<jumlahstatusbelanja;i++){
+                    printf("%d.%s|harga = %s\n",i+1,statusbelanja[i][0],statusbelanja[i][1]);
+                    totalHarga = totalHarga + atoi(statusbelanja[i][1]);
+                }
+
+                printf("================================================\n");
+                printf("total harga barang belanjaan anda = %d\n",totalHarga);
+
+
+                //bikin variabel untuk print waktu txt
+                char waktu[50];
+                sprintf(waktu, "%swaktu.txt",loginID);
+
+
+                long detik;
+                file = fopen(waktu,"r");
+                fscanf(file,"%ld",&detik);
+                fclose(file);
+
+                long detikSeminggu = detik + (60*60*24*7);
+
+                // Mengonversi waktu mentah ke struct tm (waktu lokal)
+                struct tm *jam = localtime(&detik);
+
+                //untuk menyimpan string tanggal
+                char tanggal[100];
+
+                // Memformat struct tm menjadi string (hari, tanggal, bulan, tahun, jam, menit)
+                strftime(tanggal, sizeof(tanggal), "%A, %d %B %Y %H:%M", jam);
+
+
+                printf("waktu checkout %s\n",tanggal);
+                
+                printf("\napakah anda ingin return barang anda?\n");
+                printf("0.kembali\n");
+                printf("1.iya\n");
+                scanf("%d",&input);
+
+                if (input == 0){
+                    goto sessionuser;
+                }
+                else if (input == 1){
+                    time_t detikSekarang = time(NULL);
+                    if(detikSekarang>detikSeminggu){
+                        system("cls");
+                        printf("return gagal, barang anda sudah lewat dari satu minggu\n");
+                    }
+                    else{
+                        system("cls");
+                        printf("apakah anda yakin ingin return barang anda?\n");
+                        printf("0.kembali\n");
+                        printf("1.iya\n");
+                        scanf("%d",&input);
+                        
+                        if(input == 0){
+                            goto sessionuser;
+                        }
+                        else if (input == 1){
+                            system("cls");
+                            printf("anda berhasil return barang anda\n");
+                            printf("saldo sebesar %d akan kembali ke wallet anda\n",totalHarga);
+
+                            char filename[50];
+                            sprintf(filename, "%swallet.txt", loginID);
+
+                            int saldo;
+                            file = fopen(filename, "r");
+                            fscanf(file, "%d", &saldo);
+                            fclose(file);
+
+                            totalHarga = totalHarga + saldo;
+
+                            
+
+                            file = fopen(filename,"w");
+                            fprintf(file, "%d",totalHarga);
+                            fclose(file);
+
+                            getch();
+                            goto sessionuser;
+                            
+                        }
+                    }
+                }
             }   
 
         }
