@@ -1146,6 +1146,10 @@ char *nama = strtok(line,"|");
                                         char kosongkanKeranjang[50];
                                         sprintf(kosongkanKeranjang, "%s.txt", loginID);
 
+                                        //bikin variabel untuk print waktu txt
+                                        char waktu[50];
+                                        sprintf(waktu, "%swaktu.txt",loginID);
+
                                         //mindahin keranjang ke status belanja
                                         char pindahkanKeranjang[60];
                                         sprintf(pindahkanKeranjang,"%s_status.txt",loginID);
@@ -1163,6 +1167,20 @@ char *nama = strtok(line,"|");
                                         file = fopen(kosongkanKeranjang,"w");
                                         fprintf(file, "",saldo - totalAkhir);
                                         fclose(file);
+
+
+
+
+                                        //nyimpen waktu saat dia checkout
+                                        file = fopen(waktu,"w");
+
+                                        // Mendapatkan jumlah detik sejak 1 Januari 1970
+                                        time_t epoch_time = time(NULL);
+
+                                        fprintf(file,"%ld\n",epoch_time);
+
+                                        fclose(file);
+
 
 
 
@@ -1218,11 +1236,43 @@ char *nama = strtok(line,"|");
                                         printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
 
+                                        //ngurangin saldo user
                                         char kosongkanKeranjang[50];
                                         sprintf(kosongkanKeranjang, "%s.txt", loginID);
 
+                                        //bikin variabel untuk print waktu txt
+                                        char waktu[50];
+                                        sprintf(waktu, "%swaktu.txt",loginID);
+
+                                        //mindahin keranjang ke status belanja
+                                        char pindahkanKeranjang[60];
+                                        sprintf(pindahkanKeranjang,"%s_status.txt",loginID);
+                                        file = fopen(pindahkanKeranjang, "a");
+
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            fprintf(file, "%s|%s|%s|%s|%s\n", keranjang[i][0],keranjang[i][1],keranjang[i][2],keranjang[i][3],keranjang[i][4]);
+                                        }
+                                        
+
+                                        fclose(file);
+
+
+                                        //ngosongin keranjang karna abis checkout
                                         file = fopen(kosongkanKeranjang,"w");
                                         fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
+
+
+
+                                        //nyimpen waktu saat dia checkout
+                                        file = fopen(waktu,"w");
+
+                                        // Mendapatkan jumlah detik sejak 1 Januari 1970
+                                        time_t epoch_time = time(NULL);
+
+                                        fprintf(file,"%ld\n",epoch_time);
+
                                         fclose(file);
 
                                         getch();
@@ -1277,11 +1327,43 @@ char *nama = strtok(line,"|");
                                         printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
 
+                                        //ngurangin saldo user
                                         char kosongkanKeranjang[50];
                                         sprintf(kosongkanKeranjang, "%s.txt", loginID);
 
+                                        //bikin variabel untuk print waktu txt
+                                        char waktu[50];
+                                        sprintf(waktu, "%swaktu.txt",loginID);
+
+                                        //mindahin keranjang ke status belanja
+                                        char pindahkanKeranjang[60];
+                                        sprintf(pindahkanKeranjang,"%s_status.txt",loginID);
+                                        file = fopen(pindahkanKeranjang, "a");
+
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            fprintf(file, "%s|%s|%s|%s|%s\n", keranjang[i][0],keranjang[i][1],keranjang[i][2],keranjang[i][3],keranjang[i][4]);
+                                        }
+                                        
+
+                                        fclose(file);
+
+
+                                        //ngosongin keranjang karna abis checkout
                                         file = fopen(kosongkanKeranjang,"w");
                                         fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
+
+
+
+                                        //nyimpen waktu saat dia checkout
+                                        file = fopen(waktu,"w");
+
+                                        // Mendapatkan jumlah detik sejak 1 Januari 1970
+                                        time_t epoch_time = time(NULL);
+
+                                        fprintf(file,"%ld\n",epoch_time);
+
                                         fclose(file);
 
                                         getch();
@@ -1351,11 +1433,43 @@ char *nama = strtok(line,"|");
                                         printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
 
+                                        //ngurangin saldo user
                                         char kosongkanKeranjang[50];
                                         sprintf(kosongkanKeranjang, "%s.txt", loginID);
 
+                                        //bikin variabel untuk print waktu txt
+                                        char waktu[50];
+                                        sprintf(waktu, "%swaktu.txt",loginID);
+
+                                        //mindahin keranjang ke status belanja
+                                        char pindahkanKeranjang[60];
+                                        sprintf(pindahkanKeranjang,"%s_status.txt",loginID);
+                                        file = fopen(pindahkanKeranjang, "a");
+
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            fprintf(file, "%s|%s|%s|%s|%s\n", keranjang[i][0],keranjang[i][1],keranjang[i][2],keranjang[i][3],keranjang[i][4]);
+                                        }
+                                        
+
+                                        fclose(file);
+
+
+                                        //ngosongin keranjang karna abis checkout
                                         file = fopen(kosongkanKeranjang,"w");
                                         fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
+
+
+
+                                        //nyimpen waktu saat dia checkout
+                                        file = fopen(waktu,"w");
+
+                                        // Mendapatkan jumlah detik sejak 1 Januari 1970
+                                        time_t epoch_time = time(NULL);
+
+                                        fprintf(file,"%ld\n",epoch_time);
+
                                         fclose(file);
 
                                         getch();
@@ -1410,11 +1524,43 @@ char *nama = strtok(line,"|");
                                         printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
 
+                                        //ngurangin saldo user
                                         char kosongkanKeranjang[50];
                                         sprintf(kosongkanKeranjang, "%s.txt", loginID);
 
+                                        //bikin variabel untuk print waktu txt
+                                        char waktu[50];
+                                        sprintf(waktu, "%swaktu.txt",loginID);
+
+                                        //mindahin keranjang ke status belanja
+                                        char pindahkanKeranjang[60];
+                                        sprintf(pindahkanKeranjang,"%s_status.txt",loginID);
+                                        file = fopen(pindahkanKeranjang, "a");
+
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            fprintf(file, "%s|%s|%s|%s|%s\n", keranjang[i][0],keranjang[i][1],keranjang[i][2],keranjang[i][3],keranjang[i][4]);
+                                        }
+                                        
+
+                                        fclose(file);
+
+
+                                        //ngosongin keranjang karna abis checkout
                                         file = fopen(kosongkanKeranjang,"w");
                                         fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
+
+
+
+                                        //nyimpen waktu saat dia checkout
+                                        file = fopen(waktu,"w");
+
+                                        // Mendapatkan jumlah detik sejak 1 Januari 1970
+                                        time_t epoch_time = time(NULL);
+
+                                        fprintf(file,"%ld\n",epoch_time);
+
                                         fclose(file);
 
                                         getch();
@@ -1469,11 +1615,43 @@ char *nama = strtok(line,"|");
                                         printf("saldo anda tersisa = %d\n",saldo - totalAkhir);
                                         printf("untuk lebih detail silahkan cek pada menu status belanja\n");
 
+                                        //ngurangin saldo user
                                         char kosongkanKeranjang[50];
                                         sprintf(kosongkanKeranjang, "%s.txt", loginID);
 
+                                        //bikin variabel untuk print waktu txt
+                                        char waktu[50];
+                                        sprintf(waktu, "%swaktu.txt",loginID);
+
+                                        //mindahin keranjang ke status belanja
+                                        char pindahkanKeranjang[60];
+                                        sprintf(pindahkanKeranjang,"%s_status.txt",loginID);
+                                        file = fopen(pindahkanKeranjang, "a");
+
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            fprintf(file, "%s|%s|%s|%s|%s\n", keranjang[i][0],keranjang[i][1],keranjang[i][2],keranjang[i][3],keranjang[i][4]);
+                                        }
+                                        
+
+                                        fclose(file);
+
+
+                                        //ngosongin keranjang karna abis checkout
                                         file = fopen(kosongkanKeranjang,"w");
                                         fprintf(file, "",saldo - totalAkhir);
+                                        fclose(file);
+
+
+
+
+                                        //nyimpen waktu saat dia checkout
+                                        file = fopen(waktu,"w");
+
+                                        // Mendapatkan jumlah detik sejak 1 Januari 1970
+                                        time_t epoch_time = time(NULL);
+
+                                        fprintf(file,"%ld\n",epoch_time);
+
                                         fclose(file);
 
                                         getch();

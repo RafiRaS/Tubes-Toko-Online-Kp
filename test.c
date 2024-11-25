@@ -1,20 +1,16 @@
 #include <stdio.h>
+#include <time.h>
 
 int main() {
-    // Membuka atau membuat file baru dengan nama "userwallet.txt"
-    FILE *file = fopen("userwallet.txt", "w");
+    // Mendapatkan jumlah detik sejak 1 Januari 1970
+    time_t epoch_time = time(NULL);
 
-    // Mengecek apakah file berhasil dibuka
-    if (file) {
-        // Menulis angka 0 ke dalam file
-        fprintf(file, "0");
+    // Menampilkan jumlah detik
+    printf("Jumlah detik sejak 1 Januari 1970: %ld\n", epoch_time);
 
-        // Menutup file setelah selesai menulis
-        fclose(file);
-        printf("File userwallet.txt telah dibuat dan diisi dengan 0.\n");
-    } else {
-        printf("Gagal membuka file untuk penulisan.\n");
-    }
+    // Menyimpan dalam variabel untuk digunakan nanti
+    long detik = (long)epoch_time;
+    printf("Detik disimpan: %ld\n", detik);
 
     return 0;
 }
