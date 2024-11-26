@@ -1768,7 +1768,7 @@ char *nama = strtok(line,"|");
                 sprintf(waktu, "%swaktu.txt",loginID);
 
 
-                long detik;
+                long detik = 1;
                 file = fopen(waktu,"r");
                 fscanf(file,"%ld",&detik);
                 fclose(file);
@@ -1784,8 +1784,10 @@ char *nama = strtok(line,"|");
                 // Memformat struct tm menjadi string (hari, tanggal, bulan, tahun, jam, menit)
                 strftime(tanggal, sizeof(tanggal), "%A, %d %B %Y %H:%M", jam);
 
-
-                printf("waktu checkout %s\n",tanggal);
+                if (detik != 1){
+                    printf("waktu checkout %s\n",tanggal);
+                }
+                
                 
                 printf("\napakah anda ingin return barang anda?\n");
                 printf("0.kembali\n");
@@ -1797,10 +1799,21 @@ char *nama = strtok(line,"|");
                 }
                 else if (input == 1){
                     time_t detikSekarang = time(NULL);
-                    if(detikSekarang>detikSeminggu){
+
+                    if(totalHarga == 0){
+                        system("cls");
+                        printf("anda belum berbelanja apa pun\n");
+                        getch();
+                        goto sessionuser;
+                    }
+
+                    else if(detikSekarang>detikSeminggu){
                         system("cls");
                         printf("return gagal, barang anda sudah lewat dari satu minggu\n");
+                        getch();
+                        goto sessionuser;
                     }
+
                     else{
                         system("cls");
                         printf("apakah anda yakin ingin return barang anda?\n");
@@ -1812,6 +1825,7 @@ char *nama = strtok(line,"|");
                             goto sessionuser;
                         }
                         else if (input == 1){
+
                             system("cls");
                             printf("anda berhasil return barang anda\n");
                             printf("saldo sebesar %d akan kembali ke wallet anda\n",totalHarga);
@@ -1830,6 +1844,14 @@ char *nama = strtok(line,"|");
 
                             file = fopen(filename,"w");
                             fprintf(file, "%d",totalHarga);
+                            fclose(file);
+
+                            file = fopen(namaFile,"w");
+                            fprintf(file,"");
+                            fclose(file);
+
+                            file = fopen (waktu,"w");
+                            fprintf(file,"");
                             fclose(file);
 
                             getch();
