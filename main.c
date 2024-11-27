@@ -921,8 +921,8 @@ char *nama = strtok(line,"|");
                 
                 for(int i = 0;i<jumlahTerlaris;i++){
                     for(int j = 0;j<jumlahTerlaris-1;j++){
-                        int num = atoi(terlaris[j][2]);
-                        int num1 = atoi(terlaris[j+1][2]);
+                        int num = atoi(terlaris[j][4]);
+                        int num1 = atoi(terlaris[j+1][4]);
                         if(num<num1){
                             char bantuan[1000][5][100];
                             for(int k = 0;k<5;k++){
@@ -934,12 +934,12 @@ char *nama = strtok(line,"|");
                     }
                 }
                 
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("+----+--------------------------------------------+-------------------+------+--------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |Terjual |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+--------+\n");
                     for(int i = 0;i<jumlahTerlaris;i++){
-                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,terlaris[i][0],terlaris[i][1],terlaris[i][2]);
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| %-2d | %-42s | %-17s | %-4s |%-8s|\n",i+1,terlaris[i][0],terlaris[i][1],terlaris[i][2],terlaris[i][4]);
+                    printf("+----+--------------------------------------------+-------------------+------+--------+\n");
                     }
                     printf("\n0.kembali\n");
                     printf("1.masukan barang ke dalam keranjang\n");
@@ -1025,15 +1025,17 @@ char *nama = strtok(line,"|");
                 float totalBerat = 0;
                 system("cls");
                 printf("isi keranjang %s:\n",loginID);
+                printf("+----+--------------------------------------------+-------------------+-------+\n");
+                printf("| No | Nama Barang                                | Harga             | Berat |\n");
+                printf("+----+--------------------------------------------+-------------------+-------+\n");
                 for(int i = 0;i<jumlahKeranjang;i++){
-                    printf("%d.%s|harga = %s|berat = %s kg \n",i+1,keranjang[i][0],keranjang[i][1],keranjang[i][3]);
+                    printf("| %-2d | %-42s | %-17s | %-2skg |\n",i+1,keranjang[i][0],keranjang[i][1],keranjang[i][3]);
+                    printf("+----+--------------------------------------------+-------------------+-------+\n");
                     totalHarga = totalHarga + atoi(keranjang[i][1]);
                     totalBerat = totalBerat + atof(keranjang[i][3]);
                 }
-
-                printf("================================================\n");
-                printf("total harga barang belanjaan anda = %d\n",totalHarga);
-                printf("total berat barang anda = %.2f kg\n\n",totalBerat);
+                printf("|Total                                            | %-17d | %-2.1fkg |\n",totalHarga,totalBerat);
+                printf("+----+--------------------------------------------+-------------------+-------+\n\n");
                 
                 printf("tekan tombol apa saja untuk kembali\n");
                 getch();
@@ -1078,15 +1080,17 @@ char *nama = strtok(line,"|");
                 float totalBerat = 0;
                 system("cls");
                 printf("isi keranjang %s:\n",loginID);
+                printf("+----+--------------------------------------------+-------------------+-------+\n");
+                printf("| No | Nama Barang                                | Harga             | Berat |\n");
+                printf("+----+--------------------------------------------+-------------------+-------+\n");
                 for(int i = 0;i<jumlahKeranjang;i++){
-                    printf("%d.%s|harga = %s|berat = %s kg \n",i+1,keranjang[i][0],keranjang[i][1],keranjang[i][3]);
+                    printf("| %-2d | %-42s | %-17s | %-2skg |\n",i+1,keranjang[i][0],keranjang[i][1],keranjang[i][3]);
+                    printf("+----+--------------------------------------------+-------------------+-------+\n");
                     totalHarga = totalHarga + atoi(keranjang[i][1]);
                     totalBerat = totalBerat + atof(keranjang[i][3]);
                 }
-
-                printf("================================================\n");
-                printf("total harga barang belanjaan anda = %d\n",totalHarga);
-                printf("total berat barang anda = %.2f kg\n\n",totalBerat);
+                printf("|Total                                            | %-17d | %-2.1fkg |\n",totalHarga,totalBerat);
+                printf("+----+--------------------------------------------+-------------------+-------+\n\n");
                 
                 printf("apakah anda yakin ingin checkout barang anda?\n");
                 printf("0.kembali\n");
@@ -1121,9 +1125,13 @@ char *nama = strtok(line,"|");
                         float alamat;
                         system("cls");
                         printf("pilih jasa pengiriman untuk barang anda\n\n");
-                        printf("0.kembali\n");
-                        printf("1.SiKilat\n");
-                        printf("2.Dinamo\n");
+                        printf("+---+-------+\n");
+                        printf("|No.|Program|\n");
+                        printf("+---+-------+\n");
+                        printf("|0. |kembali|\n");
+                        printf("|1. |SiKilat|\n");
+                        printf("|2. |Dinamo |\n");
+                        printf("+---+-------+\n");
                         scanf("%d",&input);
 
                         if(input == 0){
@@ -1135,6 +1143,8 @@ char *nama = strtok(line,"|");
                         else if(input == 1){
                             system("cls");
                             printf("pilih service dari SiKilat\n\n");
+                            printf("+----+--------------------------------------------+-------------------+-------+\n");
+                            printf("| No |Program                                                                 +-------------------+-------+\n");
                             printf("0.kembali\n");
                             printf("1.Sameday(sampai dalam 1 hari,harganya 3000/km x berat)\n");
                             printf("2.SiKilat Regular(sampai dalam 3-5 hari,harganya 1500/km x berat)\n");
@@ -1730,7 +1740,9 @@ char *nama = strtok(line,"|");
                     fclose(file);
 
                     system("cls");
-                    printf("saldo anda : %d\n\n", saldo);
+                    printf("+----------+-------------+\n");
+                    printf("|Saldo Anda| %-11d |\n", saldo);
+                    printf("+----------+-------------+\n\n");
                     printf("0.kembali\n");
                     printf("1.isi saldo\n");
 
