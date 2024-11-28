@@ -2054,9 +2054,13 @@ char *nama = strtok(line,"|");
             do{
                 system("cls");
                 printf("Selamat datang min %s\n",loginID);
-                printf("0.logout\n");
-                printf("1.Masukin Barang\n");
-                printf("2.Update Stok\n");
+                printf("+---+---------------+\n");
+                printf("|No.|Program        |\n");
+                printf("+---+---------------+\n");
+                printf("|0. |logout         |\n");
+                printf("|1. |Masukin Barang |\n");
+                printf("|2. |Update Stok    |\n");
+                printf("+---+---------------+\n");
                 scanf("%d",&input);
             }while (input>2 || input<0);
 
@@ -2068,8 +2072,10 @@ char *nama = strtok(line,"|");
             else if(input == 1){
                 system("cls");
                 char namaBarang[50],hargaBarang[50],stokBarang[50],beratBarang[50],kategoriBarang[50];
-                printf("Masukan kategori barang:\n");
-                printf("buku|fashion|obat|others\n");
+                printf("Masukan kategori barang:\n\n");
+                printf("+----+-------+----+------+\n");
+                printf("|buku|fashion|obat|others|\n");
+                printf("+----+-------+----+------+\n");
 
                 fflush(stdin);//untuk membersihkan input karna sebelumnya menggunakan scanf
                 
@@ -2120,12 +2126,15 @@ char *nama = strtok(line,"|");
                 menuStok:
                 do{
                     system("cls");
-                    printf("update stok dari kategori apa?\n");
-                    printf("1.buku\n");
-                    printf("2.fashion\n");
-                    printf("3.obat\n");
-                    printf("4.others\n");
-                    printf("5.back\n");
+                    printf("+---+---------------+\n");
+                    printf("|No.|Program        |\n");
+                    printf("+---+---------------+\n");
+                    printf("|1. |buku           |\n");
+                    printf("|2. |fashion        |\n");
+                    printf("|3. |obat           |\n");
+                    printf("|4. |others         |\n");
+                    printf("|5. |back           |\n");
+                    printf("+---+---------------+\n");
                     scanf("%d",&input);
                     getchar();
                 }while (input>6 || input<0);
@@ -2138,19 +2147,15 @@ char *nama = strtok(line,"|");
                 //menampilkan kategori buku
                 else if(input == 1){
                     system("cls");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
                     for(int i = 0;i<jumlahBuku;i++){
-                        printf("%d.%s\n",i+1,buku[i][0]);
-                        printf("  harga = %s\n",buku[i][1]);
-                        printf("  stok = %s\n",buku[i][2]);
-                        printf("==============================================\n");
+                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
                     }
-                    printf("pilih barang yang stok nya ingin diperbarui\n");
-                    printf("==============================================\n");
-                    
-                    for(int i = 0;i<jumlahBuku;i++){
-                        printf("%s\n",buku[i][0]);
-                    }
-                    printf("==============================================\n");
+                    printf("\nketik barang yang stok nya ingin diperbarui\n");
+
 
                     
                     int sessionBuku = 0;
@@ -2194,20 +2199,16 @@ char *nama = strtok(line,"|");
                 //menampilkan kategori fashion
                 else if(input == 2){
                     system("cls");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
                     for(int i = 0;i<jumlahFashion;i++){
-                        printf("%d.%s\n",i+1,fashion[i][0]);
-                        printf("  harga = %s\n",fashion[i][1]);
-                        printf("  stok = %s\n",fashion[i][2]);
-                        printf("==============================================\n");
+                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
                     }
-                    printf("pilih barang yang stok nya ingin diperbarui\n");
-                    printf("==============================================\n");
+                    printf("\nketik barang yang stok nya ingin diperbarui\n");
                     
                     
-                    for(int i = 0;i<jumlahFashion;i++){
-                        printf("%s\n",fashion[i][0]);
-                    }
-                    printf("==============================================\n");
                     
                     int sessionfashion = 0;
                     fgets(namaStok, sizeof(namaStok), stdin);
@@ -2248,20 +2249,14 @@ char *nama = strtok(line,"|");
                 //menampilkan kategori obat
                 else if(input == 3){
                     system("cls");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
                     for(int i = 0;i<jumlahObat;i++){
-                        printf("%d.%s\n",i+1,obat[i][0]);
-                        printf("  harga = %s\n",obat[i][1]);
-                        printf("  stok = %s\n",obat[i][2]);
-                        printf("==============================================\n");
+                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
                     }
-                    printf("pilih barang yang stok nya ingin diperbarui\n");
-                    printf("==============================================\n");
-                    
-                    
-                    for(int i = 0;i<jumlahObat;i++){
-                        printf("%s\n",obat[i][0]);
-                    }
-                    printf("==============================================\n");
+                    printf("\nketik barang yang stok nya ingin diperbarui\n");
 
                     int sessionobat = 0;
                     fgets(namaStok, sizeof(namaStok), stdin);
@@ -2302,20 +2297,14 @@ char *nama = strtok(line,"|");
                 //menampilkan kategori others
                 else if(input == 4){
                     system("cls");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
                     for(int i = 0;i<jumlahOthers;i++){
-                        printf("%d.%s\n",i+1,others[i][0]);
-                        printf("  harga = %s\n",others[i][1]);
-                        printf("  stok = %s\n",others[i][2]);
-                        printf("==============================================\n");
+                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
                     }
-                    printf("pilih barang yang stok nya ingin diperbarui\n");
-                    printf("==============================================\n");
-                    
-                    
-                    for(int i = 0;i<jumlahOthers;i++){
-                        printf("%s\n",others[i][0]);
-                    }
-                    printf("==============================================\n");
+                    printf("\nketik barang yang stok nya ingin diperbarui\n");
                     
                     int sessionothers = 0;
                     fgets(namaStok, sizeof(namaStok), stdin);
