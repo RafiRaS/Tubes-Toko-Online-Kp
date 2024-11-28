@@ -1865,14 +1865,19 @@ char *nama = strtok(line,"|");
                 int jumlahstatusbelanja = menghitungBanyakData(statusbelanja);
                 int totalHarga = 0;
                 system("cls");
-                printf("barang belanja %s:\n",loginID);
+                printf("status belanja %s:\n",loginID);
+                printf("+----+--------------------------------------------+-------------------+\n");
+                printf("| No |Nama Barang                                 |Harga              |\n");
+                printf("+----+--------------------------------------------+-------------------+\n");
                 for(int i = 0;i<jumlahstatusbelanja;i++){
-                    printf("%d.%s|harga = %s\n",i+1,statusbelanja[i][0],statusbelanja[i][1]);
+                printf("| %-2d | %-42s | %-17s |\n",i+1,statusbelanja[i][0],statusbelanja[i][1]);
+                printf("+----+--------------------------------------------+-------------------+\n");
+                }
+                for(int i = 0;i<jumlahstatusbelanja;i++){
                     totalHarga = totalHarga + atoi(statusbelanja[i][1]);
                 }
-
-                printf("================================================\n");
-                printf("total harga barang belanjaan anda = %d\n",totalHarga);
+                printf("|total                                            | %-11d       |\n",totalHarga);
+                printf("+----+--------------------------------------------+-------------------+\n\n");
 
 
                 //bikin variabel untuk print waktu txt
@@ -1901,7 +1906,7 @@ char *nama = strtok(line,"|");
                 }
                 
                 
-                printf("\napakah anda ingin return barang anda?\n");
+                printf("\napakah anda ingin return barang anda?\n\n");
                 printf("0.kembali\n");
                 printf("1.iya\n");
                 scanf("%d",&input);
