@@ -2497,11 +2497,15 @@ char *nama = strtok(line,"|");
         menuBukuLuar:
         do{
             system("cls");
-            printf("1.buku\n");
-            printf("2.fashion\n");
-            printf("3.obat\n");
-            printf("4.others\n");
-            printf("5.back\n");
+            printf("+---+---------------+\n");
+            printf("|No.|Program        |\n");
+            printf("+---+---------------+\n");
+            printf("|1. |buku           |\n");
+            printf("|2. |fashion        |\n");
+            printf("|3. |obat           |\n");
+            printf("|4. |others         |\n");
+            printf("|5. |back           |\n");
+            printf("+---+---------------+\n");
             scanf("%d",&input);
         }while (input>6 || input<0);
 
@@ -2514,13 +2518,14 @@ char *nama = strtok(line,"|");
         else if(input == 1){
             sessionBukuLuar:
             system("cls");
+            printf("+----+--------------------------------------------+-------------------+------+\n");
+            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+            printf("+----+--------------------------------------------+-------------------+------+\n");
             for(int i = 0;i<jumlahBuku;i++){
-                printf("%d.%s\n",i+1,buku[i][0]);
-                printf("  harga = %s\n",buku[i][1]);
-                printf("  stok = %s\n",buku[i][2]);
-                printf("==============================================\n");
+            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
+            printf("+----+--------------------------------------------+-------------------+------+\n");
             }
-            printf("0.kembali\n");
+            printf("\n0.kembali\n");
             printf("1.masukan barang ke dalam keranjang\n");
             printf("2.sorting\n");
             scanf("%d",&input);
@@ -2544,13 +2549,14 @@ char *nama = strtok(line,"|");
                     }
                 }
                 system("cls");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
                 for(int i = 0;i<jumlahBuku;i++){
-                    printf("%d.%s\n",i+1,buku[i][0]);
-                    printf("  harga = %s\n",buku[i][1]);
-                    printf("  stok = %s\n",buku[i][2]);
-                    printf("==============================================\n");
+                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
+                printf("+----+--------------------------------------------+-------------------+------+\n");
                 }
-                printf("0.kembali\n");
+                printf("\n0.kembali\n");
                 printf("1.masukan barang ke dalam keranjang\n");
                 scanf("%d",&input);
                 getchar();
@@ -2558,9 +2564,10 @@ char *nama = strtok(line,"|");
                     goto menuBukuLuar;
                 }
 
+                //untuk masukin buku ke dalam keranjang dalam mode sorting
                 else if(input == 1){
                     system("cls");
-                    printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang");
+                    printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
                     getch();
                     goto menuBukuLuar;
                 }
@@ -2581,22 +2588,21 @@ char *nama = strtok(line,"|");
         else if(input == 2){
             sessionFashionLuar:
             system("cls");
+            printf("+----+--------------------------------------------+-------------------+------+\n");
+            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+            printf("+----+--------------------------------------------+-------------------+------+\n");
             for(int i = 0;i<jumlahFashion;i++){
-                printf("%d.%s\n",i+1,fashion[i][0]);
-                printf("  harga = %s\n",fashion[i][1]);
-                printf("  stok = %s\n",fashion[i][2]);
-                printf("==============================================\n");
+            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
+            printf("+----+--------------------------------------------+-------------------+------+\n");
             }
-            printf("0.kembali\n");
+            printf("\n0.kembali\n");
             printf("1.masukan barang ke dalam keranjang\n");
             printf("2.sorting\n");
-            printf("==============================================\n");
             scanf("%d",&input);
             getchar();
             if(input == 0){
                 goto menuBukuLuar;
             }
-
             else if(input == 2){
                 for(int i = 0;i<jumlahFashion;i++){
                     for(int j = 0;j<jumlahFashion-1;j++){
@@ -2609,36 +2615,37 @@ char *nama = strtok(line,"|");
                                 strcpy(fashion[j][k],fashion[j+1][k]);
                                 strcpy(fashion[j+1][k],bantuan[j][k]);
                             }
-
                         }
                     }
                 }
                 system("cls");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
                 for(int i = 0;i<jumlahFashion;i++){
-                    printf("%d.%s\n",i+1,fashion[i][0]);
-                    printf("  harga = %s\n",fashion[i][1]);
-                    printf("  stok = %s\n",fashion[i][2]);
-                    printf("==============================================\n");
+                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
+                printf("+----+--------------------------------------------+-------------------+------+\n");
                 }
-                printf("0.kembali\n");
+                printf("\n0.kembali\n");
                 printf("1.masukan barang ke dalam keranjang\n");
-                printf("==============================================\n");
                 scanf("%d",&input);
                 getchar();
                 if(input == 0){
                     goto menuBukuLuar;
                 }
 
-                //masukin barang fashion ke dalam keranjang dalam mode sorting
+                //untuk masukin buku ke dalam keranjang dalam mode sorting
                 else if(input == 1){
                     system("cls");
                     printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
                     getch();
                     goto menuBukuLuar;
                 }
+
+
             }
 
-            //masukin barang fashion ke dalam keranjang dalam mode biasa
+            //untuk masukin buku keranjang dalam mode biasa
             else if(input == 1){
                 system("cls");
                 printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
@@ -2651,22 +2658,21 @@ char *nama = strtok(line,"|");
         else if(input == 3){
             sessionObatLuar:
             system("cls");
+            printf("+----+--------------------------------------------+-------------------+------+\n");
+            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+            printf("+----+--------------------------------------------+-------------------+------+\n");
             for(int i = 0;i<jumlahObat;i++){
-                printf("%d.%s\n",i+1,obat[i][0]);
-                printf("  harga = %s\n",obat[i][1]);
-                printf("  stok = %s\n",obat[i][2]);
-                printf("==============================================\n");
+            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
+            printf("+----+--------------------------------------------+-------------------+------+\n");
             }
-            printf("0.kembali\n");
+            printf("\n0.kembali\n");
             printf("1.masukan barang ke dalam keranjang\n");
             printf("2.sorting\n");
-            printf("==============================================\n");
             scanf("%d",&input);
             getchar();
             if(input == 0){
                 goto menuBukuLuar;
             }
-
             else if(input == 2){
                 for(int i = 0;i<jumlahObat;i++){
                     for(int j = 0;j<jumlahObat-1;j++){
@@ -2679,36 +2685,37 @@ char *nama = strtok(line,"|");
                                 strcpy(obat[j][k],obat[j+1][k]);
                                 strcpy(obat[j+1][k],bantuan[j][k]);
                             }
-
                         }
                     }
                 }
                 system("cls");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
                 for(int i = 0;i<jumlahObat;i++){
-                    printf("%d.%s\n",i+1,obat[i][0]);
-                    printf("  harga = %s\n",obat[i][1]);
-                    printf("  stok = %s\n",obat[i][2]);
-                    printf("==============================================\n");
+                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
+                printf("+----+--------------------------------------------+-------------------+------+\n");
                 }
-                printf("0.kembali\n");
+                printf("\n0.kembali\n");
                 printf("1.masukan barang ke dalam keranjang\n");
-                printf("==============================================\n");
                 scanf("%d",&input);
                 getchar();
                 if(input == 0){
                     goto menuBukuLuar;
                 }
 
-                //masukan barang obat ke dalam keranjang dalam mode sorting
+                //untuk masukin buku ke dalam keranjang dalam mode sorting
                 else if(input == 1){
                     system("cls");
                     printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
                     getch();
                     goto menuBukuLuar;
                 }
+
+
             }
 
-            //masukan barang ke obat ke dalam keranjang dalam mode biasa
+            //untuk masukin buku keranjang dalam mode biasa
             else if(input == 1){
                 system("cls");
                 printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
@@ -2720,23 +2727,22 @@ char *nama = strtok(line,"|");
         else if(input == 4){
             sessionOthersLuar:
             system("cls");
+            printf("+----+--------------------------------------------+-------------------+------+\n");
+            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+            printf("+----+--------------------------------------------+-------------------+------+\n");
             for(int i = 0;i<jumlahOthers;i++){
-                printf("%d.%s\n",i+1,others[i][0]);
-                printf("  harga = %s\n",others[i][1]);
-                printf("  stok = %s\n",others[i][2]);
-                printf("==============================================\n");
+            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
+            printf("+----+--------------------------------------------+-------------------+------+\n");
             }
-            printf("0.kembali\n");
+            printf("\n0.kembali\n");
             printf("1.masukan barang ke dalam keranjang\n");
             printf("2.sorting\n");
-            printf("==============================================\n");
             scanf("%d",&input);
             getchar();
             if(input == 0){
                 goto menuBukuLuar;
             }
-
-            else if(input == 2){        
+            else if(input == 2){
                 for(int i = 0;i<jumlahOthers;i++){
                     for(int j = 0;j<jumlahOthers-1;j++){
                         int num = atoi(others[j][1]);
@@ -2748,36 +2754,37 @@ char *nama = strtok(line,"|");
                                 strcpy(others[j][k],others[j+1][k]);
                                 strcpy(others[j+1][k],bantuan[j][k]);
                             }
-
                         }
                     }
                 }
                 system("cls");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
                 for(int i = 0;i<jumlahOthers;i++){
-                    printf("%d.%s\n",i+1,others[i][0]);
-                    printf("  harga = %s\n",others[i][1]);
-                    printf("  stok = %s\n",others[i][2]);
-                    printf("==============================================\n");
+                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
+                printf("+----+--------------------------------------------+-------------------+------+\n");
                 }
-                printf("0.kembali\n");
+                printf("\n0.kembali\n");
                 printf("1.masukan barang ke dalam keranjang\n");
-                printf("==============================================\n");
                 scanf("%d",&input);
                 getchar();
                 if(input == 0){
                     goto menuBukuLuar;
                 }
 
-                //masukan barang others ke dalam keranjang dalam mode sorting
+                //untuk masukin buku ke dalam keranjang dalam mode sorting
                 else if(input == 1){
                     system("cls");
                     printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
                     getch();
                     goto menuBukuLuar;
                 }
+
+
             }
 
-            //masukan barang others ke dalam keranjang dalam mode biasa
+            //untuk masukin buku keranjang dalam mode biasa
             else if(input == 1){
                 system("cls");
                 printf("anda belum login, tidak bisa memasukan barang ke dalam keranjang\n");
