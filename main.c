@@ -62,9 +62,13 @@ int main(){
         printf("|5. |lihat kategori                                                                  |\n");
         printf("|6. |barang terlaris                                                                 |\n");
         printf("+---+--------------------------------------------------------------------------------+\n");
-        scanf("%d",&input);
-        getchar();
-    }while (input>7 || input<0);
+        int result = scanf("%d", &input);
+        getchar(); 
+
+        if (result != 1) {
+            input = 10;
+        }
+    }while (input>6 || input<0);
 
 
     //baca file login.txt terus masukin ke array
