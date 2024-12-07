@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <time.h>
-int input;
+int input,validasi;
 char loginID[25];
 char loginPW[25];
 
@@ -62,10 +62,10 @@ int main(){
         printf("|5. |lihat kategori                                                                  |\n");
         printf("|6. |barang terlaris                                                                 |\n");
         printf("+---+--------------------------------------------------------------------------------+\n");
-        int result = scanf("%d", &input);
+        validasi = scanf("%d", &input);
         getchar(); 
 
-        if (result != 1) {
+        if (validasi != 1) {
             input = 10;
         }
     }while (input>6 || input<0);
@@ -270,9 +270,13 @@ char *nama = strtok(line,"|");
                 printf("|6. |Wallet         |\n");
                 printf("|7. |Status belanja |\n");
                 printf("+---+---------------+\n");
-                scanf("%d",&input);
-                getchar();
-            }while (input>7 || input<-1);
+                validasi = scanf("%d", &input);
+                getchar(); 
+
+                if (validasi != 1) {
+                    input = 10; 
+                }
+            }while (input>7 || input<0);
             
             //fitur search barang
             if(input == 1){
@@ -349,8 +353,13 @@ char *nama = strtok(line,"|");
                     printf("|4. |others         |\n");
                     printf("|5. |back           |\n");
                     printf("+---+---------------+\n");
-                    scanf("%d",&input);
-                }while (input>6 || input<0);
+                    validasi = scanf("%d", &input);
+                    getchar(); 
+
+                    if (validasi != 1) {
+                        input = 10; 
+                    }
+                }while (input>5 || input<0);
 
                 //kembali ke menu
                 if(input == 5){
@@ -360,19 +369,26 @@ char *nama = strtok(line,"|");
                 //menampilkan kategori buku
                 else if(input == 1){
                     sessionBuku:
-                    system("cls");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    for(int i = 0;i<jumlahBuku;i++){
-                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    }
-                    printf("\n0.kembali\n");
-                    printf("1.masukan barang ke dalam keranjang\n");
-                    printf("2.sorting\n");
-                    scanf("%d",&input);
-                    getchar();
+                    do{
+                        system("cls");
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        for(int i = 0;i<jumlahBuku;i++){
+                        printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        }
+                        printf("\n0.kembali\n");
+                        printf("1.masukan barang ke dalam keranjang\n");
+                        printf("2.sorting\n");
+                        validasi = scanf("%d", &input);
+                        getchar(); 
+
+                        if (validasi != 1) {
+                            input = 10; 
+                        }
+                    }while(input>2||input<0);
+                    
                     if(input == 0){
                         goto menuBuku;
                     }
@@ -391,18 +407,45 @@ char *nama = strtok(line,"|");
                                 }
                             }
                         }
-                        system("cls");
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        for(int i = 0;i<jumlahBuku;i++){
-                        printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        do{
+                            system("cls");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            for(int i = 0;i<jumlahBuku;i++){
+                            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            }
+                            printf("\n0.kembali\n");
+                            printf("1.masukan barang ke dalam keranjang\n");
+                            validasi = scanf("%d", &input);
+                            getchar(); 
+
+                            if (validasi != 1) {
+                                input = 10; 
+                            }
+                        }while(input>2||input<0);
+
+                        do{
+                            system("cls");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            for(int i = 0;i<jumlahBuku;i++){
+                            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            }
+                            printf("\n0.kembali\n");
+                            printf("1.masukan barang ke dalam keranjang\n");
+                            validasi = scanf("%d", &input);
+                            getchar(); 
+
+                            if (validasi != 1) {
+                            input = 10; 
                         }
-                        printf("\n0.kembali\n");
-                        printf("1.masukan barang ke dalam keranjang\n");
-                        scanf("%d",&input);
-                        getchar();
+                        }while(input>1||input<0);
+                        
+
                         if(input == 0){
                             goto menuBuku;
                         }
@@ -488,19 +531,27 @@ char *nama = strtok(line,"|");
                 //menampilkan kategori fashion
                 else if(input == 2){
                     sessionFashion:
-                    system("cls");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    for(int i = 0;i<jumlahFashion;i++){
-                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    }
-                    printf("\n0.kembali\n");
-                    printf("1.masukan barang ke dalam keranjang\n");
-                    printf("2.sorting\n");
-                    scanf("%d",&input);
-                    getchar();
+                    do{
+                        system("cls");
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        for(int i = 0;i<jumlahFashion;i++){
+                        printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        }
+                        printf("\n0.kembali\n");
+                        printf("1.masukan barang ke dalam keranjang\n");
+                        printf("2.sorting\n");
+                        validasi = scanf("%d", &input);
+                        getchar(); 
+
+                        if (validasi != 1) {
+                        input = 10; 
+                        }
+                    }while(input>2||input<0);
+                    
+
                     if(input == 0){
                         goto menuBuku;
                     }
@@ -520,18 +571,26 @@ char *nama = strtok(line,"|");
                                 }
                             }
                         }
-                        system("cls");
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        for(int i = 0;i<jumlahFashion;i++){
-                        printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        }
-                        printf("\n0.kembali\n");
-                        printf("1.masukan barang ke dalam keranjang\n");
-                        scanf("%d",&input);
-                        getchar();
+                        do{
+                            system("cls");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            for(int i = 0;i<jumlahFashion;i++){
+                            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            }
+                            printf("\n0.kembali\n");
+                            printf("1.masukan barang ke dalam keranjang\n");
+                            validasi = scanf("%d", &input);
+                            getchar(); 
+
+                            if (validasi != 1) {
+                            input = 10; 
+                            }
+                        }while(input>2||input<0);
+                        
+
                         if(input == 0){
                             goto menuBuku;
                         }
@@ -615,19 +674,27 @@ char *nama = strtok(line,"|");
                 //menampilkan kategori obat
                 else if(input == 3){
                     sessionObat:
-                    system("cls");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    for(int i = 0;i<jumlahObat;i++){
-                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    }
-                    printf("\n0.kembali\n");
-                    printf("1.masukan barang ke dalam keranjang\n");
-                    printf("2.sorting\n");
-                    scanf("%d",&input);
-                    getchar();
+                    do{
+                        system("cls");
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        for(int i = 0;i<jumlahObat;i++){
+                        printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        }
+                        printf("\n0.kembali\n");
+                        printf("1.masukan barang ke dalam keranjang\n");
+                        printf("2.sorting\n");
+                        validasi = scanf("%d", &input);
+                        getchar(); 
+
+                        if (validasi != 1) {
+                        input = 10; 
+                        }
+                    }while(input>2||input<0);
+                    
+
                     if(input == 0){
                         goto menuBuku;
                     }
@@ -648,18 +715,26 @@ char *nama = strtok(line,"|");
                                 }
                             }
                         }
-                        system("cls");
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        for(int i = 0;i<jumlahObat;i++){
-                        printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        }
-                        printf("\n0.kembali\n");
-                        printf("1.masukan barang ke dalam keranjang\n");
-                        scanf("%d",&input);
-                        getchar();
+                        do{
+                            system("cls");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            for(int i = 0;i<jumlahObat;i++){
+                            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            }
+                            printf("\n0.kembali\n");
+                            printf("1.masukan barang ke dalam keranjang\n");
+                            validasi = scanf("%d", &input);
+                            getchar(); 
+
+                            if (validasi != 1) {
+                            input = 10; 
+                            }
+                        }while(input>2||input<0);
+                        
+
                         if(input == 0){
                             goto menuBuku;
                         }
@@ -742,19 +817,26 @@ char *nama = strtok(line,"|");
                 //menampilkan kategori others
                 else if(input == 4){
                     sessionOthers:
-                    system("cls");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    for(int i = 0;i<jumlahOthers;i++){
-                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
-                    printf("+----+--------------------------------------------+-------------------+------+\n");
-                    }
-                    printf("\n0.kembali\n");
-                    printf("1.masukan barang ke dalam keranjang\n");
-                    printf("2.sorting\n");
-                    scanf("%d",&input);
-                    getchar();
+                    do{
+                        system("cls");
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        for(int i = 0;i<jumlahOthers;i++){
+                        printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
+                        printf("+----+--------------------------------------------+-------------------+------+\n");
+                        }
+                        printf("\n0.kembali\n");
+                        printf("1.masukan barang ke dalam keranjang\n");
+                        printf("2.sorting\n");
+                        validasi = scanf("%d", &input);
+                        getchar(); 
+
+                        if (validasi != 1) {
+                        input = 10; 
+                        }
+                    }while(input>2||input<0);
+
                     if(input == 0){
                         goto menuBuku;
                     }
@@ -775,18 +857,26 @@ char *nama = strtok(line,"|");
                                 }
                             }
                         }
-                        system("cls");
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        for(int i = 0;i<jumlahOthers;i++){
-                        printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
-                        printf("+----+--------------------------------------------+-------------------+------+\n");
-                        }
-                        printf("\n0.kembali\n");
-                        printf("1.masukan barang ke dalam keranjang\n");
-                        scanf("%d",&input);
-                        getchar();
+                        do{
+                            system("cls");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            for(int i = 0;i<jumlahOthers;i++){
+                            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
+                            printf("+----+--------------------------------------------+-------------------+------+\n");
+                            }
+                            printf("\n0.kembali\n");
+                            printf("1.masukan barang ke dalam keranjang\n");
+                            validasi = scanf("%d", &input);
+                            getchar(); 
+
+                            if (validasi != 1) {
+                            input = 10; 
+                            }
+                        }while(input>2||input<0);
+                        
+
                         if(input == 0){
                             goto menuBuku;
                         }
@@ -876,7 +966,7 @@ char *nama = strtok(line,"|");
             //fitur untuk menampilkan barang paling laris
             else if (input == 3){
                 char terlaris[2000][5][100];
-                system("cls");
+                
 
                 //masukin array buku ke dalam array terlaris
                 for(int i = 0;i<jumlahBuku;i++){
@@ -937,18 +1027,25 @@ char *nama = strtok(line,"|");
                         }
                     }
                 }
-                
-                    printf("+----+--------------------------------------------+-------------------+------+--------+\n");
-                    printf("| No |Nama Barang                                 |Harga              |Stok  |Terjual |\n");
-                    printf("+----+--------------------------------------------+-------------------+------+--------+\n");
-                    for(int i = 0;i<jumlahTerlaris;i++){
-                    printf("| %-2d | %-42s | %-17s | %-4s |%-8s|\n",i+1,terlaris[i][0],terlaris[i][1],terlaris[i][2],terlaris[i][4]);
-                    printf("+----+--------------------------------------------+-------------------+------+--------+\n");
-                    }
-                    printf("\n0.kembali\n");
-                    printf("1.masukan barang ke dalam keranjang\n");
-                    scanf("%d",&input);
-                    getchar();
+                    do{
+                        system("cls");
+                        printf("+----+--------------------------------------------+-------------------+------+--------+\n");
+                        printf("| No |Nama Barang                                 |Harga              |Stok  |Terjual |\n");
+                        printf("+----+--------------------------------------------+-------------------+------+--------+\n");
+                        for(int i = 0;i<jumlahTerlaris;i++){
+                        printf("| %-2d | %-42s | %-17s | %-4s |%-8s|\n",i+1,terlaris[i][0],terlaris[i][1],terlaris[i][2],terlaris[i][4]);
+                        printf("+----+--------------------------------------------+-------------------+------+--------+\n");
+                        }
+                        printf("\n0.kembali\n");
+                        printf("1.masukan barang ke dalam keranjang\n");
+                        validasi = scanf("%d", &input);
+                        getchar(); 
+
+                        if (validasi != 1) {
+                        input = 10; 
+                        }
+                    }while(input>1||input<0);
+                    
 
                     if(input == 0){
                         goto sessionuser;
@@ -1082,24 +1179,32 @@ char *nama = strtok(line,"|");
                 int jumlahKeranjang = menghitungBanyakData(keranjang);
                 int totalHarga = 0;
                 float totalBerat = 0;
-                system("cls");
-                printf("isi keranjang %s:\n",loginID);
-                printf("+----+--------------------------------------------+-------------------+-------+\n");
-                printf("| No | Nama Barang                                | Harga             | Berat |\n");
-                printf("+----+--------------------------------------------+-------------------+-------+\n");
-                for(int i = 0;i<jumlahKeranjang;i++){
-                    printf("| %-2d | %-42s | %-17s | %-2skg |\n",i+1,keranjang[i][0],keranjang[i][1],keranjang[i][3]);
+                do{
+                    system("cls");
+                    printf("isi keranjang %s:\n",loginID);
                     printf("+----+--------------------------------------------+-------------------+-------+\n");
-                    totalHarga = totalHarga + atoi(keranjang[i][1]);
-                    totalBerat = totalBerat + atof(keranjang[i][3]);
-                }
-                printf("|Total                                            | %-17d | %-2.1fkg |\n",totalHarga,totalBerat);
-                printf("+----+--------------------------------------------+-------------------+-------+\n\n");
+                    printf("| No | Nama Barang                                | Harga             | Berat |\n");
+                    printf("+----+--------------------------------------------+-------------------+-------+\n");
+                    for(int i = 0;i<jumlahKeranjang;i++){
+                        printf("| %-2d | %-42s | %-17s | %-2skg |\n",i+1,keranjang[i][0],keranjang[i][1],keranjang[i][3]);
+                        printf("+----+--------------------------------------------+-------------------+-------+\n");
+                        totalHarga = totalHarga + atoi(keranjang[i][1]);
+                        totalBerat = totalBerat + atof(keranjang[i][3]);
+                    }
+                    printf("|Total                                            | %-17d | %-2.1fkg |\n",totalHarga,totalBerat);
+                    printf("+----+--------------------------------------------+-------------------+-------+\n\n");
+                    
+                    printf("apakah anda yakin ingin checkout barang anda?\n");
+                    printf("0.kembali\n");
+                    printf("1.Checkout\n");
+                    validasi = scanf("%d", &input);
+                    getchar(); 
+
+                    if (validasi != 1) {
+                    input = 10; 
+                    }
+                }while(input>2||input<0);
                 
-                printf("apakah anda yakin ingin checkout barang anda?\n");
-                printf("0.kembali\n");
-                printf("1.Checkout\n");
-                scanf("%d",&input);
 
                 if(input == 0){
                     goto sessionuser;
@@ -1112,16 +1217,23 @@ char *nama = strtok(line,"|");
                         getch();
                         goto sessionuser;
                     }
-                    system("cls");
                     int tambahan =(totalBerat*1000) + totalHarga;
-                    printf("+-------------+--------------+\n");
-                    printf("| total harga | %-11d  |\n",totalHarga);
-                    printf("+-------------+--------------+\n");
-                    printf("| total berat | %-2.2fkg       | \n",totalBerat);
-                    printf("+-------------+--------------+\n\n");
-                    printf("0.kembali\n");
-                    printf("1.Next\n");
-                    scanf("%d",&input);
+                    do{
+                        system("cls");
+                        printf("+-------------+--------------+\n");
+                        printf("| total harga | %-11d  |\n",totalHarga);
+                        printf("+-------------+--------------+\n");
+                        printf("| total berat | %-2.2fkg       | \n",totalBerat);
+                        printf("+-------------+--------------+\n\n");
+                        printf("0.kembali\n");
+                        printf("1.Next\n");
+                        validasi = scanf("%d", &input);
+                        getchar(); 
+
+                        if (validasi != 1) {
+                        input = 10; 
+                        }
+                    }while(input>1||input<0);
                     
 
                     if(input == 0){
@@ -1130,16 +1242,24 @@ char *nama = strtok(line,"|");
 
                     else if(input == 1){
                         float alamat;
-                        system("cls");
-                        printf("pilih jasa pengiriman untuk barang anda\n\n");
-                        printf("+---+-------+\n");
-                        printf("|No.|Program|\n");
-                        printf("+---+-------+\n");
-                        printf("|0. |kembali|\n");
-                        printf("|1. |SiKilat|\n");
-                        printf("|2. |Dinamo |\n");
-                        printf("+---+-------+\n");
-                        scanf("%d",&input);
+                        do{
+                            system("cls");
+                            printf("pilih jasa pengiriman untuk barang anda\n\n");
+                            printf("+---+-------+\n");
+                            printf("|No.|Program|\n");
+                            printf("+---+-------+\n");
+                            printf("|0. |kembali|\n");
+                            printf("|1. |SiKilat|\n");
+                            printf("|2. |Dinamo |\n");
+                            printf("+---+-------+\n");
+                            validasi = scanf("%d", &input);
+                            getchar(); 
+
+                            if (validasi != 1) {
+                            input = 10; 
+                            }
+                        }while(input>2||input<0);
+                        
 
                         if(input == 0){
                             goto sessionuser;
@@ -1148,17 +1268,25 @@ char *nama = strtok(line,"|");
 
                         //menggunakan kurir si kilat
                         else if(input == 1){
-                            system("cls");
-                            printf("pilih service dari SiKilat\n\n");
-                            printf("+----+--------------------------------------------------------------------+\n");
-                            printf("| No |Program                                                             |\n");
-                            printf("+----+--------------------------------------------------------------------+\n");
-                            printf("| 0. |kembali                                                             |\n");
-                            printf("| 1. |Sameday(sampai dalam 1 hari,harganya 3000/km x berat)               |\n");
-                            printf("| 2. |SiKilat Regular(sampai dalam 3-5 hari,harganya 1500/km x berat)     |\n");
-                            printf("| 3. |Ekonomi(sampai dalam 4 - 7 hari,harganya 1000/km x berat)           |\n");
-                            printf("+----+--------------------------------------------------------------------+\n");
-                            scanf("%d",&input);
+                            do{
+                                system("cls");
+                                printf("pilih service dari SiKilat\n\n");
+                                printf("+----+--------------------------------------------------------------------+\n");
+                                printf("| No |Program                                                             |\n");
+                                printf("+----+--------------------------------------------------------------------+\n");
+                                printf("| 0. |kembali                                                             |\n");
+                                printf("| 1. |Sameday(sampai dalam 1 hari,harganya 3000/km x berat)               |\n");
+                                printf("| 2. |SiKilat Regular(sampai dalam 3-5 hari,harganya 1500/km x berat)     |\n");
+                                printf("| 3. |Ekonomi(sampai dalam 4 - 7 hari,harganya 1000/km x berat)           |\n");
+                                printf("+----+--------------------------------------------------------------------+\n");
+                                validasi = scanf("%d", &input);
+                                getchar(); 
+
+                                if (validasi != 1) {
+                                input = 10; 
+                                }
+                            }while(input>2||input<0);
+                            
                             
                             if(input == 0){
                                 goto sessionuser;
@@ -1175,27 +1303,39 @@ char *nama = strtok(line,"|");
                                 file = fopen(filename, "r");
                                 fscanf(file, "%d", &saldo);
                                 fclose(file);
-                                system("cls");
-                                printf("anda sedang menggunakan kurir si kilat, service sameday\n");
-                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                                scanf("%f",&jarak);
-                                int totalAkhir = (3000 * jarak * totalBerat) + tambahan;
-                                system("cls");
-                                printf("+--------------+--------------+\n");
-                                printf("| harga barang | %-11d  |\n",tambahan);
-                                printf("+--------------+--------------+\n");
-                                printf("| harga ongkir | %-11.0f  | \n",3000 * jarak * totalBerat);
-                                printf("+--------------+--------------+\n");
-                                printf("| total        | %-11d  |\n",totalAkhir);
-                                printf("+--------------+--------------+\n\n");
-                                printf("+------------+------------+\n");
-                                printf("| saldo anda | %-11d|\n",saldo);
-                                printf("+------------+------------+\n\n");
-                                printf("anda yakin ingin checkout?\n");
-                                printf("0.kembali\n");
-                                printf("1. iya\n");
+                                do{
+                                    system("cls");
+                                    printf("anda sedang menggunakan kurir si kilat, service sameday\n");
+                                    printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                    validasi = scanf("%f", &jarak);
+                                    getchar();
+                                }while(validasi != 1);
+                                 
 
-                                scanf("%d",&input);
+                               
+                                int totalAkhir = (3000 * jarak * totalBerat) + tambahan;
+                                do{
+                                    system("cls");
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga barang | %-11d  |\n",tambahan);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga ongkir | %-11.f  | \n",3000 * jarak * totalBerat);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| total        | %-11d  |\n",totalAkhir);
+                                    printf("+--------------+--------------+\n\n");
+                                    printf("+------------+------------+\n");
+                                    printf("| saldo anda | %-11d|\n",saldo);
+                                    printf("+------------+------------+\n\n");
+                                    printf("anda yakin ingin checkout?\n");
+                                    printf("0.kembali\n");
+                                    printf("1. iya\n");
+                                    validasi = scanf("%d", &input);
+                                    getchar();
+                                    if (validasi != 1) {
+                                        input = 10; 
+                                    }
+                                }while(input>1||input<0);
+                                
 
                                 if (input == 0){
                                     goto sessionuser;
@@ -1277,27 +1417,35 @@ char *nama = strtok(line,"|");
                                 file = fopen(filename, "r");
                                 fscanf(file, "%d", &saldo);
                                 fclose(file);
-                                system("cls");
-                                printf("anda sedang menggunakan kurir si kilat, service regular\n");
-                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                                scanf("%f",&jarak);
+                                do{
+                                    system("cls");
+                                    printf("anda sedang menggunakan kurir si kilat, service regular\n");
+                                    printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                    validasi = scanf("%f", &jarak);
+                                    getchar();
+                                }while(validasi != 1);
                                 int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
-                                system("cls");
-                                printf("+--------------+--------------+\n");
-                                printf("| harga barang | %-11d  |\n",tambahan);
-                                printf("+--------------+--------------+\n");
-                                printf("| harga ongkir | %-11.0f  | \n",1500 * jarak * totalBerat);
-                                printf("+--------------+--------------+\n");
-                                printf("| total        | %-11d  |\n",totalAkhir);
-                                printf("+--------------+--------------+\n\n");
-                                printf("+------------+------------+\n");
-                                printf("| saldo anda | %-11d|\n",saldo);
-                                printf("+------------+------------+\n\n");
-                                printf("anda yakin ingin checkout?\n");
-                                printf("0.kembali\n");
-                                printf("1. iya\n");
-
-                                scanf("%d",&input);
+                                do{
+                                    system("cls");
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga barang | %-11d  |\n",tambahan);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga ongkir | %-11.f  | \n",1500 * jarak * totalBerat);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| total        | %-11d  |\n",totalAkhir);
+                                    printf("+--------------+--------------+\n\n");
+                                    printf("+------------+------------+\n");
+                                    printf("| saldo anda | %-11d|\n",saldo);
+                                    printf("+------------+------------+\n\n");
+                                    printf("anda yakin ingin checkout?\n");
+                                    printf("0.kembali\n");
+                                    printf("1. iya\n");
+                                    validasi = scanf("%d", &input);
+                                    getchar();
+                                    if (validasi != 1) {
+                                        input = 10; 
+                                    }
+                                }while(input>1||input<0);
 
                                 if (input == 0){
                                     goto sessionuser;
@@ -1376,27 +1524,35 @@ char *nama = strtok(line,"|");
                                 file = fopen(filename, "r");
                                 fscanf(file, "%d", &saldo);
                                 fclose(file);
-                                system("cls");
-                                printf("anda sedang menggunakan kurir si kilat, service si kilat ekonomis\n");
-                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                                scanf("%f",&jarak);
+                                do{
+                                    system("cls");
+                                    printf("anda sedang menggunakan kurir si kilat, service ekonomis\n");
+                                    printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                    validasi = scanf("%f", &jarak);
+                                    getchar();
+                                }while(validasi != 1);
                                 int totalAkhir = (1000 * jarak * totalBerat) + tambahan;
-                                system("cls");
-                                printf("+--------------+--------------+\n");
-                                printf("| harga barang | %-11d  |\n",tambahan);
-                                printf("+--------------+--------------+\n");
-                                printf("| harga ongkir | %-11.0f  | \n",1000 * jarak * totalBerat);
-                                printf("+--------------+--------------+\n");
-                                printf("| total        | %-11d  |\n",totalAkhir);
-                                printf("+--------------+--------------+\n\n");
-                                printf("+------------+------------+\n");
-                                printf("| saldo anda | %-11d|\n",saldo);
-                                printf("+------------+------------+\n\n");
-                                printf("anda yakin ingin checkout?\n");
-                                printf("0.kembali\n");
-                                printf("1. iya\n");
-
-                                scanf("%d",&input);
+                                do{
+                                    system("cls");
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga barang | %-11d  |\n",tambahan);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga ongkir | %-11.f  | \n",1000 * jarak * totalBerat);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| total        | %-11d  |\n",totalAkhir);
+                                    printf("+--------------+--------------+\n\n");
+                                    printf("+------------+------------+\n");
+                                    printf("| saldo anda | %-11d|\n",saldo);
+                                    printf("+------------+------------+\n\n");
+                                    printf("anda yakin ingin checkout?\n");
+                                    printf("0.kembali\n");
+                                    printf("1. iya\n");
+                                    validasi = scanf("%d", &input);
+                                    getchar();
+                                    if (validasi != 1) {
+                                        input = 10; 
+                                    }
+                                }while(input>1||input<0);
 
                                 if (input == 0){
                                     goto sessionuser;
@@ -1467,6 +1623,7 @@ char *nama = strtok(line,"|");
 
                         //menggunakan kurir dinamo
                         else if(input == 2){
+                            do{
                             system("cls");
                             printf("pilih service dari Dinamo\n\n");
                             printf("+----+--------------------------------------------------------------------+\n");
@@ -1477,7 +1634,14 @@ char *nama = strtok(line,"|");
                             printf("| 2. |Dinamo Regular(sampai dalam 3-4 hari,harganya 2000/km x berat)      |\n");
                             printf("| 3. |Ekonomi(sampai dalam 3 - 7 hari,harganya 1500/km x berat)           |\n");
                             printf("+----+--------------------------------------------------------------------+\n");
-                            scanf("%d",&input);
+                            validasi = scanf("%d", &input);
+                            getchar(); 
+
+                            if (validasi != 1) {
+                            input = 10; 
+                            }
+                            }while(input>3||input<0);
+                            
                             
                             if(input == 0){
                                 goto sessionuser;
@@ -1494,27 +1658,35 @@ char *nama = strtok(line,"|");
                                 file = fopen(filename, "r");
                                 fscanf(file, "%d", &saldo);
                                 fclose(file);
-                                system("cls");
-                                printf("anda sedang menggunakan kurir dinamo, service kebut sehari\n");
-                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                                scanf("%f",&jarak);
+                                do{
+                                    system("cls");
+                                    printf("anda sedang menggunakan kurir dinamo, service kebut sehari\n");
+                                    printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                    validasi = scanf("%f", &jarak);
+                                    getchar();
+                                }while(validasi != 1);
                                 int totalAkhir = (5000 * jarak * totalBerat) + tambahan;
-                                system("cls");
-                                printf("+--------------+--------------+\n");
-                                printf("| harga barang | %-11d  |\n",tambahan);
-                                printf("+--------------+--------------+\n");
-                                printf("| harga ongkir | %-11.0f  | \n",5000 * jarak * totalBerat);
-                                printf("+--------------+--------------+\n");
-                                printf("| total        | %-11d  |\n",totalAkhir);
-                                printf("+--------------+--------------+\n\n");
-                                printf("+------------+------------+\n");
-                                printf("| saldo anda | %-11d|\n",saldo);
-                                printf("+------------+------------+\n\n");
-                                printf("anda yakin ingin checkout?\n");
-                                printf("0.kembali\n");
-                                printf("1. iya\n");
-
-                                scanf("%d",&input);
+                                do{
+                                    system("cls");
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga barang | %-11d  |\n",tambahan);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga ongkir | %-11.f  | \n",5000 * jarak * totalBerat);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| total        | %-11d  |\n",totalAkhir);
+                                    printf("+--------------+--------------+\n\n");
+                                    printf("+------------+------------+\n");
+                                    printf("| saldo anda | %-11d|\n",saldo);
+                                    printf("+------------+------------+\n\n");
+                                    printf("anda yakin ingin checkout?\n");
+                                    printf("0.kembali\n");
+                                    printf("1. iya\n");
+                                    validasi = scanf("%d", &input);
+                                    getchar();
+                                    if (validasi != 1) {
+                                        input = 10; 
+                                    }
+                                }while(input>1||input<0);
 
                                 if (input == 0){
                                     goto sessionuser;
@@ -1593,27 +1765,35 @@ char *nama = strtok(line,"|");
                                 file = fopen(filename, "r");
                                 fscanf(file, "%d", &saldo);
                                 fclose(file);
-                                system("cls");
-                                printf("anda sedang menggunakan kurir dinamo, service regular\n");
-                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                                scanf("%f",&jarak);
+                                do{
+                                    system("cls");
+                                    printf("anda sedang menggunakan kurir dinamo, service regular\n");
+                                    printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                    validasi = scanf("%f", &jarak);
+                                    getchar();
+                                }while(validasi != 1);
                                 int totalAkhir = (2000 * jarak * totalBerat) + tambahan;
-                                system("cls");
-                                printf("+--------------+--------------+\n");
-                                printf("| harga barang | %-11d  |\n",tambahan);
-                                printf("+--------------+--------------+\n");
-                                printf("| harga ongkir | %-11.0f  | \n",2000 * jarak * totalBerat);
-                                printf("+--------------+--------------+\n");
-                                printf("| total        | %-11d  |\n",totalAkhir);
-                                printf("+--------------+--------------+\n\n");
-                                printf("+------------+------------+\n");
-                                printf("| saldo anda | %-11d|\n",saldo);
-                                printf("+------------+------------+\n\n");
-                                printf("anda yakin ingin checkout?\n");
-                                printf("0.kembali\n");
-                                printf("1. iya\n");
-
-                                scanf("%d",&input);
+                                do{
+                                    system("cls");
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga barang | %-11d  |\n",tambahan);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga ongkir | %-11.f  | \n",2000 * jarak * totalBerat);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| total        | %-11d  |\n",totalAkhir);
+                                    printf("+--------------+--------------+\n\n");
+                                    printf("+------------+------------+\n");
+                                    printf("| saldo anda | %-11d|\n",saldo);
+                                    printf("+------------+------------+\n\n");
+                                    printf("anda yakin ingin checkout?\n");
+                                    printf("0.kembali\n");
+                                    printf("1. iya\n");
+                                    validasi = scanf("%d", &input);
+                                    getchar();
+                                    if (validasi != 1) {
+                                        input = 10; 
+                                    }
+                                }while(input>1||input<0);
 
                                 if (input == 0){
                                     goto sessionuser;
@@ -1692,27 +1872,35 @@ char *nama = strtok(line,"|");
                                 file = fopen(filename, "r");
                                 fscanf(file, "%d", &saldo);
                                 fclose(file);
-                                system("cls");
-                                printf("anda sedang menggunakan kurir dinamo, service ekonomis\n");
-                                printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
-                                scanf("%f",&jarak);
+                                do{
+                                    system("cls");
+                                    printf("anda sedang menggunakan kurir dinamo, service ekonomis\n");
+                                    printf("berapa jarak alamat anda dari toko kami?(angka dalam km)\n");
+                                    validasi = scanf("%f", &jarak);
+                                    getchar();
+                                }while(validasi != 1);
                                 int totalAkhir = (1500 * jarak * totalBerat) + tambahan;
-                                system("cls");
-                                printf("+--------------+--------------+\n");
-                                printf("| harga barang | %-11d  |\n",tambahan);
-                                printf("+--------------+--------------+\n");
-                                printf("| harga ongkir | %-11.0f  | \n",1500 * jarak * totalBerat);
-                                printf("+--------------+--------------+\n");
-                                printf("| total        | %-11d  |\n",totalAkhir);
-                                printf("+--------------+--------------+\n\n");
-                                printf("+------------+------------+\n");
-                                printf("| saldo anda | %-11d|\n",saldo);
-                                printf("+------------+------------+\n\n");
-                                printf("anda yakin ingin checkout?\n");
-                                printf("0.kembali\n");
-                                printf("1. iya\n");
-
-                                scanf("%d",&input);
+                                do{
+                                    system("cls");
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga barang | %-11d  |\n",tambahan);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| harga ongkir | %-11.f  | \n",1500 * jarak * totalBerat);
+                                    printf("+--------------+--------------+\n");
+                                    printf("| total        | %-11d  |\n",totalAkhir);
+                                    printf("+--------------+--------------+\n\n");
+                                    printf("+------------+------------+\n");
+                                    printf("| saldo anda | %-11d|\n",saldo);
+                                    printf("+------------+------------+\n\n");
+                                    printf("anda yakin ingin checkout?\n");
+                                    printf("0.kembali\n");
+                                    printf("1. iya\n");
+                                    validasi = scanf("%d", &input);
+                                    getchar();
+                                    if (validasi != 1) {
+                                        input = 10; 
+                                    }
+                                }while(input>1||input<0);
 
                                 if (input == 0){
                                     goto sessionuser;
@@ -1800,22 +1988,33 @@ char *nama = strtok(line,"|");
                     fscanf(file, "%d", &saldo);
                     fclose(file);
 
-                    system("cls");
-                    printf("+----------+-------------+\n");
-                    printf("|Saldo Anda| %-11d |\n", saldo);
-                    printf("+----------+-------------+\n\n");
-                    printf("0.kembali\n");
-                    printf("1.isi saldo\n");
+                    do{
+                        system("cls");
+                        printf("+----------+-------------+\n");
+                        printf("|Saldo Anda| %-11d |\n", saldo);
+                        printf("+----------+-------------+\n\n");
+                        printf("0.kembali\n");
+                        printf("1.isi saldo\n");
+                        validasi = scanf("%d", &input);
+                        getchar(); 
 
-                    scanf("%d",&input);
+                        if (validasi != 1) {
+                        input = 10; 
+                        }
+                    }while(input>1||input<0);
+                    
 
                     if(input == 0){
                         goto sessionuser;
                     }
                     else if(input == 1){
-                        system("cls");
-                        printf("ingin isi berapa saldo?\n");
-                        scanf("%d",&input);
+                        do{
+                            system("cls");
+                            printf("ingin isi berapa saldo?\n");
+                            validasi = scanf("%d",&input);
+                            getchar();
+                        }while(validasi != 1);
+                        
                         saldo = saldo + input;
                         file = fopen(filename,"w");
                         fprintf(file, "%d",saldo);
@@ -1868,20 +2067,32 @@ char *nama = strtok(line,"|");
                 fclose(file);
                 int jumlahstatusbelanja = menghitungBanyakData(statusbelanja);
                 int totalHarga = 0;
-                system("cls");
-                printf("status belanja %s:\n",loginID);
-                printf("+----+--------------------------------------------+-------------------+\n");
-                printf("| No |Nama Barang                                 |Harga              |\n");
-                printf("+----+--------------------------------------------+-------------------+\n");
-                for(int i = 0;i<jumlahstatusbelanja;i++){
-                printf("| %-2d | %-42s | %-17s |\n",i+1,statusbelanja[i][0],statusbelanja[i][1]);
-                printf("+----+--------------------------------------------+-------------------+\n");
-                }
-                for(int i = 0;i<jumlahstatusbelanja;i++){
-                    totalHarga = totalHarga + atoi(statusbelanja[i][1]);
-                }
-                printf("|total                                            | %-11d       |\n",totalHarga);
-                printf("+----+--------------------------------------------+-------------------+\n\n");
+                do{
+                    system("cls");
+                    printf("status belanja %s:\n",loginID);
+                    printf("+----+--------------------------------------------+-------------------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |\n");
+                    printf("+----+--------------------------------------------+-------------------+\n");
+                    for(int i = 0;i<jumlahstatusbelanja;i++){
+                    printf("| %-2d | %-42s | %-17s |\n",i+1,statusbelanja[i][0],statusbelanja[i][1]);
+                    printf("+----+--------------------------------------------+-------------------+\n");
+                    }
+                    for(int i = 0;i<jumlahstatusbelanja;i++){
+                        totalHarga = totalHarga + atoi(statusbelanja[i][1]);
+                    }
+                    printf("|total                                            | %-11d       |\n",totalHarga);
+                    printf("+----+--------------------------------------------+-------------------+\n\n");
+                    printf("\napakah anda ingin return barang anda?\n\n");
+                    printf("0.kembali\n");
+                    printf("1.iya\n");
+                    validasi = scanf("%d", &input);
+                    getchar(); 
+
+                    if (validasi != 1) {
+                    input = 10; 
+                    }
+                }while(input>1||input<0);
+                
 
 
                 //bikin variabel untuk print waktu txt
@@ -1910,10 +2121,7 @@ char *nama = strtok(line,"|");
                 }
                 
                 
-                printf("\napakah anda ingin return barang anda?\n\n");
-                printf("0.kembali\n");
-                printf("1.iya\n");
-                scanf("%d",&input);
+                
 
                 if (input == 0){
                     goto sessionuser;
@@ -1936,11 +2144,19 @@ char *nama = strtok(line,"|");
                     }
 
                     else{
-                        system("cls");
-                        printf("apakah anda yakin ingin return barang anda?\n");
-                        printf("0.kembali\n");
-                        printf("1.iya\n");
-                        scanf("%d",&input);
+                        do{
+                            system("cls");
+                            printf("apakah anda yakin ingin return barang anda?\n");
+                            printf("0.kembali\n");
+                            printf("1.iya\n");
+                            validasi = scanf("%d", &input);
+                            getchar(); 
+
+                            if (validasi != 1) {
+                            input = 10; 
+                            }
+                        }while(input>1||input<0);
+                        
                         
                         if(input == 0){
                             goto sessionuser;
@@ -2065,7 +2281,12 @@ char *nama = strtok(line,"|");
                 printf("|1. |Masukin Barang |\n");
                 printf("|2. |Update Stok    |\n");
                 printf("+---+---------------+\n");
-                scanf("%d",&input);
+                validasi = scanf("%d", &input);
+                getchar(); 
+
+                if (validasi != 1) {
+                input = 10; 
+                }
             }while (input>2 || input<0);
 
             if(input == 0){
@@ -2139,9 +2360,13 @@ char *nama = strtok(line,"|");
                     printf("|4. |others         |\n");
                     printf("|5. |back           |\n");
                     printf("+---+---------------+\n");
-                    scanf("%d",&input);
-                    getchar();
-                }while (input>6 || input<0);
+                    validasi = scanf("%d", &input);
+                    getchar(); 
+
+                    if (validasi != 1) {
+                    input = 10; 
+                    }
+                }while (input>5 || input<0);
 
                 //kembali ke menu
                 if(input == 5){
@@ -2510,8 +2735,13 @@ char *nama = strtok(line,"|");
             printf("|4. |others         |\n");
             printf("|5. |back           |\n");
             printf("+---+---------------+\n");
-            scanf("%d",&input);
-        }while (input>6 || input<0);
+            validasi = scanf("%d", &input);
+            getchar(); 
+
+            if (validasi != 1) {
+            input = 10; 
+            }
+        }while (input>5 || input<0);
 
         //kembali ke menu
         if(input == 5){
@@ -2521,19 +2751,26 @@ char *nama = strtok(line,"|");
         //menampilkan kategori buku
         else if(input == 1){
             sessionBukuLuar:
-            system("cls");
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            for(int i = 0;i<jumlahBuku;i++){
-            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            }
-            printf("\n0.kembali\n");
-            printf("1.masukan barang ke dalam keranjang\n");
-            printf("2.sorting\n");
-            scanf("%d",&input);
-            getchar();
+            do{
+                system("cls");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                for(int i = 0;i<jumlahBuku;i++){
+                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                }
+                printf("\n0.kembali\n");
+                printf("1.masukan barang ke dalam keranjang\n");
+                printf("2.sorting\n");
+                validasi = scanf("%d", &input);
+                getchar(); 
+
+                if (validasi != 1) {
+                input = 10; 
+                }
+            }while(input>2||input<0);
+            
             if(input == 0){
                 goto menuBukuLuar;
             }
@@ -2552,18 +2789,25 @@ char *nama = strtok(line,"|");
                         }
                     }
                 }
-                system("cls");
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                for(int i = 0;i<jumlahBuku;i++){
-                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                }
-                printf("\n0.kembali\n");
-                printf("1.masukan barang ke dalam keranjang\n");
-                scanf("%d",&input);
-                getchar();
+                do{
+                    system("cls");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    for(int i = 0;i<jumlahBuku;i++){
+                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,buku[i][0],buku[i][1],buku[i][2]);
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    }
+                    printf("\n0.kembali\n");
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    validasi = scanf("%d", &input);
+                    getchar(); 
+
+                    if (validasi != 1) {
+                    input = 10; 
+                    }
+                }while(input>1||input<0);
+                
                 if(input == 0){
                     goto menuBukuLuar;
                 }
@@ -2591,19 +2835,26 @@ char *nama = strtok(line,"|");
         //menampilkan kategori fashion
         else if(input == 2){
             sessionFashionLuar:
-            system("cls");
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            for(int i = 0;i<jumlahFashion;i++){
-            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            }
-            printf("\n0.kembali\n");
-            printf("1.masukan barang ke dalam keranjang\n");
-            printf("2.sorting\n");
-            scanf("%d",&input);
-            getchar();
+            do{
+                system("cls");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                for(int i = 0;i<jumlahFashion;i++){
+                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                }
+                printf("\n0.kembali\n");
+                printf("1.masukan barang ke dalam keranjang\n");
+                printf("2.sorting\n");
+                validasi = scanf("%d", &input);
+                getchar(); 
+
+                if (validasi != 1) {
+                input = 10; 
+                }
+            }while(input>2||input<0);
+            
             if(input == 0){
                 goto menuBukuLuar;
             }
@@ -2622,18 +2873,25 @@ char *nama = strtok(line,"|");
                         }
                     }
                 }
-                system("cls");
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                for(int i = 0;i<jumlahFashion;i++){
-                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                }
-                printf("\n0.kembali\n");
-                printf("1.masukan barang ke dalam keranjang\n");
-                scanf("%d",&input);
-                getchar();
+                do{
+                    system("cls");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    for(int i = 0;i<jumlahFashion;i++){
+                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,fashion[i][0],fashion[i][1],fashion[i][2]);
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    }
+                    printf("\n0.kembali\n");
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    validasi = scanf("%d", &input);
+                    getchar(); 
+
+                    if (validasi != 1) {
+                    input = 10; 
+                    }
+                }while(input>2||input<0);
+                
                 if(input == 0){
                     goto menuBukuLuar;
                 }
@@ -2661,19 +2919,26 @@ char *nama = strtok(line,"|");
         //menampilkan kategori obat
         else if(input == 3){
             sessionObatLuar:
-            system("cls");
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            for(int i = 0;i<jumlahObat;i++){
-            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            }
-            printf("\n0.kembali\n");
-            printf("1.masukan barang ke dalam keranjang\n");
-            printf("2.sorting\n");
-            scanf("%d",&input);
-            getchar();
+            do{
+                system("cls");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                for(int i = 0;i<jumlahObat;i++){
+                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                }
+                printf("\n0.kembali\n");
+                printf("1.masukan barang ke dalam keranjang\n");
+                printf("2.sorting\n");
+                validasi = scanf("%d", &input);
+                getchar(); 
+
+                if (validasi != 1) {
+                input = 10; 
+                }
+            }while(input>2||input<0);
+            
             if(input == 0){
                 goto menuBukuLuar;
             }
@@ -2692,18 +2957,25 @@ char *nama = strtok(line,"|");
                         }
                     }
                 }
-                system("cls");
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                for(int i = 0;i<jumlahObat;i++){
-                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                }
-                printf("\n0.kembali\n");
-                printf("1.masukan barang ke dalam keranjang\n");
-                scanf("%d",&input);
-                getchar();
+                do{
+                    system("cls");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    for(int i = 0;i<jumlahObat;i++){
+                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,obat[i][0],obat[i][1],obat[i][2]);
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    }
+                    printf("\n0.kembali\n");
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    validasi = scanf("%d", &input);
+                    getchar(); 
+
+                    if (validasi != 1) {
+                    input = 10; 
+                    }
+                }while(input>1||input<0);
+                
                 if(input == 0){
                     goto menuBukuLuar;
                 }
@@ -2731,18 +3003,25 @@ char *nama = strtok(line,"|");
         else if(input == 4){
             sessionOthersLuar:
             system("cls");
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            for(int i = 0;i<jumlahOthers;i++){
-            printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
-            printf("+----+--------------------------------------------+-------------------+------+\n");
-            }
-            printf("\n0.kembali\n");
-            printf("1.masukan barang ke dalam keranjang\n");
-            printf("2.sorting\n");
-            scanf("%d",&input);
-            getchar();
+            do{
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                for(int i = 0;i<jumlahOthers;i++){
+                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
+                printf("+----+--------------------------------------------+-------------------+------+\n");
+                }
+                printf("\n0.kembali\n");
+                printf("1.masukan barang ke dalam keranjang\n");
+                printf("2.sorting\n");
+                validasi = scanf("%d", &input);
+                getchar(); 
+
+                if (validasi != 1) {
+                input = 10; 
+                }
+            }while(input>2||input<0);
+            
             if(input == 0){
                 goto menuBukuLuar;
             }
@@ -2761,18 +3040,26 @@ char *nama = strtok(line,"|");
                         }
                     }
                 }
-                system("cls");
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                for(int i = 0;i<jumlahOthers;i++){
-                printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
-                printf("+----+--------------------------------------------+-------------------+------+\n");
-                }
-                printf("\n0.kembali\n");
-                printf("1.masukan barang ke dalam keranjang\n");
-                scanf("%d",&input);
-                getchar();
+                do{
+                    system("cls");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    printf("| No |Nama Barang                                 |Harga              |Stok  |\n");
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    for(int i = 0;i<jumlahOthers;i++){
+                    printf("| %-2d | %-42s | %-17s | %-4s |\n",i+1,others[i][0],others[i][1],others[i][2]);
+                    printf("+----+--------------------------------------------+-------------------+------+\n");
+                    }
+                    printf("\n0.kembali\n");
+                    printf("1.masukan barang ke dalam keranjang\n");
+                    validasi = scanf("%d", &input);
+                    getchar(); 
+
+                    if (validasi != 1) {
+                    input = 10; 
+                    }
+                }while(input>1||input<0);
+                
+
                 if(input == 0){
                     goto menuBukuLuar;
                 }
