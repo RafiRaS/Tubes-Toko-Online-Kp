@@ -1995,13 +1995,14 @@ char *nama = strtok(line,"|");
                         printf("+----------+-------------+\n\n");
                         printf("0.kembali\n");
                         printf("1.isi saldo\n");
+                        printf("2.tarik saldo\n");
                         validasi = scanf("%d", &input);
                         getchar(); 
 
                         if (validasi != 1) {
                         input = 10; 
                         }
-                    }while(input>1||input<0);
+                    }while(input>2||input<0);
                     
 
                     if(input == 0){
@@ -2010,6 +2011,9 @@ char *nama = strtok(line,"|");
                     else if(input == 1){
                         do{
                             system("cls");
+                            printf("+----------+-------------+\n");
+                            printf("|Saldo Anda| %-11d |\n", saldo);
+                            printf("+----------+-------------+\n\n");
                             printf("ingin isi berapa saldo?\n");
                             validasi = scanf("%d",&input);
                             getchar();
@@ -2023,6 +2027,42 @@ char *nama = strtok(line,"|");
                         printf("Saldo anda sekarang adalah %d\n",saldo);
                         getch();
                         goto sessionuser;
+                    }
+
+                    else if(input == 2){
+                        do{
+                            system("cls");
+                            printf("+----------+-------------+\n");
+                            printf("|Saldo Anda| %-11d |\n", saldo);
+                            printf("+----------+-------------+\n\n");
+                            printf("ingin tarik berapa saldo?\n");
+                            validasi = scanf("%d",&input);
+                            getchar();
+                        }while(validasi != 1);
+
+                        if(saldo - input <0){
+                            system("cls");
+                            printf("saldo anda kurang\n");
+                            getch();
+                            goto sessionuser;
+                        }
+                        else{
+                            system("cls");
+                            printf("sisa saldo anda\n");
+                            printf("+----------+-------------+\n");
+                            printf("|Saldo Anda| %-11d |\n", saldo - input);
+                            printf("+----------+-------------+\n\n");
+                            printf("anda berhasil menarik saldo sebesar %d\n",input);
+                            
+                            
+
+                            file = fopen(filename,"w");
+                            fprintf(file, "%d",saldo - input);
+                            fclose(file);
+
+                            getch();
+                            goto sessionuser;
+                        }
                     }
 
                 } else {
