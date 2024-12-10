@@ -21,6 +21,43 @@ char statusbelanja[1000][5][100];
 char namaStok[100];
 char updateStok[11];
 
+//untuk memberi warna font
+char *reset = "\033[0m";
+char *black = "\033[30m";
+char *red = "\033[31m";
+char *green = "\033[32m";
+char *yellow = "\033[33m";
+char *blue = "\033[34m";
+char *magenta = "\033[35m";
+char *cyan = "\033[36m";
+char *white = "\033[37m";
+char *bright_black = "\033[90m";
+char *bright_red = "\033[91m";
+char *bright_green = "\033[92m";
+char *bright_yellow = "\033[93m";
+char *bright_blue = "\033[94m";
+char *bright_magenta = "\033[95m";
+char *bright_cyan = "\033[96m";
+char *bright_white = "\033[97m";
+
+//untuk memberi warna background
+char *bg_black = "\033[40m";
+char *bg_red = "\033[41m";
+char *bg_green = "\033[42m";
+char *bg_yellow = "\033[43m";
+char *bg_blue = "\033[44m";
+char *bg_magenta = "\033[45m";
+char *bg_cyan = "\033[46m";
+char *bg_white = "\033[47m";
+char *bg_bright_black = "\033[100m";
+char *bg_bright_red = "\033[101m";
+char *bg_bright_green = "\033[102m";
+char *bg_bright_yellow = "\033[103m";
+char *bg_bright_blue = "\033[104m";
+char *bg_bright_magenta = "\033[105m";
+char *bg_bright_cyan = "\033[106m";
+char *bg_bright_white = "\033[107m";
+
 //fungsi untuk menghitung banyak data dalam array
 int menghitungBanyakData(char arr[1000][5][100]) {
     int count = 0;
@@ -41,6 +78,11 @@ int main(){
     do{
         input = 0;
         system("cls");
+
+        printf("\033[103m\033[2J");
+
+
+        printf("\033[31m"); // Bright Yellow
         printf(" ________   ______   __    __   ______         _______   ________  ________  ________ \n");
         printf("|        \\ /      \\ |  \\  /  \\ /      \\       |       \\ |        \\|        \\|        \\\n");
         printf(" \\$$$$$$$$|  $$$$$$\\| $$ /  $$|  $$$$$$\\      | $$$$$$$\\| $$$$$$$$| $$$$$$$$| $$$$$$$$\n");
@@ -51,17 +93,38 @@ int main(){
         printf("   | $$    \\$$    $$| $$  \\$$\\ \\$$    $$      | $$  | $$| $$      | $$      | $$     \\\n");
         printf("    \\$$     \\$$$$$$  \\$$   \\$$  \\$$$$$$        \\$$   \\$$ \\$$       \\$$       \\$$$$$$$$\n");
 
-        printf("+---+--------------------------------------------------------------------------------+\n");
-        printf("|No.|Program                                                                         |\n");
-        printf("+---+--------------------------------------------------------------------------------+\n");
-        printf("|0. |keluar program                                                                  |\n");
-        printf("|1. |login user                                                                      |\n");
-        printf("|2. |login seller                                                                    |\n");
-        printf("|3. |register user                                                                   |\n");
-        printf("|4. |Search Barang                                                                   |\n");
-        printf("|5. |lihat kategori                                                                  |\n");
-        printf("|6. |barang terlaris                                                                 |\n");
-        printf("+---+--------------------------------------------------------------------------------+\n");
+
+        printf("\033[94m+---+--------------------------------------------------------------------------------+\n");
+
+
+        printf("\033[36m|"); // Cyan
+        printf("\033[90mNo."); // Hijau
+        printf("\033[36m|\033[90mProgram                                                                         ");
+        printf("\033[36m|\n");
+        printf("\033[94m+---+--------------------------------------------------------------------------------+\n");
+
+
+        printf("\033[36m|"); printf("\033[90m0. |keluar program                                                                  ");
+        printf("\033[36m|\n");
+        printf("\033[36m|"); printf("\033[90m1. |login user                                                                      ");
+        printf("\033[36m|\n");
+        printf("\033[36m|"); printf("\033[90m2. |login seller                                                                    ");
+        printf("\033[36m|\n");
+        printf("\033[36m|"); printf("\033[90m3. |register user                                                                   ");
+        printf("\033[36m|\n");
+        printf("\033[36m|"); printf("\033[90m4. |Search Barang                                                                   ");
+        printf("\033[36m|\n");
+        printf("\033[36m|"); printf("\033[90m5. |lihat kategori                                                                  ");
+        printf("\033[36m|\n");
+        printf("\033[36m|"); printf("\033[90m6. |barang terlaris                                                                 ");
+        printf("\033[36m|\n");
+
+
+        printf("\033[94m+---+--------------------------------------------------------------------------------+\n");
+
+        printf("\033[0m"); // Reset warna
+        // printf("\033[H"); // Pindahkan kursor ke atas
+
         validasi = scanf("%d", &input);
         getchar(); 
 
@@ -209,6 +272,10 @@ char *nama = strtok(line,"|");
     //login user
     if(input == 1){
         system("cls");
+        printf("\033[103m\033[2J");
+
+
+        printf("\033[31m"); // Bright Yellow
         printf(" __                                  ______                  _______                               \n");
         printf("/  |                                /      |                /       \\                              \n");
         printf("$$ |        ______    ______        $$$$$$/  _______        $$$$$$$  | ______    ______    ______  \n");
@@ -240,6 +307,10 @@ char *nama = strtok(line,"|");
 
         if(session == 1){
             system("cls");
+            printf("\033[103m\033[2J");
+
+
+            printf("\033[31m"); // Bright Yellow
             printf(" __                                  ______                  _______                       __                            __  __ \n");
             printf("/  |                                /      |                /       \\                     /  |                          /  |/  | \n");
             printf("$$ |        ______    ______        $$$$$$/  _______        $$$$$$$  |  ______    ______  $$ |____    ______    _______ $$/ $$ | \n");
@@ -462,6 +533,14 @@ char *nama = strtok(line,"|");
                         //buat nyamain sama barang buku
                         for(int i = 0;i<jumlahBuku;i++){
                             if(strcmp(namaBarang,buku[i][0]) == 0){
+                                int cekStok = atoi(buku[i][2]);
+                                if(cekStok <= 0){
+                                    system("cls");
+                                    printf("gagal masukan %s ke dalam keranjang, stok sedang habis",buku[i][0]);
+                                    getch();
+                                    goto sessionuser;
+                                }
+                                else{
                                 searchSession = 1;
 
                                 char namaFile[50];
@@ -477,6 +556,7 @@ char *nama = strtok(line,"|");
                                 printf("%s telah dimasukan ke dalam keranjang\n",buku[i][0]);
                                 getch();
                                 goto sessionBuku;
+                                }
                             }
                         }
                         
@@ -501,6 +581,14 @@ char *nama = strtok(line,"|");
                         //buat nyamain sama barang buku
                         for(int i = 0;i<jumlahBuku;i++){
                             if(strcmp(namaBarang,buku[i][0]) == 0){
+                                int cekStok = atoi(buku[i][2]);
+                                if(cekStok <= 0){
+                                    system("cls");
+                                    printf("gagal masukan %s ke dalam keranjang, stok sedang habis",buku[i][0]);
+                                    getch();
+                                    goto sessionuser;
+                                }
+                                else{
                                 searchSession = 1;
 
                                 char namaFile[50];
@@ -516,6 +604,7 @@ char *nama = strtok(line,"|");
                                 printf("%s telah dimasukan ke dalam keranjang\n",buku[i][0]);
                                 getch();
                                 goto sessionBuku;
+                                }
                             }
                         }
                         
@@ -606,6 +695,14 @@ char *nama = strtok(line,"|");
                         
                         for(int i = 0;i<jumlahFashion;i++){
                             if(strcmp(namaBarang,fashion[i][0]) == 0){
+                                int cekStok = atoi(fashion[i][2]);
+                                if(cekStok <= 0){
+                                    system("cls");
+                                    printf("gagal masukan %s ke dalam keranjang, stok sedang habis",fashion[i][0]);
+                                    getch();
+                                    goto sessionuser;
+                                }
+                                else{
                                 searchSession = 1;
 
                                 char namaFile[50];
@@ -621,6 +718,7 @@ char *nama = strtok(line,"|");
                                 printf("%s telah dimasukan ke dalam keranjang\n",fashion[i][0]);
                                 getch();
                                 goto sessionFashion;
+                                }
                             }
                         }
                         
@@ -644,6 +742,14 @@ char *nama = strtok(line,"|");
                         
                         for(int i = 0;i<jumlahFashion;i++){
                             if(strcmp(namaBarang,fashion[i][0]) == 0){
+                                int cekStok = atoi(fashion[i][2]);
+                                if(cekStok <= 0){
+                                    system("cls");
+                                    printf("gagal masukan %s ke dalam keranjang, stok sedang habis",fashion[i][0]);
+                                    getch();
+                                    goto sessionuser;
+                                }
+                                else{
                                 searchSession = 1;
 
                                 char namaFile[50];
@@ -659,6 +765,7 @@ char *nama = strtok(line,"|");
                                 printf("%s telah dimasukan ke dalam keranjang\n",fashion[i][0]);
                                 getch();
                                 goto sessionFashion;
+                                }
                             }
                         }
                         
@@ -750,6 +857,14 @@ char *nama = strtok(line,"|");
                             
                             for(int i = 0;i<jumlahObat;i++){
                                 if(strcmp(namaBarang,obat[i][0]) == 0){
+                                int cekStok = atoi(obat[i][2]);
+                                if(cekStok <= 0){
+                                        system("cls");
+                                        printf("gagal masukan %s ke dalam keranjang, stok sedang habis",obat[i][0]);
+                                        getch();
+                                        goto sessionuser;
+                                }
+                                else{
                                     searchSession = 1;
 
                                     char namaFile[50];
@@ -765,6 +880,7 @@ char *nama = strtok(line,"|");
                                     printf("%s telah dimasukan ke dalam keranjang\n",obat[i][0]);
                                     getch();
                                     goto sessionObat;
+                                    }
                                 }
                             }
                             
@@ -788,22 +904,31 @@ char *nama = strtok(line,"|");
                         
                         for(int i = 0;i<jumlahObat;i++){
                             if(strcmp(namaBarang,obat[i][0]) == 0){
-                                searchSession = 1;
+                                int cekStok = atoi(obat[i][2]);
+                                if(cekStok <= 0){
+                                        system("cls");
+                                        printf("gagal masukan %s ke dalam keranjang, stok sedang habis",obat[i][0]);
+                                        getch();
+                                        goto sessionuser;
+                                }
+                                else{
+                                    searchSession = 1;
 
-                                char namaFile[50];
-                                sprintf(namaFile, "%s.txt", loginID);
+                                    char namaFile[50];
+                                    sprintf(namaFile, "%s.txt", loginID);
 
-                                file = fopen(namaFile, "a");
+                                    file = fopen(namaFile, "a");
 
-                                fprintf(file, "%s|%s|%s|%s|%s\n", obat[i][0],obat[i][1],obat[i][2],obat[i][3],obat[i][4]);
+                                    fprintf(file, "%s|%s|%s|%s|%s\n", obat[i][0],obat[i][1],obat[i][2],obat[i][3],obat[i][4]);
 
-                                fclose(file);
+                                    fclose(file);
 
-                                system("cls");
-                                printf("%s telah dimasukan ke dalam keranjang\n",obat[i][0]);
-                                getch();
-                                goto sessionObat;
-                            }
+                                    system("cls");
+                                    printf("%s telah dimasukan ke dalam keranjang\n",obat[i][0]);
+                                    getch();
+                                    goto sessionObat;
+                                    }
+                                }
                         }
                         
                         if(searchSession == 0){
@@ -892,6 +1017,14 @@ char *nama = strtok(line,"|");
                             
                             for(int i = 0;i<jumlahOthers;i++){
                                 if(strcmp(namaBarang,others[i][0]) == 0){
+                                int cekStok = atoi(others[i][2]);
+                                if(cekStok <= 0){
+                                        system("cls");
+                                        printf("gagal masukan %s ke dalam keranjang, stok sedang habis",others[i][0]);
+                                        getch();
+                                        goto sessionuser;
+                                }
+                                else{
                                     searchSession = 1;
 
                                     char namaFile[50];
@@ -907,6 +1040,7 @@ char *nama = strtok(line,"|");
                                     printf("%s telah dimasukan ke dalam keranjang\n",others[i][0]);
                                     getch();
                                     goto sessionOthers;
+                                    }
                                 }
                             }
                             
@@ -930,22 +1064,31 @@ char *nama = strtok(line,"|");
                         
                         for(int i = 0;i<jumlahOthers;i++){
                             if(strcmp(namaBarang,others[i][0]) == 0){
-                                searchSession = 1;
+                                int cekStok = atoi(others[i][2]);
+                                if(cekStok <= 0){
+                                        system("cls");
+                                        printf("gagal masukan %s ke dalam keranjang, stok sedang habis",others[i][0]);
+                                        getch();
+                                        goto sessionuser;
+                                }
+                                else{
+                                    searchSession = 1;
 
-                                char namaFile[50];
-                                sprintf(namaFile, "%s.txt", loginID);
+                                    char namaFile[50];
+                                    sprintf(namaFile, "%s.txt", loginID);
 
-                                file = fopen(namaFile, "a");
+                                    file = fopen(namaFile, "a");
 
-                                fprintf(file, "%s|%s|%s|%s|%s\n", others[i][0],others[i][1],others[i][2],others[i][3],others[i][4]);
+                                    fprintf(file, "%s|%s|%s|%s|%s\n", others[i][0],others[i][1],others[i][2],others[i][3],others[i][4]);
 
-                                fclose(file);
+                                    fclose(file);
 
-                                system("cls");
-                                printf("%s telah dimasukan ke dalam keranjang\n",others[i][0]);
-                                getch();
-                                goto sessionOthers;
-                            }
+                                    system("cls");
+                                    printf("%s telah dimasukan ke dalam keranjang\n",others[i][0]);
+                                    getch();
+                                    goto sessionOthers;
+                                    }
+                                }
                         }
                         
                         if(searchSession == 0){
@@ -3136,6 +3279,10 @@ char *nama = strtok(line,"|");
         //salah memasukan password login
         else{
             system("cls");
+            printf("\033[103m\033[2J");
+
+
+            printf("\033[31m"); // Bright Yellow
             printf(" _______                                                                       __         ______             __            __       \n");
             printf("/       \\                                                                     /  |       /      \\           /  |          /  |      \n");
             printf("$$$$$$$  | ______    _______  _______  __   __   __   ______    ______    ____$$ |      /$$$$$$  |  ______  $$ |  ______  $$ |____  \n");
@@ -3155,6 +3302,10 @@ char *nama = strtok(line,"|");
     //login seller
     else if(input == 2){
         system("cls");
+        printf("\033[103m\033[2J");
+
+
+        printf("\033[31m"); // Bright Yellow
         printf(" __                                  ______                  _______                               \n");
         printf("/  |                                /      |                /       \\                              \n");
         printf("$$ |        ______    ______        $$$$$$/  _______        $$$$$$$  | ______    ______    ______  \n");
@@ -3187,6 +3338,10 @@ char *nama = strtok(line,"|");
 
         if(sessionSeller == 1){
             system("cls");
+            printf("\033[103m\033[2J");
+
+
+            printf("\033[31m"); // Bright Yellow
             printf(" __                                  ______                  _______                       __                            __  __ \n");
             printf("/  |                                /      |                /       \\                     /  |                          /  |/  | \n");
             printf("$$ |        ______    ______        $$$$$$/  _______        $$$$$$$  |  ______    ______  $$ |____    ______    _______ $$/ $$ | \n");
@@ -3508,6 +3663,10 @@ char *nama = strtok(line,"|");
         //salah memasukan password seller
         else{
             system("cls");
+            printf("\033[103m\033[2J");
+
+
+            printf("\033[31m"); // Bright Yellow
             printf(" _______                                                                       __         ______             __            __       \n");
             printf("/       \\                                                                     /  |       /      \\           /  |          /  |      \n");
             printf("$$$$$$$  | ______    _______  _______  __   __   __   ______    ______    ____$$ |      /$$$$$$  |  ______  $$ |  ______  $$ |____  \n");
@@ -3577,6 +3736,10 @@ char *nama = strtok(line,"|");
     //untuk keluar dari program
     else if(input == 0){
         system("cls");
+        printf("\033[103m\033[2J");
+
+
+        printf("\033[31m"); // Bright Yellow
         printf(" ________  ________  _______   ______  __       __   ______         __    __   ______    ______   ______  __    __ \n");
         printf("|        \\|        \\|       \\ |      \\|  \\     /  \\ /      \\       |  \\  /  \\ /      \\  /      \\ |      \\|  \\  |  \\\n");
         printf(" \\$$$$$$$$| $$$$$$$$| $$$$$$$\\ \\$$$$$$| $$\\   /  $$|  $$$$$$\\      | $$ /  $$|  $$$$$$\\|  $$$$$$\\ \\$$$$$$| $$  | $$\n");

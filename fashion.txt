@@ -3,3 +3,4 @@ jam tangan|75000|3|0.2|13
 tas ijo eiger|200000|6|1.6|6
 baju mahal|450000|2|0.3|3
 jeans|475000|3|0.1|0
+sun screen|135000|3|0.2|0
