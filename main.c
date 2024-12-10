@@ -1393,6 +1393,135 @@ char *nama = strtok(line,"|");
                                         fclose(file);
 
 
+                                        //untuk menambahkan jumlah terjual abis checkout barang, sama ngurangin stok abis checkout
+
+
+                                        //untuk nyamain array keranjang sama array buku, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahBuku;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],buku[j][0]) == 0 ){
+                                                    int Terjual = atoi(buku[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(buku[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(buku[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(buku[j][2],"%d", Stok);
+
+                                                    file = fopen("buku.txt","w");
+                                                    for(int k = 0 ;k<jumlahBuku;k++){
+                                                        
+                                                        if(jumlahBuku-1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+                                        
+
+                                        
+                                        //untuk nyamain array keranjang sama array fashion, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahFashion;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],fashion[j][0]) == 0 ){
+                                                    int Terjual = atoi(fashion[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(fashion[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(fashion[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(fashion[j][2],"%d", Stok);
+
+                                                    file = fopen("fashion.txt","w");
+                                                    for(int k = 0 ;k<jumlahFashion;k++){
+                                                        
+                                                        if(jumlahFashion - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array obat, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahObat;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],obat[j][0]) == 0 ){
+                                                    int Terjual = atoi(obat[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(obat[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(obat[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(obat[j][2],"%d", Stok);
+
+                                                    file = fopen("obat.txt","w");
+                                                    for(int k = 0 ;k<jumlahObat;k++){
+                                                        
+                                                        if(jumlahObat - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array others, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahOthers;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],others[j][0]) == 0 ){
+                                                    int Terjual = atoi(others[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(others[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(others[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(others[j][2],"%d", Stok);
+
+                                                    file = fopen("others.txt","w");
+                                                    for(int k = 0 ;k<jumlahOthers;k++){
+                                                        
+                                                        if(jumlahOthers - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
 
 
                                         getch();
@@ -1502,21 +1631,26 @@ char *nama = strtok(line,"|");
 
                                         fclose(file);
 
-                                        //untuk menambahkan jumlah terjual abis checkout barang
+                                        //untuk menambahkan jumlah terjual abis checkout barang, sama ngurangin stok abis checkout
 
-                                        //untuk nyamain array keranjang sama array buku
-                                        
+
+                                        //untuk nyamain array keranjang sama array buku, terus ngurangin
                                         for(int i = 0;i<jumlahKeranjang;i++){
                                             for(int j = 0;j<jumlahBuku;j++){
                                                 
                                                 if (strcmp(keranjang[i][0],buku[j][0]) == 0 ){
-                                                    int jumlah = atoi(buku[j][4]);
-                                                    jumlah += 1;
-                                                    sprintf(buku[j][4], "%d", jumlah);
+                                                    int Terjual = atoi(buku[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(buku[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(buku[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(buku[j][2],"%d", Stok);
+
                                                     file = fopen("buku.txt","w");
                                                     for(int k = 0 ;k<jumlahBuku;k++){
                                                         
-                                                        if(jumlahBuku == k-1){
+                                                        if(jumlahBuku-1 == k){
                                                             fprintf(file,"%s|%s|%s|%s|%s",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
                                                         }
                                                         else{
@@ -1529,6 +1663,103 @@ char *nama = strtok(line,"|");
                                                 }
                                             }
                                         }
+
+                                        
+
+                                        
+                                        //untuk nyamain array keranjang sama array fashion, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahFashion;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],fashion[j][0]) == 0 ){
+                                                    int Terjual = atoi(fashion[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(fashion[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(fashion[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(fashion[j][2],"%d", Stok);
+
+                                                    file = fopen("fashion.txt","w");
+                                                    for(int k = 0 ;k<jumlahFashion;k++){
+                                                        
+                                                        if(jumlahFashion - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array obat, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahObat;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],obat[j][0]) == 0 ){
+                                                    int Terjual = atoi(obat[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(obat[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(obat[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(obat[j][2],"%d", Stok);
+
+                                                    file = fopen("obat.txt","w");
+                                                    for(int k = 0 ;k<jumlahObat;k++){
+                                                        
+                                                        if(jumlahObat - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array others, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahOthers;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],others[j][0]) == 0 ){
+                                                    int Terjual = atoi(others[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(others[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(others[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(others[j][2],"%d", Stok);
+
+                                                    file = fopen("others.txt","w");
+                                                    for(int k = 0 ;k<jumlahOthers;k++){
+                                                        
+                                                        if(jumlahOthers - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
 
                                         getch();
                                         goto sessionuser;
@@ -1636,6 +1867,134 @@ char *nama = strtok(line,"|");
                                         fprintf(file,"%ld\n",epoch_time);
 
                                         fclose(file);
+
+                                        //untuk menambahkan jumlah terjual abis checkout barang, sama ngurangin stok abis checkout
+
+
+                                        //untuk nyamain array keranjang sama array buku, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahBuku;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],buku[j][0]) == 0 ){
+                                                    int Terjual = atoi(buku[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(buku[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(buku[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(buku[j][2],"%d", Stok);
+
+                                                    file = fopen("buku.txt","w");
+                                                    for(int k = 0 ;k<jumlahBuku;k++){
+                                                        
+                                                        if(jumlahBuku-1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+                                        
+
+                                        
+                                        //untuk nyamain array keranjang sama array fashion, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahFashion;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],fashion[j][0]) == 0 ){
+                                                    int Terjual = atoi(fashion[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(fashion[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(fashion[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(fashion[j][2],"%d", Stok);
+
+                                                    file = fopen("fashion.txt","w");
+                                                    for(int k = 0 ;k<jumlahFashion;k++){
+                                                        
+                                                        if(jumlahFashion - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array obat, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahObat;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],obat[j][0]) == 0 ){
+                                                    int Terjual = atoi(obat[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(obat[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(obat[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(obat[j][2],"%d", Stok);
+
+                                                    file = fopen("obat.txt","w");
+                                                    for(int k = 0 ;k<jumlahObat;k++){
+                                                        
+                                                        if(jumlahObat - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array others, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahOthers;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],others[j][0]) == 0 ){
+                                                    int Terjual = atoi(others[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(others[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(others[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(others[j][2],"%d", Stok);
+
+                                                    file = fopen("others.txt","w");
+                                                    for(int k = 0 ;k<jumlahOthers;k++){
+                                                        
+                                                        if(jumlahOthers - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
 
                                         getch();
                                         goto sessionuser;
@@ -1771,6 +2130,134 @@ char *nama = strtok(line,"|");
 
                                         fclose(file);
 
+                                        //untuk menambahkan jumlah terjual abis checkout barang, sama ngurangin stok abis checkout
+
+
+                                        //untuk nyamain array keranjang sama array buku, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahBuku;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],buku[j][0]) == 0 ){
+                                                    int Terjual = atoi(buku[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(buku[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(buku[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(buku[j][2],"%d", Stok);
+
+                                                    file = fopen("buku.txt","w");
+                                                    for(int k = 0 ;k<jumlahBuku;k++){
+                                                        
+                                                        if(jumlahBuku-1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+                                        
+
+                                        
+                                        //untuk nyamain array keranjang sama array fashion, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahFashion;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],fashion[j][0]) == 0 ){
+                                                    int Terjual = atoi(fashion[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(fashion[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(fashion[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(fashion[j][2],"%d", Stok);
+
+                                                    file = fopen("fashion.txt","w");
+                                                    for(int k = 0 ;k<jumlahFashion;k++){
+                                                        
+                                                        if(jumlahFashion - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array obat, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahObat;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],obat[j][0]) == 0 ){
+                                                    int Terjual = atoi(obat[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(obat[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(obat[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(obat[j][2],"%d", Stok);
+
+                                                    file = fopen("obat.txt","w");
+                                                    for(int k = 0 ;k<jumlahObat;k++){
+                                                        
+                                                        if(jumlahObat - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array others, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahOthers;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],others[j][0]) == 0 ){
+                                                    int Terjual = atoi(others[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(others[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(others[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(others[j][2],"%d", Stok);
+
+                                                    file = fopen("others.txt","w");
+                                                    for(int k = 0 ;k<jumlahOthers;k++){
+                                                        
+                                                        if(jumlahOthers - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
                                         getch();
                                         goto sessionuser;
                                     }
@@ -1878,6 +2365,134 @@ char *nama = strtok(line,"|");
 
                                         fclose(file);
 
+                                        //untuk menambahkan jumlah terjual abis checkout barang, sama ngurangin stok abis checkout
+
+
+                                        //untuk nyamain array keranjang sama array buku, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahBuku;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],buku[j][0]) == 0 ){
+                                                    int Terjual = atoi(buku[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(buku[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(buku[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(buku[j][2],"%d", Stok);
+
+                                                    file = fopen("buku.txt","w");
+                                                    for(int k = 0 ;k<jumlahBuku;k++){
+                                                        
+                                                        if(jumlahBuku-1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+                                        
+
+                                        
+                                        //untuk nyamain array keranjang sama array fashion, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahFashion;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],fashion[j][0]) == 0 ){
+                                                    int Terjual = atoi(fashion[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(fashion[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(fashion[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(fashion[j][2],"%d", Stok);
+
+                                                    file = fopen("fashion.txt","w");
+                                                    for(int k = 0 ;k<jumlahFashion;k++){
+                                                        
+                                                        if(jumlahFashion - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array obat, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahObat;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],obat[j][0]) == 0 ){
+                                                    int Terjual = atoi(obat[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(obat[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(obat[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(obat[j][2],"%d", Stok);
+
+                                                    file = fopen("obat.txt","w");
+                                                    for(int k = 0 ;k<jumlahObat;k++){
+                                                        
+                                                        if(jumlahObat - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array others, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahOthers;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],others[j][0]) == 0 ){
+                                                    int Terjual = atoi(others[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(others[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(others[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(others[j][2],"%d", Stok);
+
+                                                    file = fopen("others.txt","w");
+                                                    for(int k = 0 ;k<jumlahOthers;k++){
+                                                        
+                                                        if(jumlahOthers - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
                                         getch();
                                         goto sessionuser;
                                     }
@@ -1984,6 +2599,134 @@ char *nama = strtok(line,"|");
                                         fprintf(file,"%ld\n",epoch_time);
 
                                         fclose(file);
+
+                                        //untuk menambahkan jumlah terjual abis checkout barang, sama ngurangin stok abis checkout
+
+
+                                        //untuk nyamain array keranjang sama array buku, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahBuku;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],buku[j][0]) == 0 ){
+                                                    int Terjual = atoi(buku[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(buku[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(buku[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(buku[j][2],"%d", Stok);
+
+                                                    file = fopen("buku.txt","w");
+                                                    for(int k = 0 ;k<jumlahBuku;k++){
+                                                        
+                                                        if(jumlahBuku-1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+                                        
+
+                                        
+                                        //untuk nyamain array keranjang sama array fashion, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahFashion;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],fashion[j][0]) == 0 ){
+                                                    int Terjual = atoi(fashion[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(fashion[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(fashion[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(fashion[j][2],"%d", Stok);
+
+                                                    file = fopen("fashion.txt","w");
+                                                    for(int k = 0 ;k<jumlahFashion;k++){
+                                                        
+                                                        if(jumlahFashion - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",fashion[k][0],fashion[k][1],fashion[k][2],fashion[k][3],fashion[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array obat, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahObat;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],obat[j][0]) == 0 ){
+                                                    int Terjual = atoi(obat[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(obat[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(obat[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(obat[j][2],"%d", Stok);
+
+                                                    file = fopen("obat.txt","w");
+                                                    for(int k = 0 ;k<jumlahObat;k++){
+                                                        
+                                                        if(jumlahObat - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",obat[k][0],obat[k][1],obat[k][2],obat[k][3],obat[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
+
+                                        //untuk nyamain array keranjang sama array others, terus ngurangin
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahOthers;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],others[j][0]) == 0 ){
+                                                    int Terjual = atoi(others[j][4]);
+                                                    Terjual += 1;
+                                                    sprintf(others[j][4], "%d", Terjual);
+
+                                                    int Stok = atoi(others[j][2]);
+                                                    Stok -= 1;
+                                                    sprintf(others[j][2],"%d", Stok);
+
+                                                    file = fopen("others.txt","w");
+                                                    for(int k = 0 ;k<jumlahOthers;k++){
+                                                        
+                                                        if(jumlahOthers - 1 == k){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",others[k][0],others[k][1],others[k][2],others[k][3],others[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
 
                                         getch();
                                         goto sessionuser;
