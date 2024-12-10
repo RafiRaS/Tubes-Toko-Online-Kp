@@ -1,4 +1,4 @@
-one piece|25000|4|0.2|7
+one piece|25000|4|0.2|10
 psychological of money|50000|3|0.2|5
 buku ipa|20000|13|0.3|4
 buku mtk|15000|6|0.2|2

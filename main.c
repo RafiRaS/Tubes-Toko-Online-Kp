@@ -1502,6 +1502,34 @@ char *nama = strtok(line,"|");
 
                                         fclose(file);
 
+                                        //untuk menambahkan jumlah terjual abis checkout barang
+
+                                        //untuk nyamain array keranjang sama array buku
+                                        
+                                        for(int i = 0;i<jumlahKeranjang;i++){
+                                            for(int j = 0;j<jumlahBuku;j++){
+                                                
+                                                if (strcmp(keranjang[i][0],buku[j][0]) == 0 ){
+                                                    int jumlah = atoi(buku[j][4]);
+                                                    jumlah += 1;
+                                                    sprintf(buku[j][4], "%d", jumlah);
+                                                    file = fopen("buku.txt","w");
+                                                    for(int k = 0 ;k<jumlahBuku;k++){
+                                                        
+                                                        if(jumlahBuku == k-1){
+                                                            fprintf(file,"%s|%s|%s|%s|%s",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        else{
+                                                            fprintf(file,"%s|%s|%s|%s|%s\n",buku[k][0],buku[k][1],buku[k][2],buku[k][3],buku[k][4]);
+                                                        }
+                                                        
+                                                        
+                                                    }   
+                                                    fclose(file);
+                                                }
+                                            }
+                                        }
+
                                         getch();
                                         goto sessionuser;
                                     }

@@ -1,0 +1,4 @@
+one piece|25000|4|0.2|7
+one piece|25000|4|0.2|7
+one piece|25000|4|0.2|8
+one piece|25000|4|0.2|8
