@@ -3690,6 +3690,10 @@ char *nama = strtok(line,"|");
         char registerID[25];
         char registerPW[25];
         int cekID = 0;
+        printf("\033[103m\033[2J");
+
+
+        printf("\033[31m"); // Bright Yellow
         system("cls");
         printf("Register Page User\n");
         printf("masukan id       :");
@@ -3759,6 +3763,10 @@ char *nama = strtok(line,"|");
     else if(input == 4){
         int searchSession = 0;
         char namaBarang[50];
+        printf("\033[103m\033[2J");
+
+
+        printf("\033[31m"); // Bright Yellow
         system("cls");
         printf("ketik barang yang ingin dicari:");
         fgets(namaBarang, sizeof(namaBarang), stdin);
@@ -3820,6 +3828,10 @@ char *nama = strtok(line,"|");
     else if(input == 5){
         menuBukuLuar:
         do{
+            printf("\033[103m\033[2J");
+
+
+            printf("\033[31m"); // Bright Yellow
             system("cls");
             printf("+---+---------------+\n");
             printf("|No.|Program        |\n");
@@ -4183,6 +4195,10 @@ char *nama = strtok(line,"|");
     //untuk lihat barang terlaris sebelum user login
     else if(input == 6){
         char terlaris[2000][5][100];
+        printf("\033[103m\033[2J");
+
+
+        printf("\033[31m"); // Bright Yellow
                 system("cls");
 
                 //masukin array buku ke dalam array terlaris
